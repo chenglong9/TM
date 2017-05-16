@@ -11,7 +11,14 @@
     tools:context="zucc.tm.jg.MainActivity">
 
     <TextView
+        android:id="@+id/text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Hello World!" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="dian"
+        android:layout_below="@+id/text"
+        android:onClick="dian"/>
 </RelativeLayout>
