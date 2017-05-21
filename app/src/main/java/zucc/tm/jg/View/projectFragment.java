@@ -1,11 +1,13 @@
 package zucc.tm.jg.View;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import zucc.tm.jg.R;
@@ -30,6 +32,16 @@ public class projectFragment extends Fragment{
 
         projectAdapter adapter = new projectAdapter(getActivity());
         list.setAdapter(adapter);
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+
+            @Override
+            public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+                                    long arg3) {
+                /*Intent intent = new Intent(getActivity(),qunActivity.class);
+                startActivity(intent);*/
+            }
+
+        });
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
