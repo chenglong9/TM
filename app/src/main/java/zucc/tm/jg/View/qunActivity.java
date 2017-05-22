@@ -1,17 +1,13 @@
 package zucc.tm.jg.View;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
 import zucc.tm.jg.R;
 import zucc.tm.jg.adapter.messageAdapter;
 import zucc.tm.jg.bean.MessageBean;
@@ -32,13 +28,8 @@ public class qunActivity extends AppCompatActivity {
         inputText = (EditText) findViewById(R.id.text_msg);
         msgListView = (ListView) findViewById(R.id.list_kefu);
         msgListView.setAdapter(msgAdapter);
-
         inputText.clearFocus();
-
-
     }
-
-
 
     public void fan(View v) {
         this.finish();
@@ -55,12 +46,6 @@ public class qunActivity extends AppCompatActivity {
         }
 
     }
-
-
-
-
-
-
 
 
 }
