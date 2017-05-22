@@ -39,6 +39,7 @@ public class projectFragment extends Fragment{
                                     long arg3) {
                 /*Intent intent = new Intent(getActivity(),qunActivity.class);
                 startActivity(intent);*/
+                MsgIntentService.sendMessage("123123123");
             }
 
         });

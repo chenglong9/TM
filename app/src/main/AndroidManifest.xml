@@ -47,9 +47,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".View.qunActivity" />
 
-        <activity android:name=".View.qunActivity"></activity>
-
+        <service
+            android:name=".View.MsgIntentService"
+            android:exported="false"></service>
     </application>
 
 </manifest>

@@ -5,5 +5,5 @@ package zucc.tm.jg.Util;
  */
 
 public class curUrl {
-    public static String url="172.19.194.1:9191";
+    public static String url="192.168.123.63:8080/TeamWork/";
 }
