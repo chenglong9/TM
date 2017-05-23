@@ -2,14 +2,14 @@
 <tabs >
     <tab
         id="@+id/tab_peoject"
-        icon="@drawable/ic_favorites"
-        title="Favorites" />
+        icon="@mipmap/project"
+         />
     <tab
         id="@+id/tab_job"
-        icon="@drawable/ic_nearby"
-        title="Nearby" />
+        icon="@mipmap/schedule"
+       />
     <tab
         id="@+id/tab_friends"
-        icon="@drawable/ic_friends"
-        title="Friends" />
+        icon="@mipmap/contact"
+       />
 </tabs>

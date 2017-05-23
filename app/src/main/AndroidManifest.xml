@@ -51,7 +51,9 @@
 
         <service
             android:name=".View.MsgIntentService"
-            android:exported="false"></service>
+            android:exported="false" />
+
+        <activity android:name=".View.addprojectActivity"></activity>
     </application>
 
 </manifest>

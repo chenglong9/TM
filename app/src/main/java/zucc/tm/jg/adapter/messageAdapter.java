@@ -1,6 +1,7 @@
 package zucc.tm.jg.adapter;
 
 import android.content.Context;
+import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,8 +35,8 @@ public class messageAdapter extends ArrayAdapter<MessageBean> {
             view = LayoutInflater.from(getContext()).inflate(resourceId, null);
             viewHolder = new ViewHolder();
 
-            viewHolder.leftLayout = (LinearLayout) view.findViewById(R.id.left_layout1);
-            viewHolder.rightLayout = (LinearLayout) view.findViewById(R.id.right_layout1);
+            viewHolder.leftLayout = (CardView) view.findViewById(R.id.left_layout1);
+            viewHolder.rightLayout = (CardView) view.findViewById(R.id.right_layout1);
             viewHolder.leftMsg = (TextView) view.findViewById(R.id.left_msg1);
             viewHolder.rightMsg = (TextView) view.findViewById(R.id.right_msg1);
             viewHolder.dateMsgLeft = (TextView) view.findViewById(R.id.date_msg_left);
@@ -75,8 +76,8 @@ public class messageAdapter extends ArrayAdapter<MessageBean> {
     }
 
     class ViewHolder {
-        LinearLayout leftLayout;
-        LinearLayout rightLayout;
+        CardView leftLayout;
+        CardView rightLayout;
         TextView leftMsg;
         TextView rightMsg;
 //        TextView dateMsg;
