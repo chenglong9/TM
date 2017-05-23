@@ -52,20 +52,24 @@ public class drawerAdapter extends BaseAdapter {
         ImageView imageView= (ImageView) view.findViewById(R.id.icon_drawer);
         TextView textView = (TextView) view.findViewById(R.id.tv_drawer);
 
-        if(i==0){
-        imageView.setImageResource(R.mipmap.ic_launcher);
+         if(i==0){
+            imageView.setImageResource(R.drawable.exit);
             textView.setText(lists.get(i));
         }
-        else if(i==1){
-            imageView.setImageResource(R.mipmap.ic_launcher);
+        else  if(i==1){
+        imageView.setImageResource(R.drawable.setting);
             textView.setText(lists.get(i));
         }
         else if(i==2){
-            imageView.setImageResource(R.mipmap.ic_launcher);
+            imageView.setImageResource(R.drawable.update);
             textView.setText(lists.get(i));
         }
         else if(i==3){
-            imageView.setImageResource(R.mipmap.ic_launcher);
+            imageView.setImageResource(R.drawable.about);
+            textView.setText(lists.get(i));
+        }
+        else if(i==4){
+            imageView.setImageResource(R.drawable.exit);
             textView.setText(lists.get(i));
             textView.setTextColor(Color.parseColor("#E61E28"));
         }

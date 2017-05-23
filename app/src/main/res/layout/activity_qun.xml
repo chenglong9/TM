@@ -27,7 +27,7 @@
                 android:onClick="fan"
                 android:padding="9dp"
                 android:scaleType="fitCenter"
-                android:src="@drawable/fan" />
+                android:src="@drawable/back" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -55,6 +55,7 @@
         android:layout_above="@+id/di"
         android:layout_below="@+id/toolbar"
         android:cacheColorHint="@null"
+        android:layout_marginTop="8dp"
         android:divider="#00000000"
         android:listSelector="#00000000"></ListView>
 
@@ -91,5 +92,5 @@
         android:onClick="send"
         android:layout_marginRight="16dp"
         android:layout_marginBottom="25dp"
-        app:srcCompat="@drawable/jia" />
+        app:srcCompat="@drawable/plane" />
 </RelativeLayout>

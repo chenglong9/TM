@@ -37,9 +37,9 @@ public class projectFragment extends Fragment{
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
                                     long arg3) {
-                /*Intent intent = new Intent(getActivity(),qunActivity.class);
-                startActivity(intent);*/
-                MsgIntentService.sendMessage("123123123");
+                Intent intent = new Intent(getActivity(),qunActivity.class);
+                startActivity(intent);
+
             }
 
         });
@@ -47,7 +47,8 @@ public class projectFragment extends Fragment{
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(getActivity(),addprojectActivity.class);
+                startActivity(intent);
             }
         });
 
