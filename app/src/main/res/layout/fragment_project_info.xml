@@ -177,11 +177,13 @@
                 android:layout_marginRight="8dp"
                 app:cardCornerRadius="2dp">
 
+
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:padding="16dp">
+
 
                     <zucc.tm.jg.CustomerView.AvatarImageView
                         android:id="@+id/tou"
