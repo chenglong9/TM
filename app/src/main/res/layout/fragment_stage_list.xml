@@ -2,9 +2,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
     tools:context="zucc.tm.jg.View.stageListFragment">
 
     <!-- TODO: Update blank fragment layout -->
+    <ListView
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="@null"
+        android:layout_marginTop="8dp"
+        ></ListView>
 
 </FrameLayout>

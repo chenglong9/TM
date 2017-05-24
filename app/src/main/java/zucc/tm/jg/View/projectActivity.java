@@ -21,8 +21,6 @@ import zucc.tm.jg.adapter.fragmentAdapter;
 
 public class projectActivity extends AppCompatActivity {
     private Toolbar toolbar;
-
-    public static final String TAG = "TabActivity";
     public static final String []sTitle = new String[]{"简介","阶段","分析"};
     private TabLayout mTabLayout;
     private ViewPager mViewPager;
@@ -31,12 +29,25 @@ public class projectActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_project);
+        initView();
+    }
+//    获取menu样式
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_project, menu);
+        return true;
+    }
+
+    private void initView() {
+
+        //TooBar
         toolbar = (Toolbar) findViewById(R.id.pa_toolbar);
         toolbar.setTitle("SQA大作业");//设置Toolbar标题
         toolbar.setTitleTextColor(Color.parseColor("#ffffff")); //设置标题颜色
         setSupportActionBar(toolbar);
         getSupportActionBar().setHomeButtonEnabled(true); //设置返回键可用
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         //message，menuItem监听
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
@@ -51,18 +62,7 @@ public class projectActivity extends AppCompatActivity {
             }
         });
 
-        initView();
-
-    }
-//    获取menu样式
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_project, menu);
-        return true;
-    }
-
-
-    private void initView() {
+        //Tab、Fragment
         mViewPager = (ViewPager) findViewById(R.id.view_pager_project);
         mTabLayout = (TabLayout) findViewById(R.id.tab_project);
         mTabLayout.addTab(mTabLayout.newTab().setText(sTitle[0]));
@@ -72,17 +72,14 @@ public class projectActivity extends AppCompatActivity {
         mTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                Log.i(TAG,"onTabSelected:"+tab.getText());
             }
 
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
-
             }
 
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
-
             }
         });
         mTabLayout.setupWithViewPager(mViewPager);
@@ -96,17 +93,14 @@ public class projectActivity extends AppCompatActivity {
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
             }
 
             @Override
             public void onPageSelected(int position) {
-                Log.i(TAG,"select page:"+position);
             }
 
             @Override
             public void onPageScrollStateChanged(int state) {
-
             }
         });
 
