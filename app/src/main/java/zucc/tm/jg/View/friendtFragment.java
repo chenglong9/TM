@@ -35,7 +35,7 @@ public class friendtFragment extends Fragment{
 
     private ArrayList<friendbean> arraylist;
     private ListView list;
-
+    friendAdapter adapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -43,10 +43,14 @@ public class friendtFragment extends Fragment{
 
         View view = inflater.inflate(R.layout.fragment_friend, container, false);
         list = (ListView) view.findViewById(R.id.list);
-        getfriend get=new getfriend(getActivity());
-        arraylist=get.get();
-        friendAdapter adapter = new friendAdapter(getActivity(), arraylist);
-        list.setAdapter(adapter);
+        arraylist=new ArrayList<friendbean>();
+        if (arraylist.size()==0) {
+            getfriend get = new getfriend(getActivity());
+            arraylist = get.get();
+            adapter = new friendAdapter(getActivity(), arraylist);
+            list.setAdapter(adapter);
+        }else adapter.notifyDataSetChanged();
+
 
         return view;
     }

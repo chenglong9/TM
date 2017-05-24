@@ -37,15 +37,7 @@ public class getfriend {
         }
         return arraylist;
     }
-    public ArrayList<friendbean> get2(){
 
-        ArrayList<friendbean> f=new ArrayList<friendbean>();
-        for (int i = 0; i < 3; i++) {
-            f.add(arraylist.get(i));
-        }
-
-        return f;
-    }
 
     public ArrayList<friendbean> getContact(Activity context) {
         ArrayList<friendbean> listMembers = new ArrayList<friendbean>();

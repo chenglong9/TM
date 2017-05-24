@@ -49,9 +49,7 @@ public class HttpTask extends AsyncTask<Object,Object,List> {
             int code = conn.getResponseCode();
             if (code == 200) {
                 InputStream in = new BufferedInputStream(conn.getInputStream());
-
                 String response = dealWithJson(in);
-
                 contentDatas.add(response);
             }else {
                 // 请求失败

@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -60,11 +61,10 @@ public class addAdapter extends BaseAdapter {
 
         CardView cardx = (CardView) view.findViewById(R.id.cardx);
         TextView title_t = (TextView) view.findViewById(R.id.title_t);
-        TextView add_t = (TextView) view.findViewById(R.id.add_t);
 
         TextView name = (TextView) view.findViewById(R.id.name);
         TextView phone = (TextView) view.findViewById(R.id.phone);
-
+        ImageButton jia= (ImageButton) view.findViewById(R.id.jia);
 
         cardx.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,21 +75,24 @@ public class addAdapter extends BaseAdapter {
             }
         });
 
-
+        jia.setVisibility(View.VISIBLE);
+        if (i==1)
+            jia.setVisibility(View.GONE);
         if (i==0) {
             title.setVisibility(View.VISIBLE);
             add.setVisibility(View.GONE);
             card.setVisibility(View.GONE);
             title_t.setText("项目经理");
-        } else  if (i==2){
+        } else  if (i==arraylist.size()-1){
+            title.setVisibility(View.GONE);
+            add.setVisibility(View.VISIBLE);
+            card.setVisibility(View.GONE);
+
+        }else  if (i==2){
             title.setVisibility(View.VISIBLE);
             add.setVisibility(View.GONE);
             card.setVisibility(View.GONE);
             title_t.setText("成员");
-        }else  if (i==arraylist.size()-1){
-            title.setVisibility(View.GONE);
-            add.setVisibility(View.VISIBLE);
-            card.setVisibility(View.GONE);
         }else{
             title.setVisibility(View.GONE);
             add.setVisibility(View.GONE);

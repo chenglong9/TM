@@ -12,6 +12,7 @@ import de.tavendo.autobahn.WebSocketConnection;
 import de.tavendo.autobahn.WebSocketException;
 import de.tavendo.autobahn.WebSocketHandler;
 import zucc.tm.jg.Util.curUrl;
+import zucc.tm.jg.Util.my;
 
 /**
  * Created by dy on 2016/8/29.
@@ -47,18 +48,15 @@ public class MsgIntentService extends IntentService {
                 @Override
                 public void onOpen() {
                     Log.i(TAG, "Status:Connect to " + wsurl);
-                  /*  JSONObject sendMsg = new JSONObject();
+                    JSONObject sendMsg = new JSONObject();
                     try {
-                        sendMsg.put("userId", "user1");
-                        sendMsg.put("request", request);
-                        sendMsg.put("message", "");
-                        sendMsg.put("userType", "user");
-                        sendMsg.put("close", "false");
+                        sendMsg.put("phone", my.my.getPhone());
+                        sendMsg.put("type","connect");
                         String msg = sendMsg.toString();
-                        mConnect.sendTextMessage(msg);
+                        sendMessage(msg);
                     } catch (JSONException e) {
                         e.printStackTrace();
-                    }*/
+                    }
 
                 }
 
