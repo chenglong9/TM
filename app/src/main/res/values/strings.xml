@@ -14,4 +14,7 @@
     <string name="has_read_sms_permission">已读短信权限: %b</string>
     <string name="title_activity_qun">qunActivity</string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>

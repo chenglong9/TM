@@ -37,7 +37,7 @@ public class projectFragment extends Fragment{
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
                                     long arg3) {
-                Intent intent = new Intent(getActivity(),qunActivity.class);
+                Intent intent = new Intent(getActivity(),projectActivity.class);
                 startActivity(intent);
 
             }
