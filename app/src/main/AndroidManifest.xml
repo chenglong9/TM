@@ -53,7 +53,8 @@
             android:name=".View.MsgIntentService"
             android:exported="false" />
 
-        <activity android:name=".View.addprojectActivity"></activity>
+        <activity android:name=".View.addprojectActivity" />
+        <activity android:name=".View.projectActivity"></activity>
     </application>
 
 </manifest>
