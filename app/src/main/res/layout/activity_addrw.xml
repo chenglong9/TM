@@ -10,6 +10,8 @@
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
+        android:focusableInTouchMode="true"
+        android:focusable="true"
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
         android:elevation="4dp"
@@ -34,7 +36,7 @@
                 android:layout_height="48dp"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:text="添加项目"
+                android:text="添加任务"
                 android:textColor="#FFFFFF"
                 android:textSize="20dp" />
 
@@ -47,7 +49,14 @@
 
         </LinearLayout>
     </android.support.v7.widget.Toolbar>
+    <android.support.v4.widget.NestedScrollView
+        android:layout_below="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <RelativeLayout
 
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <RelativeLayout
         android:id="@+id/con"
         android:layout_below="@+id/name"
@@ -69,7 +78,7 @@
             android:textColor="@color/PrimaryText"
             android:textSize="16dp"
             android:layout_marginLeft="16dp"
-            android:hint="项目简介"/>
+            android:hint="任务简介"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="1dp"
@@ -115,21 +124,106 @@
             android:layout_alignParentBottom="true"
             android:background="@color/Divider"/>
     </RelativeLayout>
-    <ListView
-        android:layout_below="@+id/time"
+        <android.support.v7.widget.CardView
+            android:id="@+id/tx"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            app:cardElevation="2dp"
+            app:cardCornerRadius="2dp"
+            android:layout_below="@id/time">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    >
+                    <TextView
+                        android:id="@+id/tx_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:textSize="16dp"
+                        android:textColor="@color/PrimaryText"
+                        android:gravity="center"
+                        android:text="提醒时间"/>
+                    <TextView
+                        android:layout_toRightOf="@+id/tx_time"
+                        android:id="@+id/tv_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:textSize="16dp"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:gravity="center"
+                        android:text="2017.05.20 08:00"/>
+                    <ImageView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:padding="12dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="16dp"
+                        android:src="@drawable/delete"
+                        android:layout_centerVertical="true"
+                        />
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/Divider"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="16dp"                    android:textSize="16dp"
+                        android:textColor="@color/PrimaryText"
+                        android:gravity="center"
+                        android:text="提醒方式"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="16dp"                    android:textSize="16dp"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:gravity="center"
+                        android:text="闹铃"/>
+
+                </LinearLayout>
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <zucc.tm.jg.Util.NoScrollListview
+        android:layout_below="@+id/tx"
         android:id="@+id/list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:divider="@null"
         android:listSelector="@android:color/transparent"
         android:layout_marginTop="8dp"
-        ></ListView>
+        ></zucc.tm.jg.Util.NoScrollListview>
 
     <RelativeLayout
         android:id="@+id/name"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:layout_below="@+id/toolbar"
+
         android:layout_alignParentStart="true">
         <ImageView
             android:id="@+id/name_img"
@@ -145,12 +239,13 @@
             android:textColor="@color/PrimaryText"
             android:textSize="16dp"
             android:layout_marginLeft="16dp"
-            android:hint="项目名称"/>
+            android:hint="任务名称"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_alignParentBottom="true"
             android:background="@color/Divider"/>
     </RelativeLayout>
-
+    </RelativeLayout>
+    </android.support.v4.widget.NestedScrollView>
 </RelativeLayout>

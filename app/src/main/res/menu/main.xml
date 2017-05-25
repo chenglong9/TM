@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+<item android:id="@+id/activity_uidesign"
+    android:title="uidesign"
+    android:orderInCategory="1"
+    app:showAsAction="never"/>
+    <item android:id="@+id/ds"
+        android:title="designstage"
+        android:orderInCategory="1"
+        app:showAsAction="never"/>
+    <item android:id="@+id/gonggao"
+        android:title="gonggao"
+        android:orderInCategory="1"
+        app:showAsAction="never"/>
+    <item android:id="@+id/tongzhi"
+        android:title="tongzhi"
+        android:orderInCategory="1"
+        app:showAsAction="never"/>
+    <item android:id="@+id/addrw"
+        android:title="addrw"
+        android:orderInCategory="1"
+        app:showAsAction="never"/>
+</menu>
