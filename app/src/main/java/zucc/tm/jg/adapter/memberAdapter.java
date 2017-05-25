@@ -13,7 +13,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.IllegalFormatCodePointException;
+import java.util.HashMap;
 
 import zucc.tm.jg.R;
 import zucc.tm.jg.bean.friendbean;
@@ -22,12 +22,12 @@ import zucc.tm.jg.bean.friendbean;
  * Created by 45773 on 2017-05-20.
  */
 
-public class addAdapter extends BaseAdapter {
+public class memberAdapter extends BaseAdapter {
     private Context context;
-    private ArrayList<friendbean> arraylist;
+    private ArrayList<HashMap> arraylist;
 
 
-    public addAdapter(Context context, ArrayList<friendbean> arraylist) {
+    public memberAdapter(Context context, ArrayList<HashMap> arraylist) {
         this.context = context;
         this.arraylist = arraylist;
 
@@ -64,42 +64,25 @@ public class addAdapter extends BaseAdapter {
 
         TextView name = (TextView) view.findViewById(R.id.name);
         TextView phone = (TextView) view.findViewById(R.id.phone);
-        ImageButton jia= (ImageButton) view.findViewById(R.id.jia);
+        ImageButton jia = (ImageButton) view.findViewById(R.id.jia);
 
         cardx.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_DIAL);
-                intent.setData(Uri.parse("tel:" + arraylist.get(i).getContact_phone()));
+                intent.setData(Uri.parse("tel:" + arraylist.get(i).get("mphone")));
                 context.startActivity(intent);
             }
         });
 
         jia.setVisibility(View.VISIBLE);
-        if (i==1)
-            jia.setVisibility(View.GONE);
-        if (i==0) {
-            title.setVisibility(View.VISIBLE);
-            add.setVisibility(View.GONE);
-            card.setVisibility(View.GONE);
-            title_t.setText("项目经理");
-        } else  if (i==arraylist.size()-1){
-            title.setVisibility(View.GONE);
-            add.setVisibility(View.VISIBLE);
-            card.setVisibility(View.GONE);
 
-        }else  if (i==2){
-            title.setVisibility(View.VISIBLE);
-            add.setVisibility(View.GONE);
-            card.setVisibility(View.GONE);
-            title_t.setText("成员");
-        }else{
-            title.setVisibility(View.GONE);
-            add.setVisibility(View.GONE);
-            card.setVisibility(View.VISIBLE);
-            name.setText(arraylist.get(i).getContact_name());
-            phone.setText(arraylist.get(i).getContact_phone());
-        }
+        title.setVisibility(View.GONE);
+        add.setVisibility(View.GONE);
+        card.setVisibility(View.VISIBLE);
+        name.setText((String) arraylist.get(i).get("mname"));
+        phone.setText((String) arraylist.get(i).get("mphone"));
+
 
         return view;
     }

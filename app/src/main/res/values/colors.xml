@@ -10,4 +10,5 @@
     <color name="Warn">#E61E28</color><!--警告色，目前只出现在退出登录这一块-->
     <color name="colorControlNormal">#03A9F4</color>
     <color name="colorControlActivated">#03A9F4</color>
+    <color name="color_w">#ffffff</color>
 </resources>

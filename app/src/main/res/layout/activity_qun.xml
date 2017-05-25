@@ -9,43 +9,15 @@
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
+        app:titleTextColor="#ffffff"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
         android:elevation="4dp"
+        app:theme="@style/toolBar"
         app:contentInsetStart="0dp">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
 
-            <ImageButton
-                android:id="@+id/kefu_fan"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:background="#00ffffff"
-                android:onClick="fan"
-                android:padding="9dp"
-                android:scaleType="fitCenter"
-                android:src="@drawable/back" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="（xxx）"
-                android:textColor="#FFFFFF"
-                android:textSize="20dp" />
-
-            <ImageButton
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:background="#00ffffff"
-                android:padding="12dp"
-                android:scaleType="fitCenter" />
-
-        </LinearLayout>
     </android.support.v7.widget.Toolbar>
 
     <ListView

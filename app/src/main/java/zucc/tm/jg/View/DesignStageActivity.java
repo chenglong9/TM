@@ -32,16 +32,6 @@ public class DesignStageActivity extends AppCompatActivity {
         rwAdapter adapter = new rwAdapter(this,lvs);
         rw_list.setAdapter(adapter);
 
-        list = (NoScrollListview) findViewById(R.id.list);
-        getfriend get=new getfriend(this);
-        arraylist=get.get2();
-        friendbean friend = new friendbean();
-        friend.setContact_name("");
-        arraylist.add(0,friend);
-        arraylist.add(2,friend);
-        arraylist.add(friend);
-        addAdapter adapter2 = new addAdapter(this,arraylist);
-        list.setAdapter(adapter2);
     }
     public void fan(View v) {
         this.finish();

@@ -15,39 +15,9 @@
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
         android:elevation="4dp"
-        app:contentInsetStart="0dp">
+        app:theme="@style/toolBar"
+       >
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <ImageButton
-                android:id="@+id/kefu_fan"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:background="#00ffffff"
-                android:onClick="fan"
-                android:padding="9dp"
-                android:scaleType="fitCenter"
-                android:src="@drawable/back" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:text="添加任务"
-                android:textColor="#FFFFFF"
-                android:textSize="20dp" />
-
-            <ImageButton
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:background="#00ffffff"
-                android:padding="12dp"
-                android:scaleType="fitCenter" />
-
-        </LinearLayout>
     </android.support.v7.widget.Toolbar>
     <android.support.v4.widget.NestedScrollView
         android:layout_below="@+id/toolbar"

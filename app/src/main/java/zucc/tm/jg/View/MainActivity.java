@@ -7,7 +7,9 @@ import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
+import android.media.Image;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.annotation.IdRes;
 
 
@@ -16,11 +18,12 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.roughike.bottombar.BottomBar;
@@ -36,8 +39,9 @@ import pub.devrel.easypermissions.AfterPermissionGranted;
 import pub.devrel.easypermissions.AppSettingsDialog;
 import pub.devrel.easypermissions.EasyPermissions;
 import zucc.tm.jg.R;
-import zucc.tm.jg.adapter.friendAdapter;
-import zucc.tm.jg.bean.friendbean;
+import zucc.tm.jg.Util.my;
+
+import zucc.tm.jg.bean.mybean;
 
 
 /**
@@ -59,6 +63,7 @@ public class MainActivity extends AppCompatActivity  implements
     private FragmentTransaction transaction;
     public Fragment fragment;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,12 +72,13 @@ public class MainActivity extends AppCompatActivity  implements
         Intent intent = new Intent(this, MsgIntentService.class);
         startService(intent);
         locationAndContactsTask();
+        my.my=new mybean("朱成龙","17367071650","123456");
 
         toolbar = (Toolbar) findViewById(R.id.tl_custom);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.dl_left);
         lvLeftMenu = (ListView) findViewById(R.id.lv_left_menu);
 
-        toolbar.setTitle("Toolbar");//设置Toolbar标题
+        toolbar.setTitle("查看项目");//设置Toolbar标题
         toolbar.setTitleTextColor(Color.parseColor("#ffffff")); //设置标题颜色
         setSupportActionBar(toolbar);
         getSupportActionBar().setHomeButtonEnabled(true); //设置返回键可用
@@ -106,17 +112,19 @@ public class MainActivity extends AppCompatActivity  implements
 
         bottomBar = (BottomBar) findViewById(R.id.bottomBar);
         bottomBar.setOnTabSelectListener(new OnTabSelectListener() {
-
-
             @Override
             public void onTabSelected(@IdRes int tabId) {
+
                 if (tabId == R.id.tab_peoject) {
+                    toolbar.setTitle("查看项目");//设置Toolbar标题
                     fragment = new projectFragment();
 
                 } else if (tabId == R.id.tab_job) {
+                    toolbar.setTitle("今日任务");//设置Toolbar标题
                     fragment = new jobFragment();
 
                 } else if (tabId == R.id.tab_friends) {
+                    toolbar.setTitle("人员管理");//设置Toolbar标题
                     fragment = new friendtFragment();
 
                 }
@@ -125,13 +133,23 @@ public class MainActivity extends AppCompatActivity  implements
 
             }
         });
-
         bottomBar.setOnTabReselectListener(new OnTabReselectListener() {
             @Override
             public void onTabReSelected(@IdRes int tabId) {
             }
         });
+
     }
+    public void ax(View v){
+        Intent intent = new Intent(Intent.ACTION_INSERT);
+        intent.setType(ContactsContract.Contacts.CONTENT_TYPE);
+        intent.putExtra(ContactsContract.Intents.Insert.NAME, "");
+        intent.putExtra(ContactsContract.Intents.Insert.EMAIL, "");
+        startActivity(intent);
+    }
+
+
+
     @AfterPermissionGranted(RC_LOCATION_CONTACTS_PERM)
     public void locationAndContactsTask() {
         String[] perms = {android.Manifest.permission.READ_CONTACTS, Manifest.permission.CALL_PHONE};

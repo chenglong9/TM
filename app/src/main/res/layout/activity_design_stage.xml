@@ -6,48 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="zucc.tm.jg.View.UIdesignActivity">
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:focusableInTouchMode="true"
-        android:focusable="true"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        android:elevation="4dp"
-        app:contentInsetStart="0dp">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
 
-            <ImageButton
-                android:id="@+id/kefu_fan"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:background="#00ffffff"
-                android:onClick="fan"
-                android:padding="9dp"
-                android:scaleType="fitCenter"
-                android:src="@drawable/back" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:text="设计阶段"
-                android:textColor="#FFFFFF"
-                android:textSize="20dp" />
-
-            <ImageButton
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:background="#00ffffff"
-                android:padding="12dp"
-                android:scaleType="fitCenter" />
-
-        </LinearLayout>
-    </android.support.v7.widget.Toolbar>
-<android.support.v4.widget.NestedScrollView
+    <android.support.v4.widget.NestedScrollView
     android:layout_below="@+id/toolbar"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -126,7 +86,6 @@
         android:id="@+id/starttime_layout"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:layout_below="@+id/toolbar"
         android:layout_alignParentStart="true">
         <ImageView
             android:id="@+id/time"
@@ -165,7 +124,7 @@
             android:textColor="@color/colorPrimary"
             android:textSize="20dp"
             />
-        <ListView
+        <zucc.tm.jg.Util.NoScrollListview
             android:id="@+id/list_rw"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -173,7 +132,7 @@
             android:listSelector="@android:color/transparent"
             android:layout_marginTop="8dp"
 
-            ></ListView>
+            ></zucc.tm.jg.Util.NoScrollListview>
     </LinearLayout>
 
 
@@ -213,15 +172,115 @@
 
     </android.support.v7.widget.CardView>
 
-    <zucc.tm.jg.Util.NoScrollListview
-        android:layout_below="@+id/wc"
-        android:id="@+id/list"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:divider="@null"
-        android:listSelector="@android:color/transparent"
-        android:layout_marginTop="8dp"
-        ></zucc.tm.jg.Util.NoScrollListview>
+        <TextView
+            android:layout_below="@+id/wc"
+            android:id="@+id/title_founder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="创始人"
+            android:textSize="16dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_margin="8dp"
+            />
+        <RelativeLayout
+            android:id="@+id/founder"
+            android:layout_width="match_parent"
+            android:layout_height="95dp"
+            android:layout_below="@+id/title_founder"
+            android:gravity="center_vertical">
+            <android.support.v7.widget.CardView
+                android:id="@+id/cardx"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:clickable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:layout_marginBottom="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                app:cardCornerRadius="2dp">
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:padding="16dp">
+
+
+                    <zucc.tm.jg.CustomerView.AvatarImageView
+                        android:id="@+id/tou"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:src="@drawable/link"
+                        android:adjustViewBounds="true"
+                        />
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@+id/tou"
+                        android:layout_marginLeft="16dp"
+
+                        >
+                        <TextView
+                            android:id="@+id/name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Leo.Hu"
+                            android:textColor="@color/PrimaryText"
+                            android:textSize="16dp" />
+                        <TextView
+                            android:id="@+id/phone"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="18368893105"
+                            android:layout_alignParentBottom="true"
+                            android:textColor="@color/SecondaryText"
+                            android:textSize="14dp" />
+                    </RelativeLayout>
+
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+        </RelativeLayout>
+        <TextView
+            android:id="@+id/title_member"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="成员"
+            android:textSize="16dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_below="@+id/founder"
+            android:layout_margin="8dp"
+            />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/title_member"
+            >
+            <zucc.tm.jg.Util.NoScrollListview
+
+                android:id="@+id/list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:divider="@null"
+                android:listSelector="@android:color/transparent"
+                android:layout_marginTop="8dp"
+                ></zucc.tm.jg.Util.NoScrollListview>
+        </RelativeLayout>
+
     </RelativeLayout>
 </android.support.v4.widget.NestedScrollView>
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:focusableInTouchMode="true"
+        android:focusable="true"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        app:theme="@style/toolBar"
+        android:elevation="4dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
+
+    </android.support.v7.widget.Toolbar>
 </RelativeLayout>
