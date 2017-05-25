@@ -2,21 +2,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
-
-    <TextView
-        android:id="@+id/line"
-        android:background="@color/Divider"
-        android:visibility="gone"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="1dp" />
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:layout_height="48dp"
         android:gravity="center_vertical">
 
         <CheckBox
@@ -28,25 +16,29 @@
             android:layout_marginLeft="16dp" />
 
         <TextView
+            android:clickable="true"
+            android:background="@drawable/xx2"
             android:id="@+id/title"
-            android:layout_width="wrap_content"
-            android:layout_height="48dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_toRightOf="@+id/check"
-            android:gravity="center"
+            android:gravity="center_vertical"
             android:text="Android杂谈"
             android:textColor="@color/PrimaryText"
             android:textSize="20dp" />
 
-
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/dv"
-        android:background="@color/Divider"
-
-        android:layout_width="match_parent"
-        android:layout_height="1dp" />
-</LinearLayout>
+        <TextView
+            android:id="@+id/time"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:gravity="center"
+            android:text="10:00"
+            android:textColor="@color/SecondaryText"
+            android:textSize="12dp" />
+    </RelativeLayout>
 </RelativeLayout>

@@ -33,7 +33,7 @@ public class stageListFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
                                     long arg3) {
-                Intent intent = new Intent(getActivity(),projectActivity.class);
+                Intent intent = new Intent(getActivity(),DesignStageActivity.class);
                 startActivity(intent);
 
             }

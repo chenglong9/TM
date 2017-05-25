@@ -53,7 +53,7 @@ public class drawerAdapter extends BaseAdapter {
         TextView textView = (TextView) view.findViewById(R.id.tv_drawer);
 
          if(i==0){
-            imageView.setImageResource(R.drawable.exit);
+            imageView.setImageResource(R.drawable.setting);
             textView.setText(lists.get(i));
         }
         else  if(i==1){

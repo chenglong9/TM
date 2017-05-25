@@ -80,6 +80,7 @@ public class memberAdapter extends BaseAdapter {
         title.setVisibility(View.GONE);
         add.setVisibility(View.GONE);
         card.setVisibility(View.VISIBLE);
+            add.setVisibility(View.VISIBLE);
         name.setText((String) arraylist.get(i).get("mname"));
         phone.setText((String) arraylist.get(i).get("mphone"));
 

@@ -5,7 +5,7 @@
     android:id="@+id/activity_addproject"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="zucc.tm.jg.View.addprojectActivity">
+    tools:context="zucc.tm.jg.View.addrwActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
@@ -178,9 +178,18 @@
             </LinearLayout>
 
         </android.support.v7.widget.CardView>
-
+        <TextView
+            android:id="@+id/title_member"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="成员"
+            android:textSize="16dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_below="@+id/tx"
+            android:layout_margin="8dp"
+            />
         <zucc.tm.jg.Util.NoScrollListview
-        android:layout_below="@+id/tx"
+        android:layout_below="@+id/title_member"
         android:id="@+id/list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
