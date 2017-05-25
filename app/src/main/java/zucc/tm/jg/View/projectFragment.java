@@ -37,7 +37,6 @@ import zucc.tm.jg.bean.projectbean;
 
 public class projectFragment extends Fragment {
 
-
     private ListView list;
     private FloatingActionButton fab;
     public projectAdapter adapter;
@@ -62,6 +61,9 @@ public class projectFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
                                     long arg3) {
+                Intent intent = new Intent(getActivity(),projectActivity.class);
+                intent.putExtra("id",arg2);
+                startActivity(intent);
 
             }
 
@@ -113,9 +115,12 @@ public class projectFragment extends Fragment {
                         projectb.setTimes(project.getString("start_time"));
                         projectb.setTimee(project.getString("end_time"));
                         JSONArray friends = project.getJSONArray("friend");
+
                         ArrayList<HashMap> friendlist = new ArrayList<>();
                         for (int j = 0; j < friends.length(); j++) {
                             JSONObject friend = friends.getJSONObject(j);
+                            if (friend.getString("mphone").equals(project.getString("people_in_charge")))
+                                continue;
                             HashMap friendb = new HashMap();
                             friendb.put("mphone", friend.getString("mphone"));
                             friendb.put("mname", friend.getString("mname"));
