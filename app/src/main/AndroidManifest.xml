@@ -54,7 +54,11 @@
             android:exported="false" />
 
         <activity android:name=".View.addprojectActivity" />
-        <activity android:name=".View.UIdesignActivity"></activity>
+        <activity android:name=".View.UIdesignActivity" />
+        <activity android:name=".View.DesignStageActivity" />
+        <activity android:name=".View.GonggaoActivity" />
+        <activity android:name=".View.TongzhiActivity" />
+        <activity android:name=".View.addrwActivity"></activity>
     </application>
 
 </manifest>

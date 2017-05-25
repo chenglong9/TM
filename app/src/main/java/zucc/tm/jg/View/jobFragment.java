@@ -27,8 +27,8 @@ public class jobFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_job,container, false);
-        list = (ListView) view.findViewById(R.id.list);
 
+        list = (ListView) view.findViewById(R.id.list);
         jobAdapter adapter = new jobAdapter(getActivity());
         list.setAdapter(adapter);
 

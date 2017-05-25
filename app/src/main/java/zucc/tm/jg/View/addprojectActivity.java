@@ -22,8 +22,8 @@ public class addprojectActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addproject);
-        list = (ListView) findViewById(R.id.list);
 
+        list = (ListView) findViewById(R.id.list);
         getfriend get=new getfriend(this);
         arraylist=get.get2();
         friendbean friend = new friendbean();

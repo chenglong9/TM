@@ -16,6 +16,9 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -140,6 +143,38 @@ public class MainActivity extends AppCompatActivity  implements
             EasyPermissions.requestPermissions(this, "我们需要访问您的通讯录信息",
                     RC_LOCATION_CONTACTS_PERM, perms);
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int i = item.getItemId();
+        if(i==R.id.activity_uidesign){
+            Intent intent = new Intent(this,UIdesignActivity.class);
+            this.startActivity(intent);
+        }
+        else  if(i==R.id.ds){
+            Intent intent = new Intent(this,DesignStageActivity.class);
+            this.startActivity(intent);
+        }
+        else  if(i==R.id.gonggao){
+            Intent intent = new Intent(this,GonggaoActivity.class);
+            this.startActivity(intent);
+        }
+        else  if(i==R.id.tongzhi){
+            Intent intent = new Intent(this,TongzhiActivity.class);
+            this.startActivity(intent);
+        }
+        else  if(i==R.id.addrw){
+            Intent intent = new Intent(this,addrwActivity.class);
+            this.startActivity(intent);
+        }
+        return true;
     }
 
     @Override
