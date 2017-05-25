@@ -5,7 +5,7 @@
     android:id="@+id/activity_gonggao"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="zucc.tm.jg.View.GonggaoActivity">
+    tools:context="zucc.tm.jg.View.TongzhiActivity">
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"

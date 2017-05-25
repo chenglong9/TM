@@ -21,6 +21,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -106,6 +107,19 @@ public class MainActivity extends AppCompatActivity  implements
         lvs.add("退出登录");
         arrayAdapter = new drawerAdapter(lvs,this);
         lvLeftMenu.setAdapter(arrayAdapter);
+        lvLeftMenu.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+                                    long arg3) {
+                if (arg2==0) {
+                    Intent intent = new Intent(MainActivity.this, TongzhiActivity.class);
+                    MainActivity.this.startActivity(intent);
+                }
+
+            }
+
+        });
 
         manager = getFragmentManager();
         transaction = manager.beginTransaction();

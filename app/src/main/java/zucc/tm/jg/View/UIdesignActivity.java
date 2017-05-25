@@ -11,8 +11,10 @@ import java.util.ArrayList;
 
 import zucc.tm.jg.R;
 import zucc.tm.jg.Util.NoScrollListview;
+import zucc.tm.jg.Util.Projectlistb;
 import zucc.tm.jg.Util.getfriend;
 import zucc.tm.jg.adapter.addAdapter;
+import zucc.tm.jg.adapter.memberAdapter;
 import zucc.tm.jg.bean.friendbean;
 
 public class UIdesignActivity extends AppCompatActivity {
@@ -25,7 +27,7 @@ public class UIdesignActivity extends AppCompatActivity {
         setContentView(R.layout.activity_uidesign);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("添加项目");//设置Toolbar标题
+        toolbar.setTitle("UI设计");//设置Toolbar标题
         toolbar.setTitleTextColor(Color.parseColor("#ffffff")); //设置标题颜色
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -36,6 +38,10 @@ public class UIdesignActivity extends AppCompatActivity {
                 finish();
             }
         });
+        list= (NoScrollListview) findViewById(R.id.list);
+       // int id= (int) getIntent().getSerializableExtra("id");
+        memberAdapter adapterx=new memberAdapter(this, Projectlistb.projectlistb.get(0).getFriends());
+        list.setAdapter(adapterx);
     }
 
 }

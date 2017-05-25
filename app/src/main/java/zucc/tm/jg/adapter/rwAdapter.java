@@ -1,6 +1,7 @@
 package zucc.tm.jg.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,8 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import zucc.tm.jg.R;
+import zucc.tm.jg.View.DesignStageActivity;
+import zucc.tm.jg.View.UIdesignActivity;
 import zucc.tm.jg.bean.friendbean;
 
 /**
@@ -51,14 +54,19 @@ public class rwAdapter  extends BaseAdapter {
         }
         CheckBox cbx = (CheckBox) view.findViewById(R.id.check);
         TextView title= (TextView) view.findViewById(R.id.title);
-        TextView line= (TextView) view.findViewById(R.id.line);
-        TextView dv= (TextView) view.findViewById(R.id.dv);
-        if (i==0)
-            line.setVisibility(View.VISIBLE);
+        title.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context,UIdesignActivity.class);
+                context.startActivity(intent);
+            }
+        });
+
+        TextView time= (TextView) view.findViewById(R.id.time);
         title.setText(arraylist.get(i));
         title.setTextSize(16);
         title.setTextColor(Color.parseColor("#757575"));
-        dv.setVisibility(View.VISIBLE);
+
         return view;
     }
 }
