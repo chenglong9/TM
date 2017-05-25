@@ -33,14 +33,16 @@ import com.roughike.bottombar.OnTabSelectListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import zucc.tm.jg.R;
+import zucc.tm.jg.adapter.drawerAdapter;
 import pub.devrel.easypermissions.AfterPermissionGranted;
 import pub.devrel.easypermissions.AppSettingsDialog;
 import pub.devrel.easypermissions.EasyPermissions;
 import zucc.tm.jg.R;
 import zucc.tm.jg.Util.my;
-import zucc.tm.jg.adapter.friendAdapter;
-import zucc.tm.jg.bean.friendbean;
+
 import zucc.tm.jg.bean.mybean;
+
 
 /**
  * Created by iiro on 7.6.2016.
@@ -54,8 +56,8 @@ public class MainActivity extends AppCompatActivity  implements
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
     private ListView lvLeftMenu;
-    private String[] lvs = {"List Item 01", "List Item 02", "List Item 03", "List Item 04"};
-    private ArrayAdapter arrayAdapter;
+    private List<String> lvs =new ArrayList<String>() ;
+    private drawerAdapter arrayAdapter;
     private BottomBar bottomBar;
     private FragmentManager manager;
     private FragmentTransaction transaction;
@@ -97,7 +99,12 @@ public class MainActivity extends AppCompatActivity  implements
         mDrawerLayout.setDrawerListener(mDrawerToggle);
 
         //设置菜单列表
-        arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, lvs);
+        lvs.add("通知");
+        lvs.add("设置");
+        lvs.add("检查更新");
+        lvs.add("关于");
+        lvs.add("退出登录");
+        arrayAdapter = new drawerAdapter(lvs,this);
         lvLeftMenu.setAdapter(arrayAdapter);
 
         manager = getFragmentManager();
@@ -154,6 +161,38 @@ public class MainActivity extends AppCompatActivity  implements
             EasyPermissions.requestPermissions(this, "我们需要访问您的通讯录信息",
                     RC_LOCATION_CONTACTS_PERM, perms);
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int i = item.getItemId();
+        if(i==R.id.activity_uidesign){
+            Intent intent = new Intent(this,UIdesignActivity.class);
+            this.startActivity(intent);
+        }
+        else  if(i==R.id.ds){
+            Intent intent = new Intent(this,DesignStageActivity.class);
+            this.startActivity(intent);
+        }
+        else  if(i==R.id.gonggao){
+            Intent intent = new Intent(this,GonggaoActivity.class);
+            this.startActivity(intent);
+        }
+        else  if(i==R.id.tongzhi){
+            Intent intent = new Intent(this,TongzhiActivity.class);
+            this.startActivity(intent);
+        }
+        else  if(i==R.id.addrw){
+            Intent intent = new Intent(this,addrwActivity.class);
+            this.startActivity(intent);
+        }
+        return true;
     }
 
     @Override

@@ -14,8 +14,7 @@
         android:background="?attr/colorPrimary"
         android:elevation="4dp"
         app:titleTextColor="#ffffff"
-        app:theme="@style/toolBar"
-        app:contentInsetStart="0dp">
+        app:theme="@style/toolBar">
 
     </android.support.v7.widget.Toolbar>
     <ScrollView

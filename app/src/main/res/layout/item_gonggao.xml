@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        app:cardCornerRadius="2dp"
+        app:cardElevation="2dp"
+        >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+           android:id="@+id/neirou"
+            android:text="如果我们不想让屏幕无法旋转，但又想让屏幕旋转的时候不刷新页面，该怎么办呢？众所周知，屏幕旋转的时候会执行一个 onCreate() 方法."
+            android:textColor="@color/SecondaryText"
+            android:layout_margin="16dp"
+            />
+        <TextView
+            android:id="@+id/time"
+            android:layout_below="@id/neirou"
+            android:text="5月20日 17:56 "
+            android:textColor="@color/colorPrimary"
+            android:gravity="right"
+            android:paddingRight="16dp"
+            android:layout_marginBottom="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+</LinearLayout>
+</LinearLayout>

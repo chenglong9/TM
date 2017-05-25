@@ -5,6 +5,6 @@
             android:id="@+id/suc"
             android:title="完成"
             android:orderInCategory="80"
-            app:showAsAction="ifRoom" />
+            app:showAsAction="always" />
 
     </menu>
