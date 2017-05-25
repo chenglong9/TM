@@ -55,7 +55,7 @@
 
         <activity android:name=".View.addprojectActivity" />
         <activity android:name=".View.projectActivity"></activity>
-=======
+
         <activity android:name=".View.UIdesignActivity" />
         <activity android:name=".View.DesignStageActivity" />
         <activity android:name=".View.GonggaoActivity" />
