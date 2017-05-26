@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import zucc.tm.jg.R;
 import zucc.tm.jg.Util.NoScrollListview;
@@ -27,7 +28,7 @@ public class UIdesignActivity extends AppCompatActivity {
         setContentView(R.layout.activity_uidesign);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("UI设计");//设置Toolbar标题
+        toolbar.setTitle("通知");//设置Toolbar标题
         toolbar.setTitleTextColor(Color.parseColor("#ffffff")); //设置标题颜色
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -38,9 +39,13 @@ public class UIdesignActivity extends AppCompatActivity {
                 finish();
             }
         });
+
         list= (NoScrollListview) findViewById(R.id.list);
-       // int id= (int) getIntent().getSerializableExtra("id");
-        memberAdapter adapterx=new memberAdapter(this, Projectlistb.projectlistb.get(0).getFriends());
+        ArrayList<HashMap> arraylist=new ArrayList<>();
+        HashMap fri=new HashMap();
+        arraylist.add(fri);
+
+        memberAdapter adapterx=new memberAdapter(this,arraylist);
         list.setAdapter(adapterx);
     }
 

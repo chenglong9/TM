@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import zucc.tm.jg.R;
 import zucc.tm.jg.Util.NoScrollListview;
@@ -39,8 +40,10 @@ public class addrwActivity extends AppCompatActivity {
         });
 
         list= (NoScrollListview) findViewById(R.id.list);
-        //int id= (int) getIntent().getSerializableExtra("id");
-        memberAdapter adapterx=new memberAdapter(this, Projectlistb.projectlistb.get(0).getFriends());
+        ArrayList<HashMap> arraylist=new ArrayList<>();
+        HashMap fri=new HashMap();
+        arraylist.add(fri);
+        memberAdapter adapterx=new memberAdapter(this, arraylist);
         list.setAdapter(adapterx);
 
     }

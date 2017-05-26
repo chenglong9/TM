@@ -18,6 +18,8 @@
     </android.support.v7.widget.Toolbar>
 <ListView
     android:id="@+id/list"
+    android:transitionName="gg"
+    android:layout_marginTop="8dp"
     android:layout_below="@+id/toolbar"
     android:layout_width="match_parent"
     android:layout_height="match_parent"

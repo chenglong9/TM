@@ -19,7 +19,7 @@ public class GonggaoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_gonggao);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("添加项目");//设置Toolbar标题
+        toolbar.setTitle("公告");//设置Toolbar标题
         toolbar.setTitleTextColor(Color.parseColor("#ffffff")); //设置标题颜色
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

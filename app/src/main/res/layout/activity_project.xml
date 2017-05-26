@@ -38,14 +38,6 @@
             >
 
         </android.support.v4.view.ViewPager>
-        <android.support.design.widget.FloatingActionButton
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="16dp"
-            android:layout_marginBottom="16dp"
-            android:layout_width="56dp"
-            android:layout_height="56dp"
-            android:src="@drawable/add_fab"
-            />
+
 
 </RelativeLayout>

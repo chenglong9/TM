@@ -18,13 +18,10 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
+
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.ImageView;
+
 import android.widget.ListView;
 
 import com.roughike.bottombar.BottomBar;
@@ -48,7 +45,7 @@ import zucc.tm.jg.bean.mybean;
 /**
  * Created by iiro on 7.6.2016.
  */
-public class MainActivity extends AppCompatActivity  implements
+public class MainActivity extends AppCompatActivity implements
         EasyPermissions.PermissionCallbacks {
 
     private static final int RC_LOCATION_CONTACTS_PERM = 124;
@@ -57,7 +54,7 @@ public class MainActivity extends AppCompatActivity  implements
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
     private ListView lvLeftMenu;
-    private List<String> lvs =new ArrayList<String>() ;
+    private List<String> lvs = new ArrayList<String>();
     private drawerAdapter arrayAdapter;
     private BottomBar bottomBar;
     private FragmentManager manager;
@@ -73,7 +70,7 @@ public class MainActivity extends AppCompatActivity  implements
         Intent intent = new Intent(this, MsgIntentService.class);
         startService(intent);
         locationAndContactsTask();
-        my.my=new mybean("朱成龙","17367071650","123456");
+        my.my = new mybean("朱成龙", "17367071650", "123456");
 
         toolbar = (Toolbar) findViewById(R.id.tl_custom);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.dl_left);
@@ -105,14 +102,14 @@ public class MainActivity extends AppCompatActivity  implements
         lvs.add("检查更新");
         lvs.add("关于");
         lvs.add("退出登录");
-        arrayAdapter = new drawerAdapter(lvs,this);
+        arrayAdapter = new drawerAdapter(lvs, this);
         lvLeftMenu.setAdapter(arrayAdapter);
         lvLeftMenu.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
                                     long arg3) {
-                if (arg2==0) {
+                if (arg2 == 0) {
                     Intent intent = new Intent(MainActivity.this, TongzhiActivity.class);
                     MainActivity.this.startActivity(intent);
                 }
@@ -154,14 +151,6 @@ public class MainActivity extends AppCompatActivity  implements
         });
 
     }
-    public void ax(View v){
-        Intent intent = new Intent(Intent.ACTION_INSERT);
-        intent.setType(ContactsContract.Contacts.CONTENT_TYPE);
-        intent.putExtra(ContactsContract.Intents.Insert.NAME, "");
-        intent.putExtra(ContactsContract.Intents.Insert.EMAIL, "");
-        startActivity(intent);
-    }
-
 
 
     @AfterPermissionGranted(RC_LOCATION_CONTACTS_PERM)
@@ -177,37 +166,6 @@ public class MainActivity extends AppCompatActivity  implements
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main,menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int i = item.getItemId();
-        if(i==R.id.activity_uidesign){
-            Intent intent = new Intent(this,UIdesignActivity.class);
-            this.startActivity(intent);
-        }
-        else  if(i==R.id.ds){
-            Intent intent = new Intent(this,DesignStageActivity.class);
-            this.startActivity(intent);
-        }
-        else  if(i==R.id.gonggao){
-            Intent intent = new Intent(this,GonggaoActivity.class);
-            this.startActivity(intent);
-        }
-        else  if(i==R.id.tongzhi){
-            Intent intent = new Intent(this,TongzhiActivity.class);
-            this.startActivity(intent);
-        }
-        else  if(i==R.id.addrw){
-            Intent intent = new Intent(this,addrwActivity.class);
-            this.startActivity(intent);
-        }
-        return true;
-    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {

@@ -1,5 +1,6 @@
 package zucc.tm.jg.View;
 
+import android.app.ActivityOptions;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
@@ -63,8 +64,7 @@ public class projectFragment extends Fragment {
                                     long arg3) {
                 Intent intent = new Intent(getActivity(),projectActivity.class);
                 intent.putExtra("id",arg2);
-                startActivity(intent);
-
+                getActivity().startActivity(intent);
             }
 
         });
@@ -73,7 +73,8 @@ public class projectFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), addprojectActivity.class);
-                startActivity(intent);
+                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(getActivity(),view,"fab").toBundle());
+
             }
         });
         mRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.srlayout);
@@ -126,6 +127,8 @@ public class projectFragment extends Fragment {
                             friendb.put("mname", friend.getString("mname"));
                             friendlist.add(friendb);
                         }
+                        HashMap friendb = new HashMap();
+                        friendlist.add(friendb);
                         projectb.setFriends(friendlist);
                         Projectlistb.projectlistb.add(projectb);
                     }

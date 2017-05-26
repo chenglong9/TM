@@ -13,9 +13,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import zucc.tm.jg.R;
-import zucc.tm.jg.View.DesignStageActivity;
 import zucc.tm.jg.View.UIdesignActivity;
-import zucc.tm.jg.bean.friendbean;
 
 /**
  * Created by 王泽豪 on 2017/5/24.

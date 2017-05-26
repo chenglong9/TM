@@ -66,25 +66,36 @@ public class memberAdapter extends BaseAdapter {
         TextView phone = (TextView) view.findViewById(R.id.phone);
         ImageButton jia = (ImageButton) view.findViewById(R.id.jia);
 
-        cardx.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_DIAL);
-                intent.setData(Uri.parse("tel:" + arraylist.get(i).get("mphone")));
-                context.startActivity(intent);
-            }
-        });
-
-        jia.setVisibility(View.VISIBLE);
-
-        title.setVisibility(View.GONE);
-        add.setVisibility(View.GONE);
-        card.setVisibility(View.VISIBLE);
+        if (i == arraylist.size() - 1) {
+            title.setVisibility(View.GONE);
+            card.setVisibility(View.GONE);
             add.setVisibility(View.VISIBLE);
-        name.setText((String) arraylist.get(i).get("mname"));
-        phone.setText((String) arraylist.get(i).get("mphone"));
+            add.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
 
+                }
+            });
+        } else {
+            cardx.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(Intent.ACTION_DIAL);
+                    intent.setData(Uri.parse("tel:" + arraylist.get(i).get("mphone")));
+                    context.startActivity(intent);
+                }
+            });
 
+            jia.setVisibility(View.VISIBLE);
+
+            title.setVisibility(View.GONE);
+            add.setVisibility(View.GONE);
+            card.setVisibility(View.VISIBLE);
+
+            name.setText((String) arraylist.get(i).get("mname"));
+            phone.setText((String) arraylist.get(i).get("mphone"));
+
+        }
         return view;
     }
 
