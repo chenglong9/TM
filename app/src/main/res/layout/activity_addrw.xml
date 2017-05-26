@@ -14,9 +14,9 @@
         android:focusableInTouchMode="true"
         android:focusable="true"
         android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
+        android:background="@color/colorAccent"
         android:elevation="4dp"
-        app:theme="@style/toolBar"
+        app:theme="@style/toolBar2"
        >
 
     </android.support.v7.widget.Toolbar>
@@ -136,15 +136,7 @@
                         android:textColor="@color/colorPrimaryDark"
                         android:gravity="center"
                         android:text="2017.05.20 08:00"/>
-                    <ImageView
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
-                        android:padding="12dp"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginRight="16dp"
-                        android:src="@drawable/delete"
-                        android:layout_centerVertical="true"
-                        />
+
                 </RelativeLayout>
 
                 <TextView

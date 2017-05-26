@@ -1,13 +1,17 @@
 package zucc.tm.jg.View;
 
 import android.Manifest;
+import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.media.Image;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.annotation.IdRes;
@@ -23,6 +27,7 @@ import android.view.View;
 import android.widget.AdapterView;
 
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnTabReselectListener;
@@ -67,8 +72,10 @@ public class MainActivity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         Intent intent = new Intent(this, MsgIntentService.class);
         startService(intent);
+
         locationAndContactsTask();
         my.my = new mybean("朱成龙", "17367071650", "123456");
 
@@ -191,4 +198,6 @@ public class MainActivity extends AppCompatActivity implements
                     .show();
         }
     }
+
+
 }

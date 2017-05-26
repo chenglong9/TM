@@ -52,8 +52,8 @@ public class jobAdapter extends BaseAdapter {
             dv.setVisibility(View.VISIBLE);
 
             title.setText("项目一");
-            title.setTextSize(16);
-            title.setTextColor(Color.parseColor("#757575"));
+            title.setTextSize(14);
+            title.setTextColor(Color.parseColor("#03A9F4"));
             cbx.setVisibility(View.INVISIBLE);
             time.setVisibility(View.GONE);
         }

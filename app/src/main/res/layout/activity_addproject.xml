@@ -15,10 +15,10 @@
         android:focusable="true"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
+        android:background="@color/colorAccent"
         android:elevation="4dp"
         app:titleTextColor="#ffffff"
-        app:theme="@style/toolBar">
+        app:theme="@style/toolBar2">
 
     </android.support.v7.widget.Toolbar>
     <ScrollView

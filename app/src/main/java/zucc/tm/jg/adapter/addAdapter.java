@@ -90,6 +90,7 @@ public class addAdapter extends BaseAdapter {
             title.setVisibility(View.GONE);
             add.setVisibility(View.VISIBLE);
             card.setVisibility(View.GONE);
+            add_t.setTextColor(context.getResources().getColor(R.color.colorPrimary));
             add_t.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

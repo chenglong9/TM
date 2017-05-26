@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import zucc.tm.jg.R;
 import zucc.tm.jg.Util.NoScrollListview;
 import zucc.tm.jg.adapter.rwAdapter;
-import zucc.tm.jg.adapter.stageItemAdapter;
+
 
 public class stageListFragment extends Fragment {
     private NoScrollListview rw_list;

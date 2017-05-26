@@ -35,34 +35,42 @@
     <RelativeLayout
         android:id="@+id/di"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:gravity="center"
-        android:layout_alignParentBottom="true">
-
+        android:layout_height="48dp"
+        android:layout_alignParentBottom="true"
+        >
         <TextView
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#3d686868" />
+            android:background="#3d686868"
+            />
+        <ImageButton
+            android:id="@+id/yuyin"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/yuyin"
+            android:background="#00ffffff"
+            android:padding="12dp"
+            android:scaleType="fitCenter"
+            android:layout_alignParentLeft="true"/>
 
         <EditText
             android:id="@+id/text_msg"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginRight="64dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginBottom="4dp"
-            android:hint="消息" />
-
+            android:hint="消息"
+            android:layout_toRightOf="@+id/yuyin"
+            android:layout_marginRight="48dp"
+            />
+        <ImageButton
+            android:id="@+id/send"
+            android:layout_width="48dp"
+            android:layout_height="47dp"
+            android:src="@drawable/jiantou"
+            android:background="@drawable/xx2"
+            android:padding="12dp"
+            android:scaleType="fitCenter"
+            android:onClick="send"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"/>
     </RelativeLayout>
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:onClick="send"
-        android:layout_marginRight="16dp"
-        android:layout_marginBottom="25dp"
-        app:srcCompat="@drawable/plane" />
 </RelativeLayout>

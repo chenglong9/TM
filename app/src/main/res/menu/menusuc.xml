@@ -4,6 +4,7 @@
         <item
             android:id="@+id/suc"
             android:title="完成"
+            android:icon="@drawable/suc"
             android:orderInCategory="80"
             app:showAsAction="always" />
 

@@ -26,6 +26,8 @@ public class addrwActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addrw);
+        addprojectActivity.setWindowStatusBarColor(this,R.color.colorAccent);
+
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("添加任务");//设置Toolbar标题
         toolbar.setTitleTextColor(Color.parseColor("#ffffff")); //设置标题颜色

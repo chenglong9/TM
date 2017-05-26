@@ -34,7 +34,7 @@
             android:gravity="center"
             android:text="Android杂谈"
             android:textColor="@color/PrimaryText"
-            android:textSize="20dp" />
+            android:textSize="16dp" />
 
         <TextView
             android:id="@+id/time"

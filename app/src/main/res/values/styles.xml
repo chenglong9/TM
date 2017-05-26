@@ -10,6 +10,8 @@
         <item name="colorControlNormal">@color/colorControlNormal</item>
         <item name="colorControlActivated">@color/colorControlActivated</item>
         <item name="actionMenuTextColor">#ffffff</item>
+        <item name="android:statusBarColor">@color/tou</item>
+
     </style>
 
     <style name="AppTheme.DrawerArrowToggle" parent="Base.Widget.AppCompat.DrawerArrowToggle">
@@ -27,6 +29,7 @@
         <item name="drawerArrowStyle">@style/AppTheme.DrawerArrowToggle</item>
         <item name="colorControlNormal">@color/colorControlNormal</item>
         <item name="colorControlActivated">@color/colorControlActivated</item>
+        <item name="android:statusBarColor">@color/tou</item>
     </style>
 
     <style name="AppCompatAlertDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
@@ -38,7 +41,9 @@
         <item name="android:background">#FFFFFF</item>
     </style>
     <style name="toolBar">
-        <item name="colorControlNormal">#ffffff</item>
+        <item name="colorControlNormal">@color/colorPrimaryDark</item>
     </style>
-
+    <style name="toolBar2">
+        <item name="colorControlNormal">#FFA000</item>
+    </style>
 </resources>

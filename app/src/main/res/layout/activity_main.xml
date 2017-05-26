@@ -27,10 +27,11 @@
                     android:elevation="4dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    app:theme="@style/toolBar"
                     android:background="?attr/colorPrimary"
                     android:minHeight="?attr/actionBarSize"
                     android:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-                    app:theme="@style/ThemeOverlay.AppCompat.ActionBar">
+                   >
                 </android.support.v7.widget.Toolbar>
                 <FrameLayout
                     android:id="@+id/fragment_container"
@@ -39,6 +40,7 @@
                     android:layout_height="match_parent"
                     android:layout_above="@+id/bottomBar"
                     android:gravity="center"
+
                    />
 
                 <com.roughike.bottombar.BottomBar
