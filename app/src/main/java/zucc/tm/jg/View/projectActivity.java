@@ -23,7 +23,7 @@ import zucc.tm.jg.adapter.fragmentAdapter;
 
 public class projectActivity extends AppCompatActivity {
     private Toolbar toolbar;
-    public static final String []sTitle = new String[]{"简介","阶段","分析"};
+    public static final String []sTitle = new String[]{"简介","任务","分析"};
     private TabLayout mTabLayout;
     private ViewPager mViewPager;
 

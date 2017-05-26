@@ -61,6 +61,7 @@ public class memberAdapter extends BaseAdapter {
 
         CardView cardx = (CardView) view.findViewById(R.id.cardx);
         TextView title_t = (TextView) view.findViewById(R.id.title_t);
+        TextView add_t = (TextView) view.findViewById(R.id.add_t);
 
         TextView name = (TextView) view.findViewById(R.id.name);
         TextView phone = (TextView) view.findViewById(R.id.phone);
@@ -70,7 +71,7 @@ public class memberAdapter extends BaseAdapter {
             title.setVisibility(View.GONE);
             card.setVisibility(View.GONE);
             add.setVisibility(View.VISIBLE);
-            add.setOnClickListener(new View.OnClickListener() {
+            add_t.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 

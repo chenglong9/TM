@@ -16,6 +16,8 @@ import java.util.ArrayList;
 import java.util.IllegalFormatCodePointException;
 
 import zucc.tm.jg.R;
+import zucc.tm.jg.Util.alertdialog;
+import zucc.tm.jg.View.addprojectActivity;
 import zucc.tm.jg.bean.friendbean;
 
 /**
@@ -61,6 +63,7 @@ public class addAdapter extends BaseAdapter {
 
         CardView cardx = (CardView) view.findViewById(R.id.cardx);
         TextView title_t = (TextView) view.findViewById(R.id.title_t);
+        TextView add_t = (TextView) view.findViewById(R.id.add_t);
 
         TextView name = (TextView) view.findViewById(R.id.name);
         TextView phone = (TextView) view.findViewById(R.id.phone);
@@ -87,6 +90,14 @@ public class addAdapter extends BaseAdapter {
             title.setVisibility(View.GONE);
             add.setVisibility(View.VISIBLE);
             card.setVisibility(View.GONE);
+            add_t.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    View view = LayoutInflater.from(context).inflate(R.layout.editalert, null);
+                    alertdialog.showeditDialog(context, "请输入成员的手机号", "好的", view, "取消", "确认", null, null, true);
+                }
+            });
+
 
         }else  if (i==2){
             title.setVisibility(View.VISIBLE);

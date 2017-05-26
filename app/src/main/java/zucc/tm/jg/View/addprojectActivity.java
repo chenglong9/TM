@@ -81,21 +81,10 @@ public class addprojectActivity extends AppCompatActivity {
         });
 
         toolbar.setOnMenuItemClickListener(onMenuItemClick);
+
         addAdapter adapter = new addAdapter(this, arraylist);
         list.setAdapter(adapter);
-        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
-            @Override
-            public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
-                                    long arg3) {
-                if (arg2 == arraylist.size() - 1) {
-                    View view = LayoutInflater.from(addprojectActivity.this).inflate(R.layout.editalert, null);
-                    alertdialog.showeditDialog(addprojectActivity.this, "请输入成员的手机号", "好的", view, "取消", "确认", null, null, true);
-                }
-
-            }
-
-        });
         Calendar c = Calendar.getInstance();//
         mYear = c.get(Calendar.YEAR); // 获取当前年份
         mMonth = c.get(Calendar.MONTH) + 1;// 获取当前月份
