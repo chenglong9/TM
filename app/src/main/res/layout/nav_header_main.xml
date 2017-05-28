@@ -12,13 +12,13 @@
         android:paddingTop="@dimen/activity_vertical_margin"
         android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
-    <zucc.tm.jg.CustomerView.AvatarImageView
+    <ImageView
             android:id="@+id/imageView"
-        android:adjustViewBounds="true"
+
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:paddingTop="16dp"
-            android:src="@drawable/link"
+
+        android:src="@drawable/longl"
             />
 
         <TextView

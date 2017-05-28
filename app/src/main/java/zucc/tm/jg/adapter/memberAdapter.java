@@ -67,17 +67,7 @@ public class memberAdapter extends BaseAdapter {
         TextView phone = (TextView) view.findViewById(R.id.phone);
         ImageButton jia = (ImageButton) view.findViewById(R.id.jia);
 
-        if (i == arraylist.size() - 1) {
-            title.setVisibility(View.GONE);
-            card.setVisibility(View.GONE);
-            add.setVisibility(View.VISIBLE);
-            add_t.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
 
-                }
-            });
-        } else {
             cardx.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -96,7 +86,6 @@ public class memberAdapter extends BaseAdapter {
             name.setText((String) arraylist.get(i).get("mname"));
             phone.setText((String) arraylist.get(i).get("mphone"));
 
-        }
         return view;
     }
 

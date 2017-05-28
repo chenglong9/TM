@@ -5,16 +5,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import zucc.tm.jg.R;
 import zucc.tm.jg.Util.NoScrollListview;
-import zucc.tm.jg.Util.Projectlistb;
-import zucc.tm.jg.Util.getfriend;
-import zucc.tm.jg.adapter.addAdapter;
 import zucc.tm.jg.adapter.memberAdapter;
 import zucc.tm.jg.bean.friendbean;
 

@@ -19,6 +19,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import zucc.tm.jg.R;
+import zucc.tm.jg.Util.Projectlistb;
 import zucc.tm.jg.adapter.fragmentAdapter;
 
 public class projectActivity extends AppCompatActivity {
@@ -26,11 +27,12 @@ public class projectActivity extends AppCompatActivity {
     public static final String []sTitle = new String[]{"简介","任务","分析"};
     private TabLayout mTabLayout;
     private ViewPager mViewPager;
-
+    private int id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_project);
+        id= (int) getIntent().getSerializableExtra("id");
         initView();
 
     }
@@ -45,7 +47,7 @@ public class projectActivity extends AppCompatActivity {
 
         //TooBar
         toolbar = (Toolbar) findViewById(R.id.pa_toolbar);
-        toolbar.setTitle("SQA大作业");//设置Toolbar标题
+        toolbar.setTitle(Projectlistb.projectlistb.get(id).getProjectname());//设置Toolbar标题
         toolbar.setTitleTextColor(Color.parseColor("#ffffff")); //设置标题颜色
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
