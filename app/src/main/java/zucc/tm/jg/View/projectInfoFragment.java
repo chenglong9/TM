@@ -82,7 +82,7 @@ public class projectInfoFragment extends Fragment {
                             return;
 
                         }
-                        if (PhoneFormatCheckUtils.isPhoneLegal(editText.getText().toString()))
+                        if (!PhoneFormatCheckUtils.isPhoneLegal(editText.getText().toString()))
                         {
                             alertdialog.showSimpleDialog(getActivity(), "", "请输入正确的手机号", "", "确认", null, null, true);
                             return;
@@ -109,8 +109,8 @@ public class projectInfoFragment extends Fragment {
         times.setText(Projectlistb.projectlistb.get(id).getTimes());
         timee.setText(Projectlistb.projectlistb.get(id).getTimee());
         con.setText(Projectlistb.projectlistb.get(id).getProjectcon());
-        name.setText(my.getName());
-        phone.setText(my.getPhone());
+        name.setText(Projectlistb.projectlistb.get(id).getPhonename());
+        phone.setText(Projectlistb.projectlistb.get(id).getPhone());
         gonggao.setText("暂无公告");
     }
     public  void addmsg(String get) {

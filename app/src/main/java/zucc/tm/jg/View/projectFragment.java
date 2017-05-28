@@ -139,8 +139,10 @@ public class projectFragment extends Fragment {
                         ArrayList<HashMap> friendlist = new ArrayList<>();
                         for (int j = 0; j < friends.length(); j++) {
                             JSONObject friend = friends.getJSONObject(j);
-                            if (friend.getString("mphone").equals(project.getString("people_in_charge")))
+                            if (friend.getString("mphone").equals(project.getString("people_in_charge"))) {
+                                projectb.setPhonename(friend.getString("mname"));
                                 continue;
+                            }
                             HashMap friendb = new HashMap();
                             friendb.put("mphone", friend.getString("mphone"));
                             friendb.put("mname", friend.getString("mname"));
