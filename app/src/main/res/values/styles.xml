@@ -11,7 +11,7 @@
         <item name="colorControlActivated">@color/colorControlActivated</item>
         <item name="actionMenuTextColor">#ffffff</item>
         <item name="android:statusBarColor">@color/tou</item>
-
+        <item name="android:windowBackground">@color/bei</item>
     </style>
 
     <style name="AppTheme.DrawerArrowToggle" parent="Base.Widget.AppCompat.DrawerArrowToggle">

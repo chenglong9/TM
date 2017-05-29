@@ -10,19 +10,7 @@
         android:layout_height="88dp"
         android:visibility="gone"
         >
-        <TextView
-            android:id="@+id/add_t"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:clickable="true"
-            android:background="@drawable/xx2"
-            android:layout_marginLeft="16dp"
-            android:layout_toRightOf="@+id/check"
-            android:gravity="center"
-            android:text="添加成员"
-            android:textColor="@color/colorAccent"
-            android:textSize="16dp"
-            />
+
     </RelativeLayout>
     <RelativeLayout
         android:id="@+id/title"

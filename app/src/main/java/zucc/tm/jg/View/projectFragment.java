@@ -1,13 +1,17 @@
 package zucc.tm.jg.View;
 
 import android.app.ActivityOptions;
+import android.app.AlertDialog;
 import android.app.Fragment;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -27,6 +31,7 @@ import zucc.tm.jg.R;
 import zucc.tm.jg.Util.HttpCallBack;
 import zucc.tm.jg.Util.HttpTask;
 import zucc.tm.jg.Util.Projectlistb;
+import zucc.tm.jg.Util.alertdialog;
 import zucc.tm.jg.Util.curUrl;
 import zucc.tm.jg.Util.my;
 import zucc.tm.jg.adapter.projectAdapter;
@@ -49,8 +54,19 @@ public class projectFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_project, container, false);
         list = (ListView) view.findViewById(R.id.list);
         fab = (FloatingActionButton) view.findViewById(R.id.fab);
-        if (Projectlistb.projectlistb.size() == 0)
+
+        mRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.srlayout);
+        mRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                connect();
+            }
+        });
+
+        if (Projectlistb.projectlistb.size() == 0) {
+            mRefreshLayout.setRefreshing(true);
             connect();
+        }
         else {
             adapter = new projectAdapter(getActivity());
             list.setAdapter(adapter);
@@ -77,24 +93,27 @@ public class projectFragment extends Fragment {
 
             }
         });
-        mRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.srlayout);
-        mRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                connect();
-                new Handler().postDelayed(new Runnable() {
+        list.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            public boolean onItemLongClick(AdapterView<?> arg0, View view,
+                                           final int position, long id) {
+
+                alertdialog.showSimpleDialog(getActivity(), "", "是否删除该项目?", "取消", "删除", null, new DialogInterface.OnClickListener (){
                     @Override
-                    public void run() {
-                        mRefreshLayout.setRefreshing(false);
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        del(position);
                     }
-                }, 1000);
+                }, true);
+                return true;
             }
         });
+
+
+
 
         return view;
     }
 
-    public void connect() {
+    public  void connect() {
 
         HttpTask task = new HttpTask(new HttpCallBack() {
 
@@ -103,7 +122,7 @@ public class projectFragment extends Fragment {
             public void success(List result) {
                 //网络请求成功后将会调用
                 try {
-
+                    mRefreshLayout.setRefreshing(false);
                     Projectlistb.projectlistb.clear();
                     JSONArray projectlist = new JSONArray((String) result.get(0));
                     for (int i = 0; i < projectlist.length(); i++) {
@@ -120,15 +139,15 @@ public class projectFragment extends Fragment {
                         ArrayList<HashMap> friendlist = new ArrayList<>();
                         for (int j = 0; j < friends.length(); j++) {
                             JSONObject friend = friends.getJSONObject(j);
-                            if (friend.getString("mphone").equals(project.getString("people_in_charge")))
+                            if (friend.getString("mphone").equals(project.getString("people_in_charge"))) {
+                                projectb.setPhonename(friend.getString("mname"));
                                 continue;
+                            }
                             HashMap friendb = new HashMap();
                             friendb.put("mphone", friend.getString("mphone"));
                             friendb.put("mname", friend.getString("mname"));
                             friendlist.add(friendb);
                         }
-                        HashMap friendb = new HashMap();
-                        friendlist.add(friendb);
                         projectb.setFriends(friendlist);
                         Projectlistb.projectlistb.add(projectb);
                     }
@@ -150,5 +169,24 @@ public class projectFragment extends Fragment {
         task.execute();
     }
 
+    public  void del(int x) {
+
+        HttpTask task = new HttpTask(new HttpCallBack() {
+
+
+            @Override
+            public void success(List result) {
+                //网络请求成功后将会调用
+                connect();
+                Toast.makeText(getActivity(), "删除成功", Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void error(Exception e) {
+                Toast.makeText(getActivity(), "获取失败", Toast.LENGTH_LONG).show();
+            }
+        }, "http://" + curUrl.url + "/DeleteProjectServlet?id=" + Projectlistb.projectlistb.get(x).getProjectid());
+        task.execute();
+    }
 }
 

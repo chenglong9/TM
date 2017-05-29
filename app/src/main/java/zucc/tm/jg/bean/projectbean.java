@@ -14,6 +14,16 @@ public class projectbean {
     String projectcon;
     String times;
 
+    public String getPhonename() {
+        return phonename;
+    }
+
+    public void setPhonename(String phonename) {
+        this.phonename = phonename;
+    }
+
+    String phonename;
+
     public String getPhone() {
         return phone;
     }
