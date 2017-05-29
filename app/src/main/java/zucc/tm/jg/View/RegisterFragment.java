@@ -19,6 +19,7 @@ import zucc.tm.jg.Util.alertdialog;
 import static zucc.tm.jg.Util.my.my;
 
 public class RegisterFragment extends Fragment {
+    private EditText et_name;
     private EditText et_call;
     private EditText et_passwd;
     private EditText et_repasswd;
@@ -46,6 +47,7 @@ public class RegisterFragment extends Fragment {
     }
 
     public void initView(View view){
+        et_name = (EditText) view.findViewById(R.id.et_name);
         et_call = (EditText) view.findViewById(R.id.et_call);
         et_passwd = (EditText) view.findViewById(R.id.et_passwd);
         et_repasswd = (EditText) view.findViewById(R.id.et_repasswd);
@@ -54,10 +56,14 @@ public class RegisterFragment extends Fragment {
         btn_register.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
+                String name = et_name.getText().toString();
                 String call = et_call.getText().toString();
                 String passwd = et_passwd.getText().toString();
                 String repasswd = et_repasswd.getText().toString();
-                if(call.equals("")){
+                if(name.equals("")){
+                    alertdialog.showSimpleDialog(getActivity(), "提醒", "姓名不能为空", "确定", null, null,null, true);
+                }
+                else if(call.equals("")){
                     alertdialog.showSimpleDialog(getActivity(), "提醒", "手机号不能为空", "确定", null, null,null, true);
                 }
                 else if(passwd.equals("")){
