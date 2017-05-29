@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_login"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="zucc.tm.jg.View.LoginActivity">
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tab_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        app:tabTextColor="#9fffffff"
+        app:tabSelectedTextColor="#ffffffff"
+        android:elevation="4dp"
+        app:tabIndicatorColor="#00000000"
+        >
+    </android.support.design.widget.TabLayout>
+    <android.support.v4.view.ViewPager
+        android:elevation="4dp"
+        android:layout_below="@+id/tab_login"
+        android:id="@+id/view_pager_project"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:descendantFocusability="afterDescendants"
+        >
+
+    </android.support.v4.view.ViewPager>
+
+</RelativeLayout>
