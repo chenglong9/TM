@@ -12,19 +12,14 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/register_toolbar"
+            <ImageView
                 android:elevation="4dp"
+                android:background="@color/colorPrimary"
                 android:layout_width="match_parent"
-                android:layout_height="120dp"
-                android:background="?attr/colorPrimary"
-                android:minHeight="?attr/actionBarSize"
-                android:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-                app:theme="@style/toolBar2">
-            </android.support.v7.widget.Toolbar>
+                android:layout_height="72dp" />
             <RelativeLayout
                 android:id="@+id/cardview_register"
-                android:layout_marginTop="56dp"
+                android:layout_marginTop="8dp"
                 android:elevation="6dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -37,19 +32,16 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
-                        <TextView
-                            android:layout_below="@+id/bg_register"
-                            android:id="@+id/title_register"
+                        <ImageView
+                            android:id="@+id/bg_register"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="注册"
-                            android:textSize="16dp"
-                            android:textStyle="bold"
-                            android:gravity="center"
-                            android:layout_margin="16dp"
+                            android:layout_marginBottom="16dp"
+                            android:src="@drawable/bg_register"
+                            android:adjustViewBounds="true"
                             />
                         <EditText
-                            android:layout_below="@+id/title_register"
+                            android:layout_below="@+id/bg_register"
                             android:id="@+id/et_call"
                             android:layout_width="match_parent"
                             android:layout_height="48dp"
@@ -83,9 +75,25 @@
                             android:password="true"
                             android:hint="重复密码"
                             />
+                        <!--<Button-->
+                            <!--android:layout_below="@+id/et_repasswd"-->
+                            <!--android:id="@+id/btn_login"-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="36dp"-->
+                            <!--android:layout_marginLeft="16dp"-->
+                            <!--android:layout_marginRight="16dp"-->
+                            <!--android:layout_marginBottom="16dp"-->
+                            <!--android:paddingLeft="16dp"-->
+                            <!--android:paddingRight="16dp"-->
+                            <!--android:text="已有账号"-->
+                            <!--android:textSize="14dp"-->
+                            <!--android:textColor="@color/SecondaryText"-->
+                            <!--android:background="#00000000"-->
+                            <!--/>-->
                         <Button
                             android:layout_below="@+id/et_repasswd"
-                            android:id="@+id/btn_login"
+                            android:id="@+id/btn_register"
+                            android:layout_alignParentRight="true"
                             android:layout_width="wrap_content"
                             android:layout_height="36dp"
                             android:layout_marginLeft="16dp"
@@ -93,38 +101,30 @@
                             android:layout_marginBottom="16dp"
                             android:paddingLeft="16dp"
                             android:paddingRight="16dp"
-                            android:text="已有账号"
-                            android:textSize="14dp"
-                            android:textColor="@color/SecondaryText"
+                            android:text="注册"
+                            android:textSize="16dp"
+                            android:textColor="@color/colorAccent"
                             android:background="#00000000"
                             />
 
-                        <ImageView
-                            android:id="@+id/bg_register"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/bg_register"
-                            android:adjustViewBounds="true"
-                            android:layout_alignParentTop="true"
-                            android:layout_alignParentStart="true" />
                     </RelativeLayout>
                 </android.support.v7.widget.CardView>
             </RelativeLayout>
-            <Button
-                android:layout_below="@+id/cardview_register"
-                android:id="@+id/btn_register"
-                android:layout_centerHorizontal="true"
-                android:layout_width="wrap_content"
-                android:layout_height="36dp"
-                android:layout_margin="8dp"
-                android:paddingLeft="16dp"
-                android:paddingRight="16dp"
-                android:text="LOGIN"
-                android:letterSpacing="0.3"
-                android:textSize="14dp"
-                android:textColor="#ffffff"
-                android:background="@color/colorAccent"
-                />
+            <!--<Button-->
+                <!--android:layout_below="@+id/cardview_register"-->
+                <!--android:id="@+id/btn_register"-->
+                <!--android:layout_centerHorizontal="true"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="36dp"-->
+                <!--android:layout_margin="8dp"-->
+                <!--android:paddingLeft="16dp"-->
+                <!--android:paddingRight="16dp"-->
+                <!--android:text="REGISTER"-->
+                <!--android:letterSpacing="0.3"-->
+                <!--android:textSize="14dp"-->
+                <!--android:textColor="#ffffff"-->
+                <!--android:background="@color/colorAccent"-->
+                <!--/>-->
         </RelativeLayout>
 
     </ScrollView>

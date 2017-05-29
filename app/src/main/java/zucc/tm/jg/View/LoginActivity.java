@@ -20,9 +20,10 @@ import zucc.tm.jg.Util.Projectlistb;
 import zucc.tm.jg.adapter.fragmentAdapter;
 
 public class LoginActivity extends AppCompatActivity {
-    private Toolbar toolbar;
+
     public static final String []sTitle = new String[]{"登录","注册"};
     private ViewPager mViewPager;
+    private TabLayout mTabLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,22 +32,26 @@ public class LoginActivity extends AppCompatActivity {
     }
     private void initView() {
 
-        //TooBar
-//        toolbar = (Toolbar) findViewById(R.id.pa_toolbar);
-//        toolbar.setTitle(Projectlistb.projectlistb.get(id).getProjectname());//设置Toolbar标题
-//        toolbar.setTitleTextColor(Color.parseColor("#ffffff")); //设置标题颜色
-//        setSupportActionBar(toolbar);
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//        getSupportActionBar().setHomeButtonEnabled(true); //设置返回键可用
-//        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                finish();
-//            }
-//        });
-
         //Tab、Fragment
         mViewPager = (ViewPager) findViewById(R.id.view_pager_project);
+        mTabLayout = (TabLayout) findViewById(R.id.tab_login);
+        mTabLayout.addTab(mTabLayout.newTab().setText(sTitle[0]));
+        mTabLayout.addTab(mTabLayout.newTab().setText(sTitle[1]));
+
+        mTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+            }
+        });
+        mTabLayout.setupWithViewPager(mViewPager);
         List<Fragment> fragments = new ArrayList<>();
         fragments.add(LoginFragment.newInstance());
         fragments.add(RegisterFragment.newInstance());
