@@ -52,6 +52,8 @@ public class addprojectActivity extends AppCompatActivity {
     private EditText con;
     private TextView times;
     private TextView timee;
+    private TextView name_c;
+    private TextView phone;
     private int mYear;
     private int mMonth;
     private int mDay;
@@ -66,6 +68,11 @@ public class addprojectActivity extends AppCompatActivity {
         con = (EditText) findViewById(R.id.con_t);
         times = (TextView) findViewById(R.id.time_t);
         timee = (TextView) findViewById(R.id.time_t2);
+        name_c = (TextView) findViewById(R.id.name_c);
+        phone = (TextView) findViewById(R.id.phone);
+
+        name_c.setText(my.getName());
+        phone.setText(my.getPhone());
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("添加项目");//设置Toolbar标题

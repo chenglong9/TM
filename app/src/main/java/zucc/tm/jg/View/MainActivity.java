@@ -151,6 +151,8 @@ public class MainActivity extends AppCompatActivity implements
 
             }
         });
+        bottomBar.setDefaultTab(R.id.tab_job);
+
         bottomBar.setOnTabReselectListener(new OnTabReselectListener() {
             @Override
             public void onTabReSelected(@IdRes int tabId) {

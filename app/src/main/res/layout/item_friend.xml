@@ -79,7 +79,7 @@
                     android:padding="12dp"
                     android:clickable="true"
                     android:layout_alignParentRight="true"
-                    android:src="@drawable/add_h"
+                    android:src="@drawable/add_h2"
                     android:background="@drawable/xx"/>
 
 

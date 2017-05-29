@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.w3c.dom.Text;
@@ -28,7 +29,9 @@ import zucc.tm.jg.Util.PhoneFormatCheckUtils;
 import zucc.tm.jg.Util.Projectlistb;
 import zucc.tm.jg.Util.alertdialog;
 import zucc.tm.jg.Util.curUrl;
+import zucc.tm.jg.Util.gg;
 import zucc.tm.jg.adapter.memberAdapter;
+import zucc.tm.jg.bean.ggbean;
 
 import static zucc.tm.jg.Util.my.my;
 
@@ -36,7 +39,7 @@ import static zucc.tm.jg.Util.my.my;
 public class projectInfoFragment extends Fragment {
     NoScrollListview list;
     private CardView cardView;
-    private Button add;
+    private TextView add;
     public int id;
     private TextView times;
     private TextView timee;
@@ -54,9 +57,11 @@ public class projectInfoFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         viewm = inflater.inflate(R.layout.fragment_project_info,null);
-        init(viewm);
 
         id= (int) getActivity().getIntent().getSerializableExtra("id");
+        init(viewm);
+        getgong();
+
         memberAdapter adapter=new memberAdapter(getActivity(), Projectlistb.projectlistb.get(id).getFriends());
         list.setAdapter(adapter);
 
@@ -65,6 +70,7 @@ public class projectInfoFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(),GonggaoActivity.class);
+                intent.putExtra("id",id);
                 startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(getActivity(),view,"gg").toBundle());
             }
         });
@@ -98,7 +104,7 @@ public class projectInfoFragment extends Fragment {
     public  void init(View view)
     {
         list= (NoScrollListview) viewm.findViewById(R.id.member_list);
-        add= (Button) viewm.findViewById(R.id.add_x);
+        add= (TextView) viewm.findViewById(R.id.add_x);
         times=(TextView)viewm.findViewById(R.id.time_t);
         timee=(TextView)viewm.findViewById(R.id.time_t2);
         con=(TextView)viewm.findViewById(R.id.con_t);
@@ -111,7 +117,38 @@ public class projectInfoFragment extends Fragment {
         con.setText(Projectlistb.projectlistb.get(id).getProjectcon());
         name.setText(Projectlistb.projectlistb.get(id).getPhonename());
         phone.setText(Projectlistb.projectlistb.get(id).getPhone());
-        gonggao.setText("暂无公告");
+
+    }
+    public  void getgong() {
+
+        HttpTask task = new HttpTask(new HttpCallBack() {
+
+
+            @Override
+            public void success(List result) {
+                //网络请求成功后将会调用
+                try {
+                    gg.GGlist.clear();
+                    JSONArray msg = new JSONArray((String) result.get(0));
+                    for (int i = 0; i < msg.length(); i++) {
+                        JSONObject msgx = msg.getJSONObject(i);
+                        ggbean g=new ggbean(msgx.getString("con"),msgx.getString("time"),msgx.getString("id"));
+                        gg.GGlist.add(g);
+                    }
+                    if (gg.GGlist.size()!=0)
+                        gonggao.setText(gg.GGlist.get(gg.GGlist.size()-1).getCon());
+                    else gonggao.setText("暂无公告");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void error(Exception e) {
+
+            }
+        }, "http://" + curUrl.url + "/getmsg2Servlet?type=msg2&id="+Projectlistb.projectlistb.get(id).getProjectid());
+        task.execute();
     }
     public  void addmsg(String get) {
 
@@ -154,6 +191,8 @@ public class projectInfoFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+
         init(viewm);
+
     }
 }
