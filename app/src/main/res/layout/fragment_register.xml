@@ -49,6 +49,8 @@
                             android:layout_marginRight="16dp"
                             android:layout_marginBottom="16dp"
                             android:textSize="16dp"
+                            android:phoneNumber="true"
+                            android:maxLength="20"
                             android:hint="手机号"
                             />
                         <EditText
@@ -61,6 +63,7 @@
                             android:layout_marginBottom="16dp"
                             android:textSize="16dp"
                             android:password="true"
+                            android:maxLength="20"
                             android:hint="密码"
                             />
                         <EditText
@@ -73,6 +76,7 @@
                             android:layout_marginBottom="16dp"
                             android:textSize="16dp"
                             android:password="true"
+                            android:maxLength="20"
                             android:hint="重复密码"
                             />
                         <!--<Button-->
