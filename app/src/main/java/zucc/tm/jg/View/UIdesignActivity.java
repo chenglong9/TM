@@ -16,7 +16,6 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import zucc.tm.jg.Model.AlarmReceiver;
 import zucc.tm.jg.R;
 import zucc.tm.jg.Util.NoScrollListview;
 import zucc.tm.jg.Util.alertdialog;
