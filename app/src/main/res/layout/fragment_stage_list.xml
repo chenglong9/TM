@@ -5,14 +5,17 @@
     android:layout_height="match_parent"
     tools:context="zucc.tm.jg.View.stageListFragment">
 
-
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/srlayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
     <zucc.tm.jg.Util.NoScrollListview
         android:id="@+id/list_rw"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="8dp"></zucc.tm.jg.Util.NoScrollListview>
 
-
+</android.support.v4.widget.SwipeRefreshLayout>
     <android.support.design.widget.FloatingActionButton
         android:layout_width="56dp"
         android:layout_height="56dp"

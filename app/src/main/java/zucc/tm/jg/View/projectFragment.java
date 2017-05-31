@@ -1,17 +1,13 @@
 package zucc.tm.jg.View;
 
 import android.app.ActivityOptions;
-import android.app.AlertDialog;
 import android.app.Fragment;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.view.ContextMenu;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -80,6 +76,7 @@ public class projectFragment extends Fragment {
                                     long arg3) {
                 Intent intent = new Intent(getActivity(),projectActivity.class);
                 intent.putExtra("id",arg2);
+
                 getActivity().startActivity(intent);
             }
 

@@ -47,6 +47,7 @@ public class projectActivity extends AppCompatActivity {
 
         //TooBar
         toolbar = (Toolbar) findViewById(R.id.pa_toolbar);
+       // toolbar.setTitle("00");
         toolbar.setTitle(Projectlistb.projectlistb.get(id).getProjectname());//设置Toolbar标题
         toolbar.setTitleTextColor(Color.parseColor("#ffffff")); //设置标题颜色
         setSupportActionBar(toolbar);

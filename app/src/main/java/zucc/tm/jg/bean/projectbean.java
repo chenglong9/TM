@@ -2,6 +2,7 @@ package zucc.tm.jg.bean;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by 45773 on 2017-05-23.
@@ -13,6 +14,7 @@ public class projectbean {
     String projectname;
     String projectcon;
     String times;
+
 
     public String getPhonename() {
         return phonename;
@@ -71,6 +73,7 @@ public class projectbean {
     public void setTimee(String timee) {
         this.timee = timee;
     }
+
 
     public ArrayList<HashMap> getFriends() {
         return friends;

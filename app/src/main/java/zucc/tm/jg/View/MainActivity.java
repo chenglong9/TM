@@ -27,6 +27,7 @@ import android.view.View;
 import android.widget.AdapterView;
 
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.roughike.bottombar.BottomBar;
@@ -65,7 +66,8 @@ public class MainActivity extends AppCompatActivity implements
     private FragmentManager manager;
     private FragmentTransaction transaction;
     public Fragment fragment;
-
+    private TextView name;
+    private TextView phone;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -157,6 +159,10 @@ public class MainActivity extends AppCompatActivity implements
             }
         });
 
+        name= (TextView) findViewById(R.id.name);
+        phone = (TextView) findViewById(R.id.phone);
+        name.setText(my.my.getName());
+        phone.setText(my.my.getPhone());
     }
 
 

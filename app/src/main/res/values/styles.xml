@@ -46,4 +46,7 @@
     <style name="toolBar2">
         <item name="colorControlNormal">#FFA000</item>
     </style>
+    <style name="MyDialog"  parent="android:Theme.Holo.Light.Dialog">   
+      <item name="android:windowBackground">@color/colorAccent</item>                               
+     </style> 
 </resources>
