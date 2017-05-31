@@ -73,6 +73,8 @@ public class MsgIntentService extends IntentService {
                     Log.i(TAG, payload);
 
                     try {
+                        if (payload.equals("你好"))
+                            return;
                         JSONObject receiveMsg =  new JSONObject(payload);
                         String type = receiveMsg.getString("type");
 

@@ -11,14 +11,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import zucc.tm.jg.R;
+import zucc.tm.jg.Util.my;
 import zucc.tm.jg.View.MainActivity;
 import zucc.tm.jg.bean.friendbean;
 
@@ -63,9 +66,16 @@ public class friendAdapter extends BaseAdapter {
         CardView cardx = (CardView) view.findViewById(R.id.cardx);
         TextView text = (TextView) view.findViewById(R.id.title);
         TextView name = (TextView) view.findViewById(R.id.name);
-        TextView phone = (TextView) view.findViewById(R.id.phone);
+        final TextView phone = (TextView) view.findViewById(R.id.phone);
+        ImageView jia = (ImageView) view.findViewById(R.id.jia);
 
 
+        jia.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sendSMS(phone.getText().toString(), my.my.getName()+"邀请您使用TM");
+            }
+        });
         cardx.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -88,5 +98,10 @@ public class friendAdapter extends BaseAdapter {
         }
         return view;
     }
-
+    private void sendSMS(String number, String message){
+        Uri uri = Uri.parse("smsto:" + number.trim());
+        Intent sendIntent = new Intent(Intent.ACTION_VIEW, uri);
+        sendIntent.putExtra("sms_body", message);
+        context.startActivity(sendIntent);
+    }
 }

@@ -166,7 +166,7 @@ public class MainActivity extends AppCompatActivity implements
 
     @AfterPermissionGranted(RC_LOCATION_CONTACTS_PERM)
     public void locationAndContactsTask() {
-        String[] perms = {android.Manifest.permission.READ_CONTACTS, Manifest.permission.CALL_PHONE};
+        String[] perms = {android.Manifest.permission.READ_CONTACTS, Manifest.permission.CALL_PHONE,Manifest.permission.SEND_SMS};
         if (EasyPermissions.hasPermissions(this, perms)) {
             // Have permissions, do the thing!
 
