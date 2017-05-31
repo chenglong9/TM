@@ -30,6 +30,7 @@ import zucc.tm.jg.Util.Projectlistb;
 import zucc.tm.jg.Util.alertdialog;
 import zucc.tm.jg.Util.curUrl;
 import zucc.tm.jg.Util.gg;
+import zucc.tm.jg.Util.my;
 import zucc.tm.jg.adapter.memberAdapter;
 import zucc.tm.jg.bean.ggbean;
 
@@ -62,7 +63,8 @@ public class projectInfoFragment extends Fragment {
         id= (int) getActivity().getIntent().getSerializableExtra("id");
         init(viewm);
         getgong();
-
+        if (!zucc.tm.jg.Util.my.my.getPhone().equals(Projectlistb.projectlistb.get(id).getPhone()))
+            add.setVisibility(View.GONE);
         memberAdapter adapter=new memberAdapter(getActivity(), Projectlistb.projectlistb.get(id).getFriends());
         list.setAdapter(adapter);
 

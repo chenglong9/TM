@@ -97,19 +97,20 @@ public class rwAdapter extends BaseAdapter {
                 context.startActivity(intent);
             }
         });
-        title.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View view) {
-
-                alertdialog.showSimpleDialog(context, "", "是否删除该项目?", "取消", "删除", null, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int j) {
-                        del(i);
-                    }
-                }, true);
-                return true;
-            }
-        });
+        if (my.my.getPhone().equals(Projectlistb.projectlistb.get(n).getPhone())) {
+            title.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View view) {
+                    alertdialog.showSimpleDialog(context, "", "是否删除该项目?", "取消", "删除", null, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int j) {
+                            del(i);
+                        }
+                    }, true);
+                    return true;
+                }
+            });
+        }
         if (RWlisttb.RWlist.get(i).getPerson_in_charge().equals("1"))
             cbx.setChecked(true);
 

@@ -134,5 +134,8 @@ public class MsgIntentService extends IntentService {
         super.onDestroy();
         mConnect.disconnect();
     }
+    public static  void onclose() {
+        mConnect.disconnect();
+    }
 
 }

@@ -34,7 +34,7 @@ public class LoginActivity extends AppCompatActivity {
         SharedPreferences sharedPre = getSharedPreferences("config", MODE_PRIVATE);
 
 
-        if (!sharedPre.getString("name", "").equals("")) {
+        if (!sharedPre.getString("name","").equals("")) {
             my.my.setName(sharedPre.getString("name", ""));
             my.my.setPhone(sharedPre.getString("phone", ""));
             my.my.setPwd(sharedPre.getString("pwd", ""));

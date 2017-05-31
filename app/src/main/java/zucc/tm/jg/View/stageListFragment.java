@@ -45,15 +45,17 @@ import static zucc.tm.jg.R.mipmap.project;
 
 public class stageListFragment extends Fragment {
     private NoScrollListview rw_list;
-
+    private int id;
     private FloatingActionButton fab;
     public rwAdapter adapter;
-    private ArrayList<String> lvs =new ArrayList<String>();
+    private ArrayList<String> lvs = new ArrayList<String>();
     private SwipeRefreshLayout mRefreshLayout;
-    public static Fragment newInstance(){
+
+    public static Fragment newInstance() {
         stageListFragment fragment = new stageListFragment();
         return fragment;
     }
+
     private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -62,11 +64,16 @@ public class stageListFragment extends Fragment {
             Toast.makeText(getActivity(), "删除成功", Toast.LENGTH_LONG).show();
         }
     };
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_stage_list,null);
+        View view = inflater.inflate(R.layout.fragment_stage_list, null);
         fab = (FloatingActionButton) view.findViewById(R.id.fab);
+        id = (int) getActivity().getIntent().getSerializableExtra("id");
+        if (!my.my.getPhone().equals(Projectlistb.projectlistb.get(id).getPhone()))
+            fab.setVisibility(View.GONE);
+
         mRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.srlayout);
         mRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -75,23 +82,24 @@ public class stageListFragment extends Fragment {
             }
         });
         rw_list = (NoScrollListview) view.findViewById(R.id.list_rw);
-               mRefreshLayout.setRefreshing(true);
-            connect();
-            adapter = new rwAdapter(getActivity(),(int) getActivity().getIntent().getSerializableExtra("id"),handler);
-            rw_list.setAdapter(adapter);
+        mRefreshLayout.setRefreshing(true);
+        connect();
+        adapter = new rwAdapter(getActivity(), (int) getActivity().getIntent().getSerializableExtra("id"), handler);
+        rw_list.setAdapter(adapter);
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), addrwActivity.class);
-                intent.putExtra("id",(int) getActivity().getIntent().getSerializableExtra("id"));
-                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(getActivity(),view,"fab").toBundle());
+                intent.putExtra("id", (int) getActivity().getIntent().getSerializableExtra("id"));
+                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(getActivity(), view, "fab").toBundle());
 
             }
         });
         return view;
     }
-    public  void connect() {
+
+    public void connect() {
 
         HttpTask task = new HttpTask(new HttpCallBack() {
 
@@ -128,8 +136,18 @@ public class stageListFragment extends Fragment {
                             friendb.put("mname", friend.getString("mname"));
                             friendlist.add(friendb);
                         }
+
                         rwBean.setFriends(friendlist);
-                        RWlisttb.RWlist.add(rwBean);
+
+                     for (HashMap f : friendlist) {
+                            if (f.get("mphone").equals(my.my.getPhone())) {
+                                RWlisttb.RWlist.add(rwBean);
+                                break;
+                            } else if (Projectlistb.projectlistb.get(id).getPhone().equals(my.my.getPhone())) {
+                                RWlisttb.RWlist.add(rwBean);
+                                break;
+                            }
+                        }
                     }
                     adapter.notifyDataSetChanged();
 
@@ -144,11 +162,9 @@ public class stageListFragment extends Fragment {
             public void error(Exception e) {
                 Toast.makeText(getActivity(), "获取失败", Toast.LENGTH_LONG).show();
             }
-        }, "http://" + curUrl.url + "GetWorkDetailsServlet?id=" + Projectlistb.projectlistb.get( (int) getActivity().getIntent().getSerializableExtra("id")).getProjectid());
+        }, "http://" + curUrl.url + "/GetWorkDetailsServlet?id=" + Projectlistb.projectlistb.get((int) getActivity().getIntent().getSerializableExtra("id")).getProjectid());
         task.execute();
     }
-
-
 
 
     @Override
@@ -159,5 +175,11 @@ public class stageListFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        connect();
     }
 }

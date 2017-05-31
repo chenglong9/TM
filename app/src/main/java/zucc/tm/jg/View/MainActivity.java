@@ -69,6 +69,7 @@ public class MainActivity extends AppCompatActivity implements
     public Fragment fragment;
     private TextView name;
     private TextView phone;
+    private Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,7 +77,7 @@ public class MainActivity extends AppCompatActivity implements
         setContentView(R.layout.activity_main);
 
 
-        Intent intent = new Intent(this, MsgIntentService.class);
+        intent = new Intent(this, MsgIntentService.class);
         startService(intent);
 
         locationAndContactsTask();
@@ -123,6 +124,20 @@ public class MainActivity extends AppCompatActivity implements
                 if (arg2 == 0) {
                     Intent intent = new Intent(MainActivity.this, TongzhiActivity.class);
                     MainActivity.this.startActivity(intent);
+                }
+                else     if (arg2 == 4) {
+                    my.my=new mybean();
+                    SharedPreferences sharedPre=getSharedPreferences("config", MODE_PRIVATE);
+                    SharedPreferences.Editor editor=sharedPre.edit();
+                    editor.clear();
+                    editor.commit();
+                    MsgIntentService.onclose();
+                    stopService(intent);
+
+                    finish();
+                    Intent intents = new Intent(MainActivity.this, LoginActivity.class);
+                    MainActivity.this.startActivity(intents);
+
                 }
 
             }

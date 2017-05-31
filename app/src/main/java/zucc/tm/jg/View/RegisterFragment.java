@@ -112,7 +112,7 @@ public class RegisterFragment extends Fragment {
                 try {
                     JSONObject msg = new JSONObject((String) result.get(0));
                     if (msg.getString("result").equals("ok")) {
-                        Toast.makeText(getActivity(), "注册成功", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getActivity(), "注册成功", Toast.LENGTH_SHORT).show();
                         my.setName(name);
                         my.setPwd(passwd);
                         my.setPhone(call);

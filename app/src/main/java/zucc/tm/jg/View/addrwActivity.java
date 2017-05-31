@@ -160,7 +160,7 @@ public class addrwActivity extends AppCompatActivity {
             public void error(Exception e) {
                 Toast.makeText(addrwActivity.this, "网络连接失败", Toast.LENGTH_LONG).show();
             }
-        }, "http://" + curUrl.url + "AddDetailsServlet?" + get);
+        }, "http://" + curUrl.url + "/AddDetailsServlet?" + get);
         task.execute();
     }
 
