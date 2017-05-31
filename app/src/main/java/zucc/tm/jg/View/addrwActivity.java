@@ -11,6 +11,7 @@ import java.util.HashMap;
 
 import zucc.tm.jg.R;
 import zucc.tm.jg.Util.NoScrollListview;
+import zucc.tm.jg.Util.my;
 import zucc.tm.jg.adapter.memberAdapter;
 import zucc.tm.jg.bean.friendbean;
 
@@ -36,7 +37,6 @@ public class addrwActivity extends AppCompatActivity {
                 finish();
             }
         });
-
         list= (NoScrollListview) findViewById(R.id.list);
         ArrayList<HashMap> arraylist=new ArrayList<>();
         HashMap fri=new HashMap();

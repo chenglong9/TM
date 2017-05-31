@@ -30,11 +30,13 @@ import java.util.List;
 import zucc.tm.jg.R;
 import zucc.tm.jg.Util.HttpCallBack;
 import zucc.tm.jg.Util.HttpTask;
+import zucc.tm.jg.Util.Msglist;
 import zucc.tm.jg.Util.Projectlistb;
 import zucc.tm.jg.Util.alertdialog;
 import zucc.tm.jg.Util.curUrl;
 import zucc.tm.jg.Util.my;
 import zucc.tm.jg.adapter.projectAdapter;
+import zucc.tm.jg.bean.msgbean;
 import zucc.tm.jg.bean.projectbean;
 
 /**
@@ -153,6 +155,11 @@ public class projectFragment extends Fragment {
                     }
                     adapter = new projectAdapter(getActivity());
                     list.setAdapter(adapter);
+                    for (int m=0;m<Projectlistb.projectlistb.size();m++)
+                    {
+                        ArrayList<msgbean> msgl=new ArrayList<msgbean>();
+                        Msglist.map.put(Projectlistb.projectlistb.get(m).getProjectid(),msgl);
+                    }
 
                 } catch (JSONException e) {
                     e.printStackTrace();

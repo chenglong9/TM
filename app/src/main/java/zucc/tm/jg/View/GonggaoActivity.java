@@ -2,6 +2,7 @@ package zucc.tm.jg.View;
 
 import android.content.DialogInterface;
 import android.graphics.Color;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -38,11 +39,20 @@ public class GonggaoActivity extends AppCompatActivity {
     Toolbar toolbar;
     int id;
     private gonggaoAdapter adapter;
+    private SwipeRefreshLayout mRefreshLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gonggao);
+
+        mRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.srlayout);
+        mRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                getgong();
+            }
+        });
 
         id= (int) getIntent().getSerializableExtra("id");
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -129,6 +139,7 @@ public class GonggaoActivity extends AppCompatActivity {
             public void success(List result) {
                 //网络请求成功后将会调用
                 try {
+                    mRefreshLayout.setRefreshing(false);
                     gg.GGlist.clear();
 
                     JSONArray msg = new JSONArray((String) result.get(0));

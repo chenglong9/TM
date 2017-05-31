@@ -63,7 +63,6 @@ public class addprojectActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addproject);
         setWindowStatusBarColor(this, R.color.colorAccent);
-
         name = (EditText) findViewById(R.id.name_t);
         con = (EditText) findViewById(R.id.con_t);
         times = (TextView) findViewById(R.id.time_t);

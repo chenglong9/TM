@@ -66,6 +66,7 @@ public class projectActivity extends AppCompatActivity {
                 switch (item.getItemId()) {
                     case R.id.messageItem:
                         Intent intent = new Intent(projectActivity.this,qunActivity.class);
+                        intent.putExtra("id",id);
                         startActivity(intent);
                         break;
                 }

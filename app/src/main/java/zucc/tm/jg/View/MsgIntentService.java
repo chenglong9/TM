@@ -1,6 +1,8 @@
 package zucc.tm.jg.View;
 import android.app.IntentService;
 import android.content.Intent;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 
 import org.json.JSONException;
@@ -11,8 +13,10 @@ import java.util.Date;
 import de.tavendo.autobahn.WebSocketConnection;
 import de.tavendo.autobahn.WebSocketException;
 import de.tavendo.autobahn.WebSocketHandler;
+import zucc.tm.jg.Util.Msglist;
 import zucc.tm.jg.Util.curUrl;
 import zucc.tm.jg.Util.my;
+import zucc.tm.jg.bean.msgbean;
 
 /**
  * Created by dy on 2016/8/29.
@@ -21,7 +25,11 @@ public class MsgIntentService extends IntentService {
     private static final String wsurl = "ws://"+ curUrl.url+"/socket";
     private static WebSocketConnection mConnect = new WebSocketConnection();
     private static final String TAG = "MainActivity";
+    private static Handler handler = null;
 
+    public static void sethand(Handler handlers) {
+        handler = handlers;
+    }
     public MsgIntentService() {
         super("worker thread");
     }
@@ -63,20 +71,37 @@ public class MsgIntentService extends IntentService {
                 @Override
                 public void onTextMessage(String payload) {
                     Log.i(TAG, payload);
-                    JSONObject receiveMsg = null;
-                  /*  try {
-                        receiveMsg = new JSONObject("");
-                       String userId = receiveMsg.getString("userId");
-                        request = receiveMsg.getString("request");
-                        String message = receiveMsg.getString("message");
-                        MessageBean msg = new MessageBean(message, MessageBean.RECEIVE, new Date());
-                        msgList.add(msg);
-                        msgAdapter.notifyDataSetChanged();
-                        msgListView.setSelection(msgList.size());
+
+                    try {
+                        JSONObject receiveMsg =  new JSONObject(payload);
+                        String type = receiveMsg.getString("type");
+
+                        if (type.equals("msg")) {
+                            String id = receiveMsg.getString("id");
+                            String name = receiveMsg.getString("name");
+                            String msg = receiveMsg.getString("msg");
+                            String time = receiveMsg.getString("time");
+                            msgbean msgb=new msgbean(id,name,msg,time);
+                            Msglist.map.get(id).add(msgb);
+                            Msglist.msg=true;
+
+                            Message message = new Message();
+                            message.what = 1;
+                            handler.sendMessage(message);
+
+                        }else if (type.equals("gg"))
+                        {
+                            Msglist.gg=true;
+                        }else if (type.equals("tz"))
+                        {
+                            Msglist.tz=true;
+                        }
+
+
 
                     } catch (JSONException e) {
                         e.printStackTrace();
-                    }*/
+                    }
 
                 }
 

@@ -7,28 +7,26 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
+
 import android.widget.TextView;
-
-import java.text.SimpleDateFormat;
-import java.util.List;
-import java.util.Locale;
-
 import zucc.tm.jg.R;
-import zucc.tm.jg.bean.MessageBean;
+import zucc.tm.jg.Util.Msglist;
+import zucc.tm.jg.Util.my;
+
+import zucc.tm.jg.bean.msgbean;
 
 
-public class messageAdapter extends ArrayAdapter<MessageBean> {
+public class messageAdapter extends ArrayAdapter<msgbean> {
 
     private int resourceId;
-    public messageAdapter(Context context, int resource, List<MessageBean> objects) {
-        super(context, resource, objects);
+    public messageAdapter(Context context, int resource,String id) {
+        super(context, resource, Msglist.map.get(id));
         resourceId = resource;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        MessageBean msg = getItem(position);
+        msgbean msg = getItem(position);
         View view;
         ViewHolder viewHolder;
         if (convertView == null) {
@@ -50,26 +48,24 @@ public class messageAdapter extends ArrayAdapter<MessageBean> {
             viewHolder = (ViewHolder) view.getTag();
         }
 
-        if (msg.getType() == MessageBean.RECEIVE) {
+        if (!msg.getName().equals(my.my.getName())) {
             viewHolder.leftLayout.setVisibility(View.VISIBLE);
             viewHolder.rightLayout.setVisibility(View.GONE);
             viewHolder.leftHead.setVisibility(View.VISIBLE);
             viewHolder.rightHead.setVisibility(View.GONE);
-            viewHolder.leftMsg.setText(msg.getContent());
+            viewHolder.leftMsg.setText(msg.getMsg());
             viewHolder.dateMsgRight.setVisibility(View.GONE);
             viewHolder.dateMsgLeft.setVisibility(View.VISIBLE);
-            viewHolder.dateMsgLeft.setText(new SimpleDateFormat("MM-dd EEE HH:mm", new Locale("ZH", "CN"))
-                    .format(msg.getMsgDate()));
-        } else if (msg.getType() == MessageBean.SEND) {
+            viewHolder.dateMsgLeft.setText(msg.getName()+" "+msg.getTime().substring(11));
+        } else {
             viewHolder.rightLayout.setVisibility(View.VISIBLE);
             viewHolder.leftLayout.setVisibility(View.GONE);
             viewHolder.leftHead.setVisibility(View.GONE);
             viewHolder.rightHead.setVisibility(View.VISIBLE);
-            viewHolder.rightMsg.setText(msg.getContent());
+            viewHolder.rightMsg.setText(msg.getMsg());
             viewHolder.dateMsgLeft.setVisibility(View.GONE);
             viewHolder.dateMsgRight.setVisibility(View.VISIBLE);
-            viewHolder.dateMsgRight.setText(new SimpleDateFormat("MM-dd EEE HH:mm", new Locale("ZH", "CN"))
-                    .format(msg.getMsgDate()));
+            viewHolder.dateMsgRight.setText(msg.getTime().substring(11));
         }
 
         return view;
