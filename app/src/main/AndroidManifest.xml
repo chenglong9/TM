@@ -41,11 +41,7 @@
         android:launchMode="singleTask"
         android:theme="@style/AppTheme">
         <activity android:name=".View.MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".View.qunActivity" />
 
@@ -54,12 +50,18 @@
             android:exported="false" />
 
         <activity android:name=".View.addprojectActivity" />
-        <activity android:name=".View.projectActivity"></activity>
-
+        <activity android:name=".View.projectActivity" />
         <activity android:name=".View.UIdesignActivity" />
         <activity android:name=".View.GonggaoActivity" />
         <activity android:name=".View.TongzhiActivity" />
-        <activity android:name=".View.addrwActivity"></activity>
+        <activity android:name=".View.addrwActivity" />
+        <activity android:name=".View.LoginActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
