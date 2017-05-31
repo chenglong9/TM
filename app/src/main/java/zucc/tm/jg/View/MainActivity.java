@@ -7,6 +7,7 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.media.Image;
@@ -79,7 +80,8 @@ public class MainActivity extends AppCompatActivity implements
         startService(intent);
 
         locationAndContactsTask();
-        my.my = new mybean("朱成龙", "17367071650", "123456");
+
+
 
         toolbar = (Toolbar) findViewById(R.id.tl_custom);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.dl_left);
@@ -153,6 +155,8 @@ public class MainActivity extends AppCompatActivity implements
 
             }
         });
+        bottomBar.setDefaultTab(R.id.tab_job);
+
         bottomBar.setOnTabReselectListener(new OnTabReselectListener() {
             @Override
             public void onTabReSelected(@IdRes int tabId) {
@@ -168,7 +172,7 @@ public class MainActivity extends AppCompatActivity implements
 
     @AfterPermissionGranted(RC_LOCATION_CONTACTS_PERM)
     public void locationAndContactsTask() {
-        String[] perms = {android.Manifest.permission.READ_CONTACTS, Manifest.permission.CALL_PHONE};
+        String[] perms = {android.Manifest.permission.READ_CONTACTS, Manifest.permission.CALL_PHONE,Manifest.permission.SEND_SMS};
         if (EasyPermissions.hasPermissions(this, perms)) {
             // Have permissions, do the thing!
 

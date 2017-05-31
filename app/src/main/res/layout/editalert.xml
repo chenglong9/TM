@@ -5,6 +5,7 @@
     <EditText
         android:id="@+id/edit"
         android:layout_width="match_parent"
+        android:lines="1"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"/>
 </LinearLayout>

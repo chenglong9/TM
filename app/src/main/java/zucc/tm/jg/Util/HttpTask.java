@@ -37,7 +37,7 @@ public class HttpTask extends AsyncTask<Object,Object,List> {
     protected List doInBackground(Object[] params) {
         URL connection = null;
         try {
-            connection = new URL(DATAURL);
+            connection = new URL(DATAURL.trim());
 
             HttpURLConnection conn = (HttpURLConnection) connection.openConnection();
             conn.setRequestMethod("GET");

@@ -5,8 +5,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.TextView;
 
 import zucc.tm.jg.R;
+import zucc.tm.jg.Util.gg;
 
 /**
  * Created by 王泽豪 on 2017/5/24.
@@ -21,7 +23,7 @@ public class gonggaoAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return 5;
+        return gg.GGlist.size();
     }
 
     @Override
@@ -41,6 +43,12 @@ public class gonggaoAdapter extends BaseAdapter {
         {
             view = mInflater.inflate(R.layout.item_gonggao, null);
         }
+        TextView neirong= (TextView) view.findViewById(R.id.neirou);
+        TextView time= (TextView) view.findViewById(R.id.time);
+
+        neirong.setText(gg.GGlist.get(i).getCon());
+        time.setText(gg.GGlist.get(i).getTime());
+
         return view;
     }
 }

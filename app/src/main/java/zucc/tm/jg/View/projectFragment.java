@@ -26,11 +26,13 @@ import java.util.List;
 import zucc.tm.jg.R;
 import zucc.tm.jg.Util.HttpCallBack;
 import zucc.tm.jg.Util.HttpTask;
+import zucc.tm.jg.Util.Msglist;
 import zucc.tm.jg.Util.Projectlistb;
 import zucc.tm.jg.Util.alertdialog;
 import zucc.tm.jg.Util.curUrl;
 import zucc.tm.jg.Util.my;
 import zucc.tm.jg.adapter.projectAdapter;
+import zucc.tm.jg.bean.msgbean;
 import zucc.tm.jg.bean.projectbean;
 
 /**
@@ -131,8 +133,8 @@ public class projectFragment extends Fragment {
                         projectb.setProjectcon(project.getString("project_describe"));
                         projectb.setTimes(project.getString("start_time"));
                         projectb.setTimee(project.getString("end_time"));
-                        JSONArray friends = project.getJSONArray("friend");
 
+                        JSONArray friends = project.getJSONArray("friend");
                         ArrayList<HashMap> friendlist = new ArrayList<>();
                         for (int j = 0; j < friends.length(); j++) {
                             JSONObject friend = friends.getJSONObject(j);
@@ -150,6 +152,11 @@ public class projectFragment extends Fragment {
                     }
                     adapter = new projectAdapter(getActivity());
                     list.setAdapter(adapter);
+                    for (int m=0;m<Projectlistb.projectlistb.size();m++)
+                    {
+                        ArrayList<msgbean> msgl=new ArrayList<msgbean>();
+                        Msglist.map.put(Projectlistb.projectlistb.get(m).getProjectid(),msgl);
+                    }
 
                 } catch (JSONException e) {
                     e.printStackTrace();

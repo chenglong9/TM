@@ -29,8 +29,11 @@ import zucc.tm.jg.R;
 import zucc.tm.jg.Util.HttpCallBack;
 import zucc.tm.jg.Util.HttpTask;
 import zucc.tm.jg.Util.NoScrollListview;
+
 import zucc.tm.jg.Util.Projectlistb;
 import zucc.tm.jg.Util.curUrl;
+import zucc.tm.jg.Util.my;
+
 import zucc.tm.jg.adapter.memberAdapter;
 
 public class addrwActivity extends AppCompatActivity {
@@ -66,7 +69,6 @@ public class addrwActivity extends AppCompatActivity {
                 finish();
             }
         });
-
         list= (NoScrollListview) findViewById(R.id.list);
          arraylist=new ArrayList<>();
     /*    HashMap fri=new HashMap();
