@@ -45,6 +45,7 @@
             android:layout_marginLeft="16dp"
             android:layout_toRightOf="@+id/name_img"
             android:gravity="center_vertical"
+            android:lines="1"
             android:hint="项目名称"
             android:textColor="@color/PrimaryText"
             android:textSize="16dp" />
@@ -77,6 +78,7 @@
             android:layout_toRightOf="@+id/con_img"
             android:gravity="top"
             android:hint="项目简介"
+            android:lines="1"
             android:textColor="@color/PrimaryText"
             android:textSize="16dp" />
 

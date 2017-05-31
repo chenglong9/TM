@@ -3,6 +3,7 @@ package zucc.tm.jg.View;
 import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
@@ -30,6 +31,7 @@ import zucc.tm.jg.Util.NoScrollListview;
 import zucc.tm.jg.Util.PhoneFormatCheckUtils;
 import zucc.tm.jg.Util.alertdialog;
 import zucc.tm.jg.Util.curUrl;
+import zucc.tm.jg.Util.my;
 import zucc.tm.jg.adapter.rwAdapter;
 
 import static zucc.tm.jg.Util.my.my;
@@ -69,6 +71,7 @@ public class LoginFragment extends Fragment {
         et_passwd = (EditText) view.findViewById(R.id.et_passwd);
         btn_login = (Button) view.findViewById(R.id.btn_login);
 
+
         btn_login.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
@@ -105,8 +108,18 @@ public class LoginFragment extends Fragment {
                         my.setName(msg.getString("name"));
                         my.setPwd(passwd);
                         my.setPhone(call);
+                        SharedPreferences sharedPre=getActivity().getSharedPreferences("config", getActivity().MODE_PRIVATE);
+                        //获取Editor对象
+                        SharedPreferences.Editor editor=sharedPre.edit();
+                        //设置参数
+                        editor.putString("name", msg.getString("name"));
+                        editor.putString("pwd", passwd);
+                        editor.putString("phone", call);
+                        //提交
+                        editor.commit();
                         Intent intent = new Intent(getActivity(),MainActivity.class);
                         startActivity(intent);
+                        getActivity().finish();
                     }
                     else if(msg.getString("result").equals("no")){
                         alertdialog.showSimpleDialog(getActivity(), "", "该手机号未注册", "", "确认", null, null, true);

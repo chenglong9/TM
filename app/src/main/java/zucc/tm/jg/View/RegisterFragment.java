@@ -2,6 +2,7 @@ package zucc.tm.jg.View;
 
 import android.app.ActivityOptions;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -115,8 +116,20 @@ public class RegisterFragment extends Fragment {
                         my.setName(name);
                         my.setPwd(passwd);
                         my.setPhone(call);
+
+                        SharedPreferences sharedPre=getActivity().getSharedPreferences("config", getActivity().MODE_PRIVATE);
+                        //获取Editor对象
+                        SharedPreferences.Editor editor=sharedPre.edit();
+                        //设置参数
+                        editor.putString("name", msg.getString("name"));
+                        editor.putString("pwd", passwd);
+                        editor.putString("phone", call);
+                        //提交
+                        editor.commit();
+
                         Intent intent = new Intent(getActivity(),MainActivity.class);
                         startActivity(intent);
+                        getActivity().finish();
                     }else{
                         alertdialog.showSimpleDialog(getActivity(), "", "该手机号已被注册", "", "确认", null, null, true);
                     }

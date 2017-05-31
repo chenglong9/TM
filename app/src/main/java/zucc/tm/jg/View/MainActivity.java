@@ -7,6 +7,7 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.media.Image;
@@ -77,7 +78,8 @@ public class MainActivity extends AppCompatActivity implements
         startService(intent);
 
         locationAndContactsTask();
-        my.my = new mybean("朱成龙", "17367071650", "123456");
+
+
 
         toolbar = (Toolbar) findViewById(R.id.tl_custom);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.dl_left);

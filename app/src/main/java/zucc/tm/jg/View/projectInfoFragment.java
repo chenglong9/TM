@@ -48,6 +48,7 @@ public class projectInfoFragment extends Fragment {
     private TextView phone;
     private View viewm;
     private TextView gonggao;
+    private TextView con_t;
 
     public static Fragment newInstance(){
         projectInfoFragment fragment = new projectInfoFragment();
@@ -64,6 +65,14 @@ public class projectInfoFragment extends Fragment {
 
         memberAdapter adapter=new memberAdapter(getActivity(), Projectlistb.projectlistb.get(id).getFriends());
         list.setAdapter(adapter);
+
+        con_t.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                alertdialog.showSimpleDialog(getActivity(), "",con_t.getText().toString(), null, null, null, null, true);
+
+            }
+        });
 
         cardView= (CardView) viewm.findViewById(R.id.tv_gonggao);
         cardView.setOnClickListener(new View.OnClickListener() {
@@ -111,6 +120,7 @@ public class projectInfoFragment extends Fragment {
         name=(TextView)viewm.findViewById(R.id.name);
         phone=(TextView)viewm.findViewById(R.id.phone);
         gonggao=(TextView)viewm.findViewById(R.id.gonggao);
+        con_t=(TextView)viewm.findViewById(R.id.con_t);
 
         times.setText(Projectlistb.projectlistb.get(id).getTimes());
         timee.setText(Projectlistb.projectlistb.get(id).getTimee());

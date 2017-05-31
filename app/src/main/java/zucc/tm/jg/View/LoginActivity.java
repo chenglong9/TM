@@ -1,6 +1,7 @@
 package zucc.tm.jg.View;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -17,19 +18,33 @@ import java.util.List;
 
 import zucc.tm.jg.R;
 import zucc.tm.jg.Util.Projectlistb;
+import zucc.tm.jg.Util.my;
 import zucc.tm.jg.adapter.fragmentAdapter;
 
 public class LoginActivity extends AppCompatActivity {
 
-    public static final String []sTitle = new String[]{"登录","注册"};
+    public static final String[] sTitle = new String[]{"登录", "注册"};
     private ViewPager mViewPager;
     private TabLayout mTabLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        SharedPreferences sharedPre = getSharedPreferences("config", MODE_PRIVATE);
+
+
+        if (!sharedPre.getString("name", "").equals("")) {
+            my.my.setName(sharedPre.getString("name", ""));
+            my.my.setPhone(sharedPre.getString("phone", ""));
+            my.my.setPwd(sharedPre.getString("pwd", ""));
+            Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
         initView();
     }
+
     private void initView() {
 
         //Tab、Fragment
@@ -56,7 +71,7 @@ public class LoginActivity extends AppCompatActivity {
         fragments.add(LoginFragment.newInstance());
         fragments.add(RegisterFragment.newInstance());
 
-        fragmentAdapter adapter = new fragmentAdapter(getSupportFragmentManager(),fragments, Arrays.asList(sTitle));
+        fragmentAdapter adapter = new fragmentAdapter(getSupportFragmentManager(), fragments, Arrays.asList(sTitle));
         mViewPager.setAdapter(adapter);
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override

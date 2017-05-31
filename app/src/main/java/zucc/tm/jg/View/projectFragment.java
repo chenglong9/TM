@@ -136,8 +136,8 @@ public class projectFragment extends Fragment {
                         projectb.setProjectcon(project.getString("project_describe"));
                         projectb.setTimes(project.getString("start_time"));
                         projectb.setTimee(project.getString("end_time"));
-                        JSONArray friends = project.getJSONArray("friend");
 
+                        JSONArray friends = project.getJSONArray("friend");
                         ArrayList<HashMap> friendlist = new ArrayList<>();
                         for (int j = 0; j < friends.length(); j++) {
                             JSONObject friend = friends.getJSONObject(j);
