@@ -29,6 +29,7 @@ import java.util.List;
 import zucc.tm.jg.R;
 import zucc.tm.jg.Util.HttpCallBack;
 import zucc.tm.jg.Util.HttpTask;
+import zucc.tm.jg.Util.Joblisttb;
 import zucc.tm.jg.Util.Msglist;
 import zucc.tm.jg.Util.NoScrollListview;
 import zucc.tm.jg.Util.PhoneFormatCheckUtils;
@@ -86,8 +87,8 @@ public class projectInfoFragment extends Fragment {
         id = (int) getActivity().getIntent().getSerializableExtra("id");
         init(viewm);
         getgong();
-        if (RWlisttb.RWlist.size()==0)
-            connectxx();
+
+        connectxx();
         if (!zucc.tm.jg.Util.my.my.getPhone().equals(Projectlistb.projectlistb.get(id).getPhone()))
             add.setVisibility(View.GONE);
         adapter = new memberAdapter2(getActivity(), Projectlistb.projectlistb.get(id).getFriends(), handler, id);
@@ -128,7 +129,7 @@ public class projectInfoFragment extends Fragment {
                             return;
                         }
                         String get = "con=邀请您加入项目" + "&name=" + my.getPhone() + "&memberid=" + editText.getText() + "&type=msg" + "&id=" + Projectlistb.projectlistb.get(id).getProjectid();
-                        addmsg(get);
+                        addmsg(get,editText.getText().toString());
                     }
                 }, true);
             }
@@ -189,7 +190,7 @@ public class projectInfoFragment extends Fragment {
         task.execute();
     }
 
-    public void addmsg(String get) {
+    public void addmsg(String get,final String phone) {
 
         HttpTask task = new HttpTask(new HttpCallBack() {
 
@@ -201,6 +202,10 @@ public class projectInfoFragment extends Fragment {
                     JSONObject msg = new JSONObject((String) result.get(0));
                     if (msg.getString("result").equals("ok")) {
                         alertdialog.showSimpleDialog(getActivity(), "", "已向该用户发出邀请", "", "确认", null, null, true);
+                        JSONObject json=new JSONObject();
+                        json.put("type","tz");
+                        json.put("phone",phone);
+                        MsgIntentService.sendMessage(json.toString());
                     } else {
                         alertdialog.showSimpleDialog(getActivity(), "", "该用户尚未注册本应用", "", "确认", null, null, true);
                     }
@@ -343,6 +348,7 @@ public class projectInfoFragment extends Fragment {
                     }
                     RWlisttb.wc = zz;
                     tv_complete.setText(RWlisttb.wc + "/" + RWlisttb.RWlist.size());
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -354,7 +360,10 @@ public class projectInfoFragment extends Fragment {
             public void error(Exception e) {
                 Toast.makeText(getActivity(), "获取失败", Toast.LENGTH_LONG).show();
             }
-        }, "http://" + curUrl.url + "/GetWorkDetailsServlet?id=" + Projectlistb.projectlistb.get((int) getActivity().getIntent().getSerializableExtra("id")).getProjectid());
+        }, "http://" + curUrl.url + "/GetWorkDetailsServlet?id=" + Projectlistb.projectlistb.get(id).getProjectid());
         task.execute();
     }
+
+
+
 }

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.os.Handler;
 import android.os.Message;
 import android.view.LayoutInflater;
@@ -72,19 +73,8 @@ public class rwAdapter extends BaseAdapter {
             view = mInflater.inflate(R.layout.item_rw, null);
         }
         CheckBox cbx = (CheckBox) view.findViewById(R.id.check);
-        TextView title = (TextView) view.findViewById(R.id.title);
+        final TextView title = (TextView) view.findViewById(R.id.title);
         TextView time = (TextView) view.findViewById(R.id.time);
-
-        cbx.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if (b == true) {
-                    update(i, "f", "1");
-                } else {
-                    update(i, "f", "0");
-                }
-            }
-        });
 
 
         title.setOnClickListener(new View.OnClickListener() {
@@ -101,7 +91,7 @@ public class rwAdapter extends BaseAdapter {
             title.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View view) {
-                    alertdialog.showSimpleDialog(context, "", "是否删除该项目?", "取消", "删除", null, new DialogInterface.OnClickListener() {
+                    alertdialog.showSimpleDialog(context, "", "是否删除该任务?", "取消", "删除", null, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int j) {
                             del(i);
@@ -111,17 +101,41 @@ public class rwAdapter extends BaseAdapter {
                 }
             });
         }
-
-        if (RWlisttb.RWlist.get(i).getPerson_in_charge().equals("1"))
-            cbx.setChecked(true);
-
         time.setText(RWlisttb.RWlist.get(i).getTx_time());
         title.setText(RWlisttb.RWlist.get(i).getProject_name());
         title.setTextSize(16);
-        title.setTextColor(Color.parseColor("#757575"));
+        title.setTextColor(Color.parseColor("#212121"));
 
+        if (RWlisttb.RWlist.get(i).getPerson_in_charge().equals("1")){
+            cbx.setChecked(true);
+            title.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
+            title.setTextColor(Color.parseColor("#757575"));
+        } else {
+            cbx.setChecked(false);
+            title.setTextColor(Color.parseColor("#212121"));
+            title.getPaint().setFlags(0);
+        }
+
+
+        cbx.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (b == true) {
+                    update(i, "f", "1");
+                    title.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
+                    title.setTextColor(Color.parseColor("#757575"));
+                } else {
+                    update(i, "f", "0");
+                    title.setTextColor(Color.parseColor("#212121"));
+                    title.getPaint().setFlags(0);
+                }
+            }
+        });
         return view;
     }
+
+
+
 
     public void del(int x) {
 

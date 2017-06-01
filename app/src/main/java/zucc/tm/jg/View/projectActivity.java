@@ -33,6 +33,7 @@ public class projectActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_project);
         id= (int) getIntent().getSerializableExtra("id");
+
         initView();
 
     }

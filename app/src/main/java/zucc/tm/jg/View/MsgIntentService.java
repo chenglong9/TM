@@ -1,6 +1,10 @@
 package zucc.tm.jg.View;
 import android.app.IntentService;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
@@ -13,6 +17,7 @@ import java.util.Date;
 import de.tavendo.autobahn.WebSocketConnection;
 import de.tavendo.autobahn.WebSocketException;
 import de.tavendo.autobahn.WebSocketHandler;
+import zucc.tm.jg.R;
 import zucc.tm.jg.Util.Msglist;
 import zucc.tm.jg.Util.curUrl;
 import zucc.tm.jg.Util.my;
@@ -26,6 +31,7 @@ public class MsgIntentService extends IntentService {
     private static WebSocketConnection mConnect = new WebSocketConnection();
     private static final String TAG = "MainActivity";
     private static Handler handler = null;
+    private NotificationManager nm;
 
     public static void sethand(Handler handlers) {
         handler = handlers;
@@ -93,9 +99,12 @@ public class MsgIntentService extends IntentService {
 
                         }else if (type.equals("gg"))
                         {
+                            titlex("有新的公告");
                             Msglist.gg=true;
+
                         }else if (type.equals("tz"))
                         {
+                            titlex("有新的通知");
                             Msglist.tz=true;
                         }
 
@@ -138,4 +147,21 @@ public class MsgIntentService extends IntentService {
         mConnect.disconnect();
     }
 
+    public void titlex(String x) {
+        Intent intent = new Intent(MsgIntentService.this, MainActivity.class);
+        PendingIntent contentIntent = PendingIntent.getActivity(this, 0, intent, 0);
+
+        //1.获取系统通知的管理者
+        nm = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        //2.用notification工厂 创建一个notification
+        Notification noti = new Notification.Builder(this)
+                .setContentTitle(x)
+                .setContentText("")
+                .setSmallIcon(R.mipmap.ic_launcher)
+                .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher))
+                .setContentIntent(contentIntent)
+                .build();
+        //3.把notification显示出来
+        nm.notify(1, noti);
+    }
 }

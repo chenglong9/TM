@@ -85,6 +85,14 @@ public class UIdesignActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_uidesign);
         i = (int) getIntent().getSerializableExtra("id");
+
+        starttime_tv = (TextView) findViewById(R.id.starttime_tv);
+        endtime_tv = (TextView) findViewById(R.id.endtime_tv);
+        jianjie = (TextView) findViewById(R.id.jianjie);
+        tv_time = (TextView) findViewById(R.id.tv_time);
+        method = (TextView) findViewById(R.id.method);
+
+
         toolbar = (Toolbar) findViewById(R.id.toolbar);
 
         toolbar.setTitle(RWlisttb.RWlist.get(i).getProject_name());//设置Toolbar标题
@@ -100,25 +108,24 @@ public class UIdesignActivity extends AppCompatActivity {
         });
 
         list = (NoScrollListview) findViewById(R.id.list);
-          /*   ArrayList<HashMap> arraylist=new ArrayList<>();
-   HashMap fri=new HashMap();
-        arraylist.add(fri);*/
-
-        adapterx = new memberAdapter(this, RWlisttb.RWlist.get(i).getFriends(),handler,i,(int) getIntent().getSerializableExtra("n"));
-        list.setAdapter(adapterx);
-
-
-        starttime_tv = (TextView) findViewById(R.id.starttime_tv);
-        endtime_tv = (TextView) findViewById(R.id.endtime_tv);
-        jianjie = (TextView) findViewById(R.id.jianjie);
-        tv_time = (TextView) findViewById(R.id.tv_time);
-        method = (TextView) findViewById(R.id.method);
-
         starttime_tv.setText(RWlisttb.RWlist.get(i).getStart_time());
         endtime_tv.setText(RWlisttb.RWlist.get(i).getEnd_time());
         jianjie.setText(RWlisttb.RWlist.get(i).getDescribes());
         tv_time.setText(RWlisttb.RWlist.get(i).getTx_time());
         method.setText(RWlisttb.RWlist.get(i).getTx_method());
+
+
+
+        adapterx = new memberAdapter(this, RWlisttb.RWlist.get(i).getFriends(),handler,i,(int) getIntent().getSerializableExtra("n"));
+        list.setAdapter(adapterx);
+
+        jianjie.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                alertdialog.showSimpleDialog(UIdesignActivity.this, "", jianjie.getText().toString(), null, null, null, null, true);
+
+            }
+        });
     }
 
     public void add(View v) {

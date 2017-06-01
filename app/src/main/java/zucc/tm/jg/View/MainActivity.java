@@ -39,6 +39,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import zucc.tm.jg.R;
+import zucc.tm.jg.Util.Joblisttb;
 import zucc.tm.jg.Util.Projectlistb;
 import zucc.tm.jg.Util.RWlisttb;
 import zucc.tm.jg.adapter.drawerAdapter;
@@ -131,6 +132,7 @@ public class MainActivity extends AppCompatActivity implements
                     my.my=new mybean();
                     Projectlistb.projectlistb.clear();
                     RWlisttb.RWlist.clear();
+                    Joblisttb.jobl.clear();
                     SharedPreferences sharedPre=getSharedPreferences("config", MODE_PRIVATE);
                     SharedPreferences.Editor editor=sharedPre.edit();
                     editor.clear();

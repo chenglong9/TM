@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:descendantFocusability="blocksDescendants"
     android:layout_height="48dp">
 
     <RelativeLayout
@@ -12,8 +13,8 @@
             android:id="@+id/dv"
             android:layout_alignLeft="@+id/title"
             android:background="@color/Divider"
-            android:visibility="gone"
             android:layout_width="match_parent"
+            android:visibility="gone"
             android:layout_height="1dp" />
 
         <CheckBox
@@ -25,13 +26,13 @@
             android:layout_marginLeft="16dp" />
 
         <TextView
+            android:clickable="true"
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
             android:layout_toRightOf="@+id/check"
-            android:gravity="center"
+            android:gravity="center_vertical"
             android:text="Android杂谈"
             android:textColor="@color/PrimaryText"
             android:textSize="16dp" />

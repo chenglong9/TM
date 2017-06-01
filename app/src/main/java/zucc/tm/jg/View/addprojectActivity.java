@@ -90,7 +90,7 @@ public class addprojectActivity extends AppCompatActivity {
 
         Calendar c = Calendar.getInstance();//
         mYear = c.get(Calendar.YEAR); // 获取当前年份
-        mMonth = c.get(Calendar.MONTH) + 1;// 获取当前月份
+        mMonth = c.get(Calendar.MONTH) ;// 获取当前月份
         mDay = c.get(Calendar.DAY_OF_MONTH);// 获取当日期
 
     }

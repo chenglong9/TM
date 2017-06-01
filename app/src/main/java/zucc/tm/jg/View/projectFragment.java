@@ -18,7 +18,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -26,12 +29,14 @@ import java.util.List;
 import zucc.tm.jg.R;
 import zucc.tm.jg.Util.HttpCallBack;
 import zucc.tm.jg.Util.HttpTask;
+import zucc.tm.jg.Util.Joblisttb;
 import zucc.tm.jg.Util.Msglist;
 import zucc.tm.jg.Util.Projectlistb;
 import zucc.tm.jg.Util.alertdialog;
 import zucc.tm.jg.Util.curUrl;
 import zucc.tm.jg.Util.my;
 import zucc.tm.jg.adapter.projectAdapter;
+import zucc.tm.jg.bean.RWBean;
 import zucc.tm.jg.bean.msgbean;
 import zucc.tm.jg.bean.projectbean;
 
@@ -64,8 +69,7 @@ public class projectFragment extends Fragment {
         if (Projectlistb.projectlistb.size() == 0) {
             mRefreshLayout.setRefreshing(true);
             connect();
-        }
-        else {
+        } else {
             adapter = new projectAdapter(getActivity());
             list.setAdapter(adapter);
 
@@ -76,8 +80,8 @@ public class projectFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
                                     long arg3) {
-                Intent intent = new Intent(getActivity(),projectActivity.class);
-                intent.putExtra("id",arg2);
+                Intent intent = new Intent(getActivity(), projectActivity.class);
+                intent.putExtra("id", arg2);
 
                 getActivity().startActivity(intent);
             }
@@ -88,31 +92,29 @@ public class projectFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), addprojectActivity.class);
-                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(getActivity(),view,"fab").toBundle());
+                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(getActivity(), view, "fab").toBundle());
 
             }
         });
         list.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             public boolean onItemLongClick(AdapterView<?> arg0, View view,
                                            final int position, long id) {
-
-                alertdialog.showSimpleDialog(getActivity(), "", "是否删除该项目?", "取消", "删除", null, new DialogInterface.OnClickListener (){
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        del(position);
-                    }
-                }, true);
+                if (Projectlistb.projectlistb.get(position).getPhone().equals(my.my.getPhone()))
+                    alertdialog.showSimpleDialog(getActivity(), "", "是否删除该项目?", "取消", "删除", null, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            del(position);
+                        }
+                    }, true);
                 return true;
             }
         });
 
 
-
-
         return view;
     }
 
-    public  void connect() {
+    public void connect() {
 
         HttpTask task = new HttpTask(new HttpCallBack() {
 
@@ -123,6 +125,7 @@ public class projectFragment extends Fragment {
                 try {
                     mRefreshLayout.setRefreshing(false);
                     Projectlistb.projectlistb.clear();
+                    Joblisttb.jobl.clear();
                     JSONArray projectlist = new JSONArray((String) result.get(0));
                     for (int i = 0; i < projectlist.length(); i++) {
                         JSONObject project = projectlist.getJSONObject(i);
@@ -152,10 +155,11 @@ public class projectFragment extends Fragment {
                     }
                     adapter = new projectAdapter(getActivity());
                     list.setAdapter(adapter);
-                    for (int m=0;m<Projectlistb.projectlistb.size();m++)
-                    {
-                        ArrayList<msgbean> msgl=new ArrayList<msgbean>();
-                        Msglist.map.put(Projectlistb.projectlistb.get(m).getProjectid(),msgl);
+                    String get = proid();
+                    connectjob(get);
+                    for (int m = 0; m < Projectlistb.projectlistb.size(); m++) {
+                        ArrayList<msgbean> msgl = new ArrayList<msgbean>();
+                        Msglist.map.put(Projectlistb.projectlistb.get(m).getProjectid(), msgl);
                     }
 
                 } catch (JSONException e) {
@@ -173,7 +177,7 @@ public class projectFragment extends Fragment {
         task.execute();
     }
 
-    public  void del(int x) {
+    public void del(int x) {
 
         HttpTask task = new HttpTask(new HttpCallBack() {
 
@@ -193,6 +197,126 @@ public class projectFragment extends Fragment {
         task.execute();
     }
 
+    public void connectjob(String get) {
 
+        HttpTask task = new HttpTask(new HttpCallBack() {
+
+
+            @Override
+            public void success(List result) {
+                //网络请求成功后将会调用
+                try {
+
+                    JSONArray rwlist = new JSONArray((String) result.get(0));
+
+                    for (int i = 0; i < rwlist.length(); i++) {
+                        JSONObject rw = rwlist.getJSONObject(i);
+                        RWBean rwBean = new RWBean();
+                        rwBean.setStage_id(rw.getString("stage_id"));
+                        rwBean.setProject_id(rw.getString("project_id"));
+                        rwBean.setProject_name(rw.getString("project_name"));
+                        rwBean.setDescribes(rw.getString("describes"));
+                        rwBean.setStart_time(rw.getString("start_time"));
+                        rwBean.setEnd_time(rw.getString("end_time"));
+                        rwBean.setTypes(rw.getString("types"));
+                        rwBean.setPerson_in_charge(rw.getString("person_in_charge"));
+                        rwBean.setTx_time(rw.getString("tx_time"));
+                        rwBean.setTx_method(rw.getString("tx_method"));
+
+                        JSONArray friendx = rw.getJSONArray("friend");
+                        JSONArray friends = friendx.getJSONArray(0);
+                        ArrayList<HashMap> friendlist = new ArrayList<>();
+                        for (int j = 0; j < friends.length(); j++) {
+                            JSONObject friend = friends.getJSONObject(j);
+                            HashMap friendb = new HashMap();
+                            friendb.put("mphone", friend.getString("mphone"));
+                            friendb.put("mname", friend.getString("mname"));
+                            friendlist.add(friendb);
+                        }
+                        rwBean.setFriends(friendlist);
+                        for (HashMap f : friendlist) {
+                            if (f.get("mphone").equals(my.my.getPhone())) {
+                                break;
+                            }
+                        }
+                        Joblisttb.jobl.add(rwBean);
+                    }
+                    getx();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+
+            @Override
+            public void error(Exception e) {
+                Toast.makeText(getActivity(), "获取失败", Toast.LENGTH_LONG).show();
+            }
+        }, "http://" + curUrl.url + "/GetJobs?id=" + get);
+        task.execute();
+    }
+
+    public void getx() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+        try {
+
+            for (int i = 0; i < Joblisttb.jobl.size(); ) {
+                Date dateStart = dateFormat.parse(Joblisttb.jobl.get(i).getStart_time());
+                Date dateEnd = dateFormat.parse(Joblisttb.jobl.get(i).getEnd_time());
+                Date now = new Date();
+                if (dateStart.getTime() <= now.getTime() && dateEnd.getTime() >= now.getTime()) {
+                    i++;
+                } else Joblisttb.jobl.remove(i);
+
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+
+        if (Joblisttb.jobl.size() > 0) {
+            RWBean rwBean = new RWBean();
+            String x = huan(Joblisttb.jobl.get(0).getProject_id());
+            rwBean.setProject_name(x);
+            rwBean.setProject_id("");
+            Joblisttb.jobl.add(0, rwBean);
+        }
+
+        for (int i = 1; i < Joblisttb.jobl.size(); i++) {
+            if (i + 1 < Joblisttb.jobl.size() & !Joblisttb.jobl.get(i).getProject_id().equals(""))
+                if (!(Joblisttb.jobl.get(i).getProject_id().equals(Joblisttb.jobl.get(i + 1).getProject_id()))) {
+                    RWBean rwBean = new RWBean();
+                    String x = huan(Joblisttb.jobl.get(i + 1).getProject_id());
+                    rwBean.setProject_name(x);
+                    rwBean.setProject_id("");
+                    Joblisttb.jobl.add(i + 1, rwBean);
+                }
+        }
+    }
+
+    private static String proid() {
+        JSONArray json = new JSONArray();
+        for (int i = 0; i < Projectlistb.projectlistb.size(); i++)
+            json.put(Projectlistb.projectlistb.get(i).getProjectid());
+
+        return json.toString();
+    }
+
+    public String huan(String x) {
+        for (int i = 0; i < Projectlistb.projectlistb.size(); i++)
+            if (Projectlistb.projectlistb.get(i).getProjectid().equals(x)) {
+                x = Projectlistb.projectlistb.get(i).getProjectname();
+                break;
+            }
+        return x;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        connect();
+    }
 }
 

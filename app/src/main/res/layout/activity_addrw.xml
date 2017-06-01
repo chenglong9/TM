@@ -51,6 +51,7 @@
             android:layout_height="match_parent"
             android:textColor="@color/PrimaryText"
             android:textSize="16dp"
+            android:lines="1"
             android:layout_marginLeft="16dp"
             android:hint="任务简介"/>
         <TextView

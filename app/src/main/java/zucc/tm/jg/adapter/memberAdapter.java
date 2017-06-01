@@ -89,8 +89,7 @@ public class memberAdapter extends BaseAdapter {
             del((String) arraylist.get(i).get("mphone"));
             }
         });
-        if (!my.my.getPhone().equals(Projectlistb.projectlistb.get(m).getPhone()))
-            jia.setVisibility(View.GONE);
+
             cardx.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -101,6 +100,8 @@ public class memberAdapter extends BaseAdapter {
             });
 
             jia.setVisibility(View.VISIBLE);
+        if (!my.my.getPhone().equals(Projectlistb.projectlistb.get(m).getPhone()))
+            jia.setVisibility(View.GONE);
 
             title.setVisibility(View.GONE);
             add.setVisibility(View.GONE);
