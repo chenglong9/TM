@@ -180,42 +180,9 @@
             </LinearLayout>
 
         </android.support.v7.widget.CardView>
-        <TextView
-            android:id="@+id/title_member"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="成员"
-            android:textSize="16dp"
-            android:textColor="@color/colorPrimaryDark"
-            android:layout_below="@+id/tx"
-            android:layout_margin="8dp"
-            />
-        <zucc.tm.jg.Util.NoScrollListview
-        android:layout_below="@+id/title_member"
-        android:id="@+id/list"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:divider="@null"
-        android:listSelector="@android:color/transparent"
-        android:layout_marginTop="8dp"
-        ></zucc.tm.jg.Util.NoScrollListview>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:gravity="center_horizontal"
-            android:layout_below="@+id/list"
-            android:layout_height="wrap_content">
-            <TextView
-                android:id="@+id/add_t"
-                android:layout_width="88dp"
 
-                android:layout_height="48dp"
-                android:background="@drawable/xx2"
-                android:clickable="true"
-                android:gravity="center"
-                android:text="添加成员"
-                android:textColor="@color/colorPrimary"
-                android:textSize="16dp" />
-        </LinearLayout>
+
+
     <RelativeLayout
         android:id="@+id/name"
         android:layout_width="match_parent"

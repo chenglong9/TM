@@ -37,7 +37,7 @@ import zucc.tm.jg.Util.my;
 import zucc.tm.jg.adapter.memberAdapter;
 
 public class addrwActivity extends AppCompatActivity {
-    private NoScrollListview list;
+
     Toolbar toolbar;
     private String get;
     private EditText name;
@@ -49,7 +49,7 @@ public class addrwActivity extends AppCompatActivity {
     private int mYear;
     private int mMonth;
     private int mDay;
-    private ArrayList<HashMap> arraylist;
+
     public int id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,12 +69,11 @@ public class addrwActivity extends AppCompatActivity {
                 finish();
             }
         });
-        list= (NoScrollListview) findViewById(R.id.list);
-         arraylist=new ArrayList<>();
+
+
     /*    HashMap fri=new HashMap();
         arraylist.add(fri);*/
-        memberAdapter adapterx=new memberAdapter(this, arraylist);
-        list.setAdapter(adapterx);
+
 
         toolbar.setOnMenuItemClickListener(onMenuItemClick);
 

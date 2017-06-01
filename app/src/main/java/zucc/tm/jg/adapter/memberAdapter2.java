@@ -25,26 +25,22 @@ import zucc.tm.jg.Util.HttpTask;
 import zucc.tm.jg.Util.Projectlistb;
 import zucc.tm.jg.Util.RWlisttb;
 import zucc.tm.jg.Util.curUrl;
-import zucc.tm.jg.bean.friendbean;
 
 /**
  * Created by 45773 on 2017-05-20.
  */
 
-public class memberAdapter extends BaseAdapter {
+public class memberAdapter2 extends BaseAdapter {
     private Context context;
     private ArrayList<HashMap> arraylist;
     private Handler handler;
 
-    public memberAdapter(Context context, ArrayList<HashMap> arraylist ,Handler handler) {
+    public memberAdapter2(Context context, ArrayList<HashMap> arraylist,Handler handler) {
         this.context = context;
         this.arraylist = arraylist;
         this.handler=handler;
     }
-    public memberAdapter(Context context, ArrayList<HashMap> arraylist ) {
-        this.context = context;
-        this.arraylist = arraylist;
-    }
+
     @Override
     public int getCount() {
         return arraylist.size();
@@ -79,12 +75,6 @@ public class memberAdapter extends BaseAdapter {
         TextView phone = (TextView) view.findViewById(R.id.phone);
         ImageButton jia = (ImageButton) view.findViewById(R.id.jia);
 
-        jia.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-            del(i,(String) arraylist.get(i).get("mphone"));
-            }
-        });
 
             cardx.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -96,6 +86,12 @@ public class memberAdapter extends BaseAdapter {
             });
 
             jia.setVisibility(View.VISIBLE);
+            jia.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                }
+            });
 
             title.setVisibility(View.GONE);
             add.setVisibility(View.GONE);
@@ -106,7 +102,6 @@ public class memberAdapter extends BaseAdapter {
 
         return view;
     }
-
     public  void del(int x,String phone) {
 
         HttpTask task = new HttpTask(new HttpCallBack() {
@@ -123,7 +118,7 @@ public class memberAdapter extends BaseAdapter {
             public void error(Exception e) {
                 Toast.makeText(context, "获取失败", Toast.LENGTH_LONG).show();
             }
-        }, "http://" + curUrl.url + "/DeleteWorkMember?id=" + RWlisttb.RWlist.get(x).getStage_id()+"&phone+"+phone);
+        }, "http://" + curUrl.url + "/DeleteProjectMember?id=" + Projectlistb.projectlistb.get(x).getProjectid()+"&phone+"+phone);
         task.execute();
     }
 }

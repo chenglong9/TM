@@ -5,6 +5,8 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.graphics.Color;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 
@@ -50,6 +52,7 @@ import zucc.tm.jg.Util.curUrl;
 
 import zucc.tm.jg.Util.alertdialog;
 
+import zucc.tm.jg.Util.my;
 import zucc.tm.jg.adapter.memberAdapter;
 import zucc.tm.jg.adapter.rwAdapter;
 import zucc.tm.jg.bean.RWBean;
@@ -70,7 +73,14 @@ public class UIdesignActivity extends AppCompatActivity {
 
 
     CardView cardView;
-
+    private Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            adapterx.notifyDataSetChanged();
+            Toast.makeText(UIdesignActivity.this, "删除成功", Toast.LENGTH_LONG).show();
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,7 +106,7 @@ public class UIdesignActivity extends AppCompatActivity {
    HashMap fri=new HashMap();
         arraylist.add(fri);*/
 
-        adapterx = new memberAdapter(this, RWlisttb.RWlist.get(i).getFriends());
+        adapterx = new memberAdapter(this, RWlisttb.RWlist.get(i).getFriends(),handler);
         list.setAdapter(adapterx);
 
 
@@ -116,26 +126,41 @@ public class UIdesignActivity extends AppCompatActivity {
     public void add(View v) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         Log.d("n", "" + (int) getIntent().getSerializableExtra("n"));
-        ArrayList<String> names = new ArrayList<String>();
+        final ArrayList<String> names = new ArrayList<String>();
         for (int o = 0; o < Projectlistb.projectlistb.get((int) getIntent().getSerializableExtra("n")).getFriends().size(); o++) {
-            Log.d("name", "" + (String) Projectlistb.projectlistb.get((int) getIntent().getSerializableExtra("n")).getFriends().get(o).get("mname"));
+         //   Log.d("name", "" + (String) Projectlistb.projectlistb.get((int) getIntent().getSerializableExtra("n")).getFriends().get(o).get("mname"));
             names.add((String) Projectlistb.projectlistb.get((int) getIntent().getSerializableExtra("n")).getFriends().get(o).get("mname"));
         }
+        names.add(my.my.getName());
         final String[] methods = names.toArray(new String[names.size()]);
+
         builder.setItems(methods, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                if(which==names.size()-1)
+                    for (int l = 0; l < RWlisttb.RWlist.get(i).getFriends().size(); l++) {
+                        if (RWlisttb.RWlist.get(i).getFriends().get(l).get("mphone").equals(my.my.getPhone())) {
+                            Toast.makeText(UIdesignActivity.this, "成员已存在", Toast.LENGTH_LONG).show();
+                            return;
+                        }
+                    }
+                 else
                 for (int l = 0; l < RWlisttb.RWlist.get(i).getFriends().size(); l++) {
-                    if (RWlisttb.RWlist.get(i).getFriends().get(l).get("mname").equals(methods[which])) {
+                    if (RWlisttb.RWlist.get(i).getFriends().get(l).get("mphone").equals(Projectlistb.projectlistb.get((int) getIntent().getSerializableExtra("n")).getFriends().get(which).get("mphone"))) {
                         Toast.makeText(UIdesignActivity.this, "成员已存在", Toast.LENGTH_LONG).show();
                         return;
                     }
                 }
 
-                get = "id=" + (int) getIntent().getSerializableExtra("n") + "&phone=" +
-                        (String) Projectlistb.projectlistb.get((int) getIntent().getSerializableExtra("n")).getFriends().get(which).get("mphone");
+                get = "id=" + (int) getIntent().getSerializableExtra("n");
+
+                if(which==names.size()-1)
+                    get= get + "&phone=" +my.my.getPhone();
+                    else
+                get = get  + "&phone=" + (String) Projectlistb.projectlistb.get((int) getIntent().getSerializableExtra("n")).getFriends().get(which).get("mphone");
+
                 get = get + "&workid=" + RWlisttb.RWlist.get(i).getStage_id();
-                connect((String) Projectlistb.projectlistb.get((int) getIntent().getSerializableExtra("n")).getFriends().get(which).get("name"), (String) Projectlistb.projectlistb.get((int) getIntent().getSerializableExtra("n")).getFriends().get(which).get("phone"));
+                connectx();
 
             }
         });
@@ -173,7 +198,7 @@ public class UIdesignActivity extends AppCompatActivity {
         alarmManager.set(AlarmManager.RTC_WAKEUP, triggerAtTime, pendingIntent);
     }
 
-    public void connect(final String name, final String phone) {
+    public void connectx() {
 
         HttpTask task = new HttpTask(new HttpCallBack() {
             @Override
@@ -229,7 +254,7 @@ public class UIdesignActivity extends AppCompatActivity {
             public void error(Exception e) {
                 Toast.makeText(UIdesignActivity.this, "获取失败", Toast.LENGTH_LONG).show();
             }
-        }, "http://" + curUrl.url + "GetMember?id=" + RWlisttb.RWlist.get(i).getStage_id());
+        }, "http://" + curUrl.url + "/GetMember?id=" + RWlisttb.RWlist.get(i).getStage_id());
         task.execute();
     }
     public void settime(View v){

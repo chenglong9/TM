@@ -138,12 +138,13 @@ public class stageListFragment extends Fragment {
                         }
 
                         rwBean.setFriends(friendlist);
+                        if (Projectlistb.projectlistb.get(id).getPhone().equals(my.my.getPhone())) {
+                            RWlisttb.RWlist.add(rwBean);
 
+                        }
+                        else
                      for (HashMap f : friendlist) {
                             if (f.get("mphone").equals(my.my.getPhone())) {
-                                RWlisttb.RWlist.add(rwBean);
-                                break;
-                            } else if (Projectlistb.projectlistb.get(id).getPhone().equals(my.my.getPhone())) {
                                 RWlisttb.RWlist.add(rwBean);
                                 break;
                             }
