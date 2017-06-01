@@ -19,7 +19,6 @@ import zucc.tm.jg.adapter.jobAdapter;
 
 public class jobFragment extends Fragment {
 
-
     private ListView list;
 
     @Override

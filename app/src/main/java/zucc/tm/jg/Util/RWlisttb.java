@@ -11,4 +11,5 @@ import zucc.tm.jg.bean.projectbean;
 
 public class RWlisttb {
     public static ArrayList<RWBean> RWlist=new ArrayList<RWBean>();
+    public static int wc=0;
 }

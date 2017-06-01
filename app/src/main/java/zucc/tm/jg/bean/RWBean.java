@@ -11,7 +11,7 @@ import java.util.HashMap;
 public class RWBean {
     private String stage_id;
     private String project_id;
-    private String project_name ;
+    private String project_name;
     private String describes;
     private String start_time;
     private String end_time;

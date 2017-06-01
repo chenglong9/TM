@@ -81,10 +81,11 @@ public class stageListFragment extends Fragment {
                 connect();
             }
         });
+
         rw_list = (NoScrollListview) view.findViewById(R.id.list_rw);
         mRefreshLayout.setRefreshing(true);
-        connect();
-        adapter = new rwAdapter(getActivity(), (int) getActivity().getIntent().getSerializableExtra("id"), handler);
+
+        adapter = new rwAdapter(getActivity(), id, handler);
         rw_list.setAdapter(adapter);
 
         fab.setOnClickListener(new View.OnClickListener() {
@@ -110,6 +111,7 @@ public class stageListFragment extends Fragment {
                 try {
                     mRefreshLayout.setRefreshing(false);
                     RWlisttb.RWlist.clear();
+                    int zz=0;
                     JSONArray rwlist = new JSONArray((String) result.get(0));
                     for (int i = 0; i < rwlist.length(); i++) {
                         JSONObject rw = rwlist.getJSONObject(i);
@@ -125,7 +127,8 @@ public class stageListFragment extends Fragment {
                         rwBean.setTx_time(rw.getString("tx_time"));
                         rwBean.setTx_method(rw.getString("tx_method"));
 
-
+                        if (rw.getString("person_in_charge").equals("1"))
+                                zz++;
                         JSONArray friends = rw.getJSONArray("friend");
 
                         ArrayList<HashMap> friendlist = new ArrayList<>();
@@ -151,7 +154,7 @@ public class stageListFragment extends Fragment {
                         }
                     }
                     adapter.notifyDataSetChanged();
-
+                    RWlisttb.wc=zz;
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

@@ -171,7 +171,7 @@ public class addrwActivity extends AppCompatActivity {
             public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
                 times.setText(String.format("%d-%d-%d", i, i1+1 , i2));
             }
-        }, mYear, mMonth-1, mDay).show();
+        }, mYear, mMonth, mDay).show();
     }
 
     public void time2(View v) {
@@ -180,7 +180,7 @@ public class addrwActivity extends AppCompatActivity {
             public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
                 timee.setText(String.format("%d-%d-%d", i, i1+1 , i2));
             }
-        }, mYear, mMonth-1, mDay).show();
+        }, mYear, mMonth, mDay).show();
     }
     public void time3(View v) {
 
@@ -201,7 +201,6 @@ public class addrwActivity extends AppCompatActivity {
             }
         }, mYear, mMonth, mDay).show();
     }
-
 
 
     final String[] methods={"闹铃","无"};

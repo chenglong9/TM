@@ -39,6 +39,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import zucc.tm.jg.R;
+import zucc.tm.jg.Util.Projectlistb;
+import zucc.tm.jg.Util.RWlisttb;
 import zucc.tm.jg.adapter.drawerAdapter;
 import pub.devrel.easypermissions.AfterPermissionGranted;
 import pub.devrel.easypermissions.AppSettingsDialog;
@@ -127,6 +129,8 @@ public class MainActivity extends AppCompatActivity implements
                 }
                 else     if (arg2 == 4) {
                     my.my=new mybean();
+                    Projectlistb.projectlistb.clear();
+                    RWlisttb.RWlist.clear();
                     SharedPreferences sharedPre=getSharedPreferences("config", MODE_PRIVATE);
                     SharedPreferences.Editor editor=sharedPre.edit();
                     editor.clear();

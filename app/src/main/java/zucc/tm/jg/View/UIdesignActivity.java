@@ -54,9 +54,7 @@ import zucc.tm.jg.Util.alertdialog;
 
 import zucc.tm.jg.Util.my;
 import zucc.tm.jg.adapter.memberAdapter;
-import zucc.tm.jg.adapter.rwAdapter;
-import zucc.tm.jg.bean.RWBean;
-import zucc.tm.jg.bean.friendbean;
+
 
 public class UIdesignActivity extends AppCompatActivity {
     private NoScrollListview list;
@@ -77,7 +75,7 @@ public class UIdesignActivity extends AppCompatActivity {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            adapterx.notifyDataSetChanged();
+            connect();
             Toast.makeText(UIdesignActivity.this, "删除成功", Toast.LENGTH_LONG).show();
         }
     };
@@ -106,7 +104,7 @@ public class UIdesignActivity extends AppCompatActivity {
    HashMap fri=new HashMap();
         arraylist.add(fri);*/
 
-        adapterx = new memberAdapter(this, RWlisttb.RWlist.get(i).getFriends(),handler);
+        adapterx = new memberAdapter(this, RWlisttb.RWlist.get(i).getFriends(),handler,i,(int) getIntent().getSerializableExtra("n"));
         list.setAdapter(adapterx);
 
 
@@ -223,25 +221,27 @@ public class UIdesignActivity extends AppCompatActivity {
                 //网络请求成功后将会调用
                 try {
                     //  mRefreshLayout.setRefreshing(false);
-                    RWlisttb.RWlist.get(i).getFriends().clear();
+                    RWlisttb.RWlist.get(i).setFriends(new ArrayList<HashMap>());
+
                     JSONArray rwlist = new JSONArray((String) result.get(0));
-                    for (int i = 0; i < rwlist.length(); i++) {
-                        JSONObject rw = rwlist.getJSONObject(i);
+                    for (int x = 0; x < rwlist.length(); x++) {
+                        JSONObject rw = rwlist.getJSONObject(x);
                         JSONArray friends = rw.getJSONArray("friend");
-                        //ArrayList<HashMap> friendlist = new ArrayList<>();
+
                         for (int j = 0; j < friends.length(); j++) {
                             JSONObject friend = friends.getJSONObject(j);
                             HashMap friendb = new HashMap();
                             friendb.put("mphone", friend.getString("mphone"));
                             friendb.put("mname", friend.getString("mname"));
-                            //friendlist.add(friendb);
+
                             RWlisttb.RWlist.get(i).getFriends().add(friendb);
                         }
-                        //  RWlisttb.RWlist.get(i).setFriends(friendlist);
+
                     }
-                    //   adapterx=new memberAdapter(UIdesignActivity.this,RWlisttb.RWlist.get(i).getFriends());
-                    adapterx.notifyDataSetChanged();
-                    //   list.setAdapter(adapterx);
+
+                    adapterx = new memberAdapter(UIdesignActivity.this, RWlisttb.RWlist.get(i).getFriends(),handler,i,(int) getIntent().getSerializableExtra("n"));
+                    list.setAdapter(adapterx);
+
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -265,7 +265,7 @@ public class UIdesignActivity extends AppCompatActivity {
         mYear = c.get(Calendar.YEAR); // 获取当前年份
         mMonth = c.get(Calendar.MONTH) + 1;// 获取当前月份
         mDay = c.get(Calendar.DAY_OF_MONTH);// 获取当日期
-
+        if (my.my.getPhone().equals(Projectlistb.projectlistb.get((int) getIntent().getSerializableExtra("n")).getPhone()))
         new DatePickerDialog(UIdesignActivity.this, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
@@ -303,7 +303,7 @@ public class UIdesignActivity extends AppCompatActivity {
                 update("method",index+"");
             }
         });
-
+        if (my.my.getPhone().equals(Projectlistb.projectlistb.get((int) getIntent().getSerializableExtra("n")).getPhone()))
         builder.show();
     }
     public void update(String what, String value) {

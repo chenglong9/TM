@@ -25,6 +25,7 @@ import zucc.tm.jg.Util.HttpTask;
 import zucc.tm.jg.Util.Projectlistb;
 import zucc.tm.jg.Util.RWlisttb;
 import zucc.tm.jg.Util.curUrl;
+import zucc.tm.jg.Util.my;
 import zucc.tm.jg.bean.friendbean;
 
 /**
@@ -35,11 +36,14 @@ public class memberAdapter extends BaseAdapter {
     private Context context;
     private ArrayList<HashMap> arraylist;
     private Handler handler;
-
-    public memberAdapter(Context context, ArrayList<HashMap> arraylist ,Handler handler) {
+    int z;
+    int m;
+    public memberAdapter(Context context, ArrayList<HashMap> arraylist ,Handler handler,int z,int m) {
         this.context = context;
         this.arraylist = arraylist;
         this.handler=handler;
+        this.z=z;
+        this.m=m;
     }
     public memberAdapter(Context context, ArrayList<HashMap> arraylist ) {
         this.context = context;
@@ -82,10 +86,11 @@ public class memberAdapter extends BaseAdapter {
         jia.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-            del(i,(String) arraylist.get(i).get("mphone"));
+            del((String) arraylist.get(i).get("mphone"));
             }
         });
-
+        if (!my.my.getPhone().equals(Projectlistb.projectlistb.get(m).getPhone()))
+            jia.setVisibility(View.GONE);
             cardx.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -107,7 +112,7 @@ public class memberAdapter extends BaseAdapter {
         return view;
     }
 
-    public  void del(int x,String phone) {
+    public  void del(String phone) {
 
         HttpTask task = new HttpTask(new HttpCallBack() {
 
@@ -123,7 +128,7 @@ public class memberAdapter extends BaseAdapter {
             public void error(Exception e) {
                 Toast.makeText(context, "获取失败", Toast.LENGTH_LONG).show();
             }
-        }, "http://" + curUrl.url + "/DeleteWorkMember?id=" + RWlisttb.RWlist.get(x).getStage_id()+"&phone+"+phone);
+        }, "http://" + curUrl.url + "/DeleteWorkMember?id=" + RWlisttb.RWlist.get(z).getStage_id()+"&phone="+phone);
         task.execute();
     }
 }

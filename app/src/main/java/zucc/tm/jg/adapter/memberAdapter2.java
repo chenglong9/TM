@@ -25,6 +25,7 @@ import zucc.tm.jg.Util.HttpTask;
 import zucc.tm.jg.Util.Projectlistb;
 import zucc.tm.jg.Util.RWlisttb;
 import zucc.tm.jg.Util.curUrl;
+import zucc.tm.jg.Util.my;
 
 /**
  * Created by 45773 on 2017-05-20.
@@ -34,11 +35,12 @@ public class memberAdapter2 extends BaseAdapter {
     private Context context;
     private ArrayList<HashMap> arraylist;
     private Handler handler;
-
-    public memberAdapter2(Context context, ArrayList<HashMap> arraylist,Handler handler) {
+    int z;
+    public memberAdapter2(Context context, ArrayList<HashMap> arraylist,Handler handler,int z) {
         this.context = context;
         this.arraylist = arraylist;
         this.handler=handler;
+        this.z=z;
     }
 
     @Override
@@ -89,9 +91,11 @@ public class memberAdapter2 extends BaseAdapter {
             jia.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-
+                    del((String) arraylist.get(i).get("mphone"));
                 }
             });
+        if (!my.my.getPhone().equals(Projectlistb.projectlistb.get(z).getPhone()))
+            jia.setVisibility(View.GONE);
 
             title.setVisibility(View.GONE);
             add.setVisibility(View.GONE);
@@ -102,7 +106,7 @@ public class memberAdapter2 extends BaseAdapter {
 
         return view;
     }
-    public  void del(int x,String phone) {
+    public  void del(String phone) {
 
         HttpTask task = new HttpTask(new HttpCallBack() {
 
@@ -118,7 +122,7 @@ public class memberAdapter2 extends BaseAdapter {
             public void error(Exception e) {
                 Toast.makeText(context, "获取失败", Toast.LENGTH_LONG).show();
             }
-        }, "http://" + curUrl.url + "/DeleteProjectMember?id=" + Projectlistb.projectlistb.get(x).getProjectid()+"&phone+"+phone);
+        }, "http://" + curUrl.url + "/DeleteProjectMember?id=" + Projectlistb.projectlistb.get(z).getProjectid()+"&phone="+phone);
         task.execute();
     }
 }

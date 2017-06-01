@@ -73,15 +73,15 @@ public class rwAdapter extends BaseAdapter {
         }
         CheckBox cbx = (CheckBox) view.findViewById(R.id.check);
         TextView title = (TextView) view.findViewById(R.id.title);
-
+        TextView time = (TextView) view.findViewById(R.id.time);
 
         cbx.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if (b == true) {
-                    update(i,"f","1");
+                    update(i, "f", "1");
                 } else {
-                    update(i,"f","0");
+                    update(i, "f", "0");
                 }
             }
         });
@@ -111,10 +111,11 @@ public class rwAdapter extends BaseAdapter {
                 }
             });
         }
+
         if (RWlisttb.RWlist.get(i).getPerson_in_charge().equals("1"))
             cbx.setChecked(true);
 
-        TextView time = (TextView) view.findViewById(R.id.time);
+        time.setText(RWlisttb.RWlist.get(i).getTx_time());
         title.setText(RWlisttb.RWlist.get(i).getProject_name());
         title.setTextSize(16);
         title.setTextColor(Color.parseColor("#757575"));
@@ -197,7 +198,8 @@ public class rwAdapter extends BaseAdapter {
         }, "http://" + curUrl.url + "/GetWorkDetailsServlet?id=" + Projectlistb.projectlistb.get(n).getProjectid());
         task.execute();
     }
-    public void update(int i,String what, String value) {
+
+    public void update(int i, String what, String value) {
 
         HttpTask task = new HttpTask(new HttpCallBack() {
             @Override
@@ -209,7 +211,7 @@ public class rwAdapter extends BaseAdapter {
             public void error(Exception e) {
                 Toast.makeText(context, "网络连接失败", Toast.LENGTH_LONG).show();
             }
-        }, "http://" + curUrl.url + "/ModifyRW?id="+ RWlisttb.RWlist.get(i).getStage_id() +"&what="+what+"&value=" +value);
+        }, "http://" + curUrl.url + "/ModifyRW?id=" + RWlisttb.RWlist.get(i).getStage_id() + "&what=" + what + "&value=" + value);
         task.execute();
     }
 }

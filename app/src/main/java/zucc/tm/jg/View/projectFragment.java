@@ -192,5 +192,7 @@ public class projectFragment extends Fragment {
         }, "http://" + curUrl.url + "/DeleteProjectServlet?id=" + Projectlistb.projectlistb.get(x).getProjectid());
         task.execute();
     }
+
+
 }
 
