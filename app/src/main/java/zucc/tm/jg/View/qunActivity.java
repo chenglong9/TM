@@ -87,14 +87,6 @@ public class qunActivity extends AppCompatActivity {
         String content = inputText.getText().toString();
         if (!"".equals(content)) {
 
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd/HH:mm:ss");
-            String time = dateFormat.format(new Date());
-            msgbean msgb=new msgbean(Projectlistb.projectlistb.get(id).getProjectid(),my.my.getName(),content,time);
-            Msglist.map.get(proid).add(msgb);
-
-            msgAdapter.notifyDataSetChanged();
-            msgListView.setSelection( Msglist.map.get(proid).size());
-
             JSONObject msg=new JSONObject();
             try {
                 msg.put("id",Projectlistb.projectlistb.get(id).getProjectid());

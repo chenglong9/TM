@@ -3,6 +3,7 @@ package zucc.tm.jg.View;
 import android.app.ActivityOptions;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -208,6 +209,7 @@ public class projectInfoFragment extends Fragment {
                         MsgIntentService.sendMessage(json.toString());
                     } else {
                         alertdialog.showSimpleDialog(getActivity(), "", "该用户尚未注册本应用", "", "确认", null, null, true);
+                        sendSMS(phone.toString(), my.getName() + "邀请您使用TM，http://www.zcl1995.xin/TeamWork/download");
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -363,7 +365,12 @@ public class projectInfoFragment extends Fragment {
         }, "http://" + curUrl.url + "/GetWorkDetailsServlet?id=" + Projectlistb.projectlistb.get(id).getProjectid());
         task.execute();
     }
-
+    private void sendSMS(String number, String message) {
+        Uri uri = Uri.parse("smsto:" + number.trim());
+        Intent sendIntent = new Intent(Intent.ACTION_VIEW, uri);
+        sendIntent.putExtra("sms_body", message);
+        startActivity(sendIntent);
+    }
 
 
 }

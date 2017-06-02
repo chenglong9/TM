@@ -2,8 +2,10 @@ package zucc.tm.jg.adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -73,32 +75,67 @@ public class friendAdapter extends BaseAdapter {
         jia.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sendSMS(phone.getText().toString(), my.my.getName()+"邀请您使用TM");
-            }
-        });
-        cardx.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_DIAL);
-                intent.setData(Uri.parse("tel:" + arraylist.get(i).getContact_phone()));
-                context.startActivity(intent);
-            }
-        });
+                final String[] methods = {"分享至QQ", "分享至微信", "短信邀请"};
 
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
 
-        if (arraylist.get(i).getContact_name().equals("") || i == 0) {
-            text.setText(arraylist.get(i).getSortKey());
-            card.setVisibility(View.GONE);
-            text.setVisibility(View.VISIBLE);
-        } else {
-            name.setText(arraylist.get(i).getContact_name());
-            phone.setText(arraylist.get(i).getContact_phone());
-            card.setVisibility(View.VISIBLE);
-            text.setVisibility(View.GONE);
+                builder.setItems(methods, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        if(which==2)
+                            sendSMS(phone.getText().toString(), my.my.getName() + "邀请您使用TM，http://www.zcl1995.xin/TeamWork/download");
+                    }
+
+                }
+            );
+            builder.show();
         }
-        return view;
     }
-    private void sendSMS(String number, String message){
+
+    );
+    cardx.setOnClickListener(new View.OnClickListener()
+
+    {
+        @Override
+        public void onClick (View v){
+        Intent intent = new Intent(Intent.ACTION_DIAL);
+        intent.setData(Uri.parse("tel:" + arraylist.get(i).getContact_phone()));
+        context.startActivity(intent);
+    }
+    }
+
+    );
+
+
+    if(arraylist.get(i).
+
+    getContact_name()
+
+    .
+
+    equals("")
+
+    ||i==0)
+
+    {
+        text.setText(arraylist.get(i).getSortKey());
+        card.setVisibility(View.GONE);
+        text.setVisibility(View.VISIBLE);
+    }
+
+    else
+
+    {
+        name.setText(arraylist.get(i).getContact_name());
+        phone.setText(arraylist.get(i).getContact_phone());
+        card.setVisibility(View.VISIBLE);
+        text.setVisibility(View.GONE);
+    }
+
+    return view;
+}
+
+    private void sendSMS(String number, String message) {
         Uri uri = Uri.parse("smsto:" + number.trim());
         Intent sendIntent = new Intent(Intent.ACTION_VIEW, uri);
         sendIntent.putExtra("sms_body", message);

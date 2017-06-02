@@ -15,7 +15,7 @@
     <string name="title_activity_qun">qunActivity</string>
     <string name="test_notice">设计阶段还有一周就要结束了，大家抓紧时间。\n明天晚上八点半，一起开个会。\n地点：理四118</string>
     <string name="test_project_info">针对杨枨老师开设的SQA-软件质量保证课程的期末大作业。\n项目为文字分享社交网站。</string>
-
+    <string name="yao">邀请您使用TM，http://www.zcl1995.xin/TeamWork/download</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
