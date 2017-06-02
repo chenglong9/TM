@@ -69,7 +69,7 @@ public class jobAdapter extends BaseAdapter {
                 dv.setVisibility(View.VISIBLE);
             title.setText(Joblisttb.jobl.get(i).getProject_name());
             title.setTextSize(14);
-            title.setTextColor(Color.parseColor("#03A9F4"));
+            title.setTextColor(Color.parseColor("#0288D1"));
             cbx.setVisibility(View.INVISIBLE);
             time.setVisibility(View.GONE);
         } else {

@@ -16,7 +16,7 @@
             android:layout_toRightOf="@+id/check"
             android:gravity="center"
             android:text="A"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/colorPrimaryDark"
             android:textSize="20dp"
             android:visibility="gone" />
     </RelativeLayout>
@@ -79,7 +79,7 @@
                     android:padding="12dp"
                     android:clickable="true"
                     android:layout_alignParentRight="true"
-                    android:src="@drawable/add_h2"
+                    android:src="@drawable/new_add"
                     android:background="@drawable/xx"/>
 
 
