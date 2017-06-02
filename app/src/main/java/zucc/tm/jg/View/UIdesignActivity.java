@@ -36,8 +36,11 @@ import org.json.JSONObject;
 import android.widget.Toast;
 
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -171,36 +174,27 @@ public class UIdesignActivity extends AppCompatActivity {
         });
         builder.show();
 
-        initView();
+
 
     }
-    public void initView(){
-        Intent intent = getIntent();
-        if(intent.getBooleanExtra("flag",false)==true){
-            alertdialog.showSimpleDialog(UIdesignActivity.this, "任务提醒", "任务。。。。", "", "确认", null, null, true);
+
+    public void setAlarm(String time) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyy-MM-dd HH:mm");
+
+        try {
+            Date dateStart = dateFormat.parse(time);
+            AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+            Intent intent = new Intent(this, MainActivity.class);
+            intent.putExtra("flag", toolbar.getTitle());//显示任务提醒
+            int requestCode = 0;
+            PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(),
+                    requestCode, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+            long triggerAtTime = dateStart.getTime();//设置时间
+
+            alarmManager.set(AlarmManager.RTC_WAKEUP, triggerAtTime, pendingIntent);
+        } catch (ParseException e) {
+            e.printStackTrace();
         }
-        //测试用的，点击完成度的卡片，进行定时，时间固定
-        cardView = (CardView) findViewById(R.id.wc);
-        cardView.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                Toast.makeText(UIdesignActivity.this, "点击成功", Toast.LENGTH_LONG).show();
-                setAlarm();
-            }
-        });
-    }
-
-    public void setAlarm() {
-
-        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        Intent intent = new Intent(this, UIdesignActivity.class);
-        intent.putExtra("flag", true);//显示任务提醒
-        int requestCode = 0;
-        PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(),
-                requestCode, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-        long triggerAtTime = SystemClock.elapsedRealtime() + 5 * 1000;//设置时间
-
-        alarmManager.set(AlarmManager.RTC_WAKEUP, triggerAtTime, pendingIntent);
     }
 
     public void connectx() {
@@ -283,8 +277,10 @@ public class UIdesignActivity extends AppCompatActivity {
                             @Override
                             public void onTimeSet(TimePicker view, int hourOfDay,
                                                   int minute) {
+
                                 tv_time.setText(tv_time.getText() +String.format("%d:%d",hourOfDay,minute));
 
+                                setAlarm(tv_time.getText().toString());
                                 update("tx_time",tv_time.getText().toString().replace(" ","/"));
                             }
                         }, 0, 0, true);

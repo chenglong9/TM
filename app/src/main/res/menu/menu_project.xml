@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item android:title="讨论"
-        android:icon="@drawable/message_normal"
+        android:icon="@drawable/new_message"
         android:id="@+id/messageItem"
         app:showAsAction="ifRoom"
         />

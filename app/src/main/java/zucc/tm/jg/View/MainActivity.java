@@ -51,6 +51,8 @@ import zucc.tm.jg.Util.my;
 
 import zucc.tm.jg.bean.mybean;
 
+import static zucc.tm.jg.View.addprojectActivity.setWindowStatusBarColor;
+
 
 /**
  * Created by iiro on 7.6.2016.
@@ -84,7 +86,7 @@ public class MainActivity extends AppCompatActivity implements
         startService(intent);
 
         locationAndContactsTask();
-
+        setWindowStatusBarColor(MainActivity.this, R.color.colorPrimary);
 
 
         toolbar = (Toolbar) findViewById(R.id.tl_custom);
@@ -101,11 +103,13 @@ public class MainActivity extends AppCompatActivity implements
             @Override
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
+                setWindowStatusBarColor(MainActivity.this, R.color.colorPrimaryDark);
             }
 
             @Override
             public void onDrawerClosed(View drawerView) {
                 super.onDrawerClosed(drawerView);
+                setWindowStatusBarColor(MainActivity.this, R.color.colorPrimary);
             }
         };
         mDrawerToggle.syncState();
@@ -181,6 +185,7 @@ public class MainActivity extends AppCompatActivity implements
         bottomBar.setOnTabReselectListener(new OnTabReselectListener() {
             @Override
             public void onTabReSelected(@IdRes int tabId) {
+
             }
         });
 

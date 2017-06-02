@@ -1,4 +1,5 @@
 package zucc.tm.jg.View;
+
 import android.app.IntentService;
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -11,8 +12,6 @@ import android.util.Log;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.Date;
 
 import de.tavendo.autobahn.WebSocketConnection;
 import de.tavendo.autobahn.WebSocketException;
@@ -150,18 +149,18 @@ public class MsgIntentService extends IntentService {
     }
 
     public void titlex(String x) {
- /*       Intent intent = new Intent(MsgIntentService.this, MainActivity.class);
-        PendingIntent contentIntent = PendingIntent.getActivity(this, 0, intent, 0);*/
+        Intent intent = new Intent(MsgIntentService.this, TongzhiActivity.class);
+        PendingIntent contentIntent = PendingIntent.getActivity(this, 0, intent, 0);
 
         //1.获取系统通知的管理者
         nm = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         //2.用notification工厂 创建一个notification
         Notification noti = new Notification.Builder(this)
-                .setContentTitle(x)
-                .setContentText("")
+                .setContentTitle("TM")
+                .setContentText(x)
                 .setSmallIcon(R.mipmap.ic_launcher)
                 .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher))
-               // .setContentIntent(contentIntent)
+                .setContentIntent(contentIntent)
                 .build();
         //3.把notification显示出来
         nm.notify(1, noti);
