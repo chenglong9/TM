@@ -316,7 +316,6 @@ public class projectFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        connect();
     }
 }
 

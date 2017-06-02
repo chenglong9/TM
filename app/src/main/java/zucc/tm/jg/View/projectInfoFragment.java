@@ -239,7 +239,8 @@ public class projectInfoFragment extends Fragment {
         super.onResume();
 
         init(viewm);
-        getgong();
+        if(gg.GGlist.size()!=0)
+        gonggao.setText(gg.GGlist.get(gg.GGlist.size() - 1).getCon());
         tv_complete.setText(RWlisttb.wc + "/" + RWlisttb.RWlist.size());
     }
 
