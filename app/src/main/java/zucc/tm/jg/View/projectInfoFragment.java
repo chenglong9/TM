@@ -322,6 +322,7 @@ public class projectInfoFragment extends Fragment {
                         rwBean.setTypes(rw.getString("types"));
                         rwBean.setPerson_in_charge(rw.getString("person_in_charge"));
                         rwBean.setTx_time(rw.getString("tx_time"));
+
                         rwBean.setTx_method(rw.getString("tx_method"));
 
                         if (rw.getString("person_in_charge").equals("1"))

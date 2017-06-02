@@ -90,7 +90,14 @@ public class jobFragment extends Fragment {
             public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
                                     long arg3) {
                 if (!Joblisttb.jobl.get(arg2).getProject_id().equals(""))
-                connectxx(huan(Joblisttb.jobl.get(arg2).getProject_id()),Joblisttb.jobl.get(arg2).getStage_id());
+                    if (RWlisttb.RWlist.size()!=0&&RWlisttb.RWlist.get(0).getProject_id().equals(Joblisttb.jobl.get(arg2).getProject_id()))
+                    {
+                        Intent intent = new Intent(getActivity(), UIdesignActivity.class);
+                        intent.putExtra("id", huan(Joblisttb.jobl.get(arg2).getProject_id()));
+                        intent.putExtra("n", huan2(Joblisttb.jobl.get(arg2).getStage_id()));
+                        getActivity().startActivity(intent);
+                    }else
+                     connectxx(huan(Joblisttb.jobl.get(arg2).getProject_id()),Joblisttb.jobl.get(arg2).getStage_id());
             }
 
         });
@@ -188,8 +195,8 @@ public class jobFragment extends Fragment {
                             }
                     }
                     Intent intent = new Intent(getActivity(), UIdesignActivity.class);
-                    intent.putExtra("id", id);
-                    intent.putExtra("n", huan2(n));
+                    intent.putExtra("id",  huan2(n));
+                    intent.putExtra("n",id);
                     getActivity().startActivity(intent);
                 } catch (JSONException e) {
                     e.printStackTrace();

@@ -183,8 +183,11 @@ public class UIdesignActivity extends AppCompatActivity {
 
         try {
             Date dateStart = dateFormat.parse(time);
+            Date date = new Date();
+            if (dateStart.getTime()<date.getTime())
+                return;
             AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-            Intent intent = new Intent(this, MainActivity.class);
+            Intent intent = new Intent(this, newActivity.class);
             intent.putExtra("flag", toolbar.getTitle());//显示任务提醒
             int requestCode = 0;
             PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(),
@@ -264,7 +267,7 @@ public class UIdesignActivity extends AppCompatActivity {
          int mDay;
         Calendar c = Calendar.getInstance();//
         mYear = c.get(Calendar.YEAR); // 获取当前年份
-        mMonth = c.get(Calendar.MONTH) + 1;// 获取当前月份
+        mMonth = c.get(Calendar.MONTH) ;// 获取当前月份
         mDay = c.get(Calendar.DAY_OF_MONTH);// 获取当日期
         if (my.my.getPhone().equals(Projectlistb.projectlistb.get((int) getIntent().getSerializableExtra("n")).getPhone()))
         new DatePickerDialog(UIdesignActivity.this, new DatePickerDialog.OnDateSetListener() {

@@ -1,7 +1,10 @@
 package zucc.tm.jg.View;
 
 import android.app.ActivityOptions;
+import android.app.AlarmManager;
 import android.app.Fragment;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -176,7 +179,27 @@ public class projectFragment extends Fragment {
         }, "http://" + curUrl.url + "/GetProjectServlet?id=" + my.my.getPhone());
         task.execute();
     }
+    public void setAlarm(String time,String name) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyy-MM-dd HH:mm");
 
+        try {
+            Date dateStart = dateFormat.parse(time);
+            Date date = new Date();
+            if (dateStart.getTime()<date.getTime())
+                return;
+            AlarmManager alarmManager = (AlarmManager) getActivity().getSystemService(Context.ALARM_SERVICE);
+            Intent intent = new Intent(getActivity(), newActivity.class);
+            intent.putExtra("flag",name);//显示任务提醒
+            int requestCode = 0;
+            PendingIntent pendingIntent = PendingIntent.getActivity(getActivity().getApplicationContext(),
+                    requestCode, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+            long triggerAtTime = dateStart.getTime();//设置时间
+
+            alarmManager.set(AlarmManager.RTC_WAKEUP, triggerAtTime, pendingIntent);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
     public void del(int x) {
 
         HttpTask task = new HttpTask(new HttpCallBack() {
@@ -208,7 +231,7 @@ public class projectFragment extends Fragment {
                 try {
 
                     JSONArray rwlist = new JSONArray((String) result.get(0));
-
+                    Joblisttb.jobl.clear();
                     for (int i = 0; i < rwlist.length(); i++) {
                         JSONObject rw = rwlist.getJSONObject(i);
                         RWBean rwBean = new RWBean();
@@ -222,6 +245,8 @@ public class projectFragment extends Fragment {
                         rwBean.setPerson_in_charge(rw.getString("person_in_charge"));
                         rwBean.setTx_time(rw.getString("tx_time"));
                         rwBean.setTx_method(rw.getString("tx_method"));
+                        if (getActivity()!=null)
+                        setAlarm(rw.getString("tx_time"),rw.getString("project_name"));
 
                         JSONArray friendx = rw.getJSONArray("friend");
                         JSONArray friends = friendx.getJSONArray(0);

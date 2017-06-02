@@ -42,7 +42,9 @@ public class MsgIntentService extends IntentService {
     @Override
     public void onCreate() {
         super.onCreate();
-        connect();
+        if (mConnect==null||!mConnect.isConnected()) {
+            connect();
+        }
     }
 
     @Override
@@ -141,7 +143,6 @@ public class MsgIntentService extends IntentService {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        titlex("连接断开");
         mConnect.disconnect();
     }
     public static  void onclose() {

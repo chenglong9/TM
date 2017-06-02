@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -72,7 +73,7 @@ public class rwAdapter extends BaseAdapter {
         if (view == null) {
             view = mInflater.inflate(R.layout.item_rw, null);
         }
-        CheckBox cbx = (CheckBox) view.findViewById(R.id.check);
+        final CheckBox cbx = (CheckBox) view.findViewById(R.id.check);
         final TextView title = (TextView) view.findViewById(R.id.title);
         TextView time = (TextView) view.findViewById(R.id.time);
 
@@ -117,10 +118,10 @@ public class rwAdapter extends BaseAdapter {
         }
 
 
-        cbx.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        cbx.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if (b == true) {
+            public void onClick(View view) {
+                if (cbx.isChecked() == true) {
                     update(i, "f", "1");
                     title.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
                     title.setTextColor(Color.parseColor("#757575"));
@@ -131,6 +132,7 @@ public class rwAdapter extends BaseAdapter {
                 }
             }
         });
+
         return view;
     }
 

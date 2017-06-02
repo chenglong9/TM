@@ -153,7 +153,9 @@ public class stageListFragment extends Fragment {
                             }
                         }
                     }
-                    adapter.notifyDataSetChanged();
+                   // adapter.notifyDataSetChanged();
+                    adapter = new rwAdapter(getActivity(), id, handler);
+                    rw_list.setAdapter(adapter);
                     RWlisttb.wc=zz;
                 } catch (JSONException e) {
                     e.printStackTrace();
