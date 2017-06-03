@@ -5,6 +5,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+    android:background="@color/colorPrimary"
         tools:context=".View.MainActivity">
 
 
@@ -12,6 +13,7 @@
             android:id="@+id/dl_left"
             android:fitsSystemWindows="false"
             android:layout_width="match_parent"
+            android:background="@color/colorPrimary"
             android:layout_height="match_parent">
 
             <!--主布局-->
@@ -28,6 +30,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:theme="@style/toolBar"
+                    android:paddingTop="24dp"
                     android:background="?attr/colorPrimary"
                     android:minHeight="?attr/actionBarSize"
                     android:popupTheme="@style/ThemeOverlay.AppCompat.Light"

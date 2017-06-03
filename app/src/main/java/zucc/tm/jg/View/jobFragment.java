@@ -93,8 +93,9 @@ public class jobFragment extends Fragment {
                     if (RWlisttb.RWlist.size()!=0&&RWlisttb.RWlist.get(0).getProject_id().equals(Joblisttb.jobl.get(arg2).getProject_id()))
                     {
                         Intent intent = new Intent(getActivity(), UIdesignActivity.class);
-                        intent.putExtra("id", huan(Joblisttb.jobl.get(arg2).getProject_id()));
-                        intent.putExtra("n", huan2(Joblisttb.jobl.get(arg2).getStage_id()));
+
+                        intent.putExtra("id", huan2(Joblisttb.jobl.get(arg2).getStage_id()));
+                        intent.putExtra("n", huan(Joblisttb.jobl.get(arg2).getProject_id()));
                         getActivity().startActivity(intent);
                     }else
                      connectxx(huan(Joblisttb.jobl.get(arg2).getProject_id()),Joblisttb.jobl.get(arg2).getStage_id());

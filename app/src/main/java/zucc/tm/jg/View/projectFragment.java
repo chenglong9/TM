@@ -292,6 +292,8 @@ public class projectFragment extends Fragment {
                 Date now = new Date();
                 if (dateStart.getTime() <= now.getTime() && dateEnd.getTime() >= now.getTime()) {
                     i++;
+                } else  if (dateStart.getTime() <= now.getTime() && dateEnd.getTime()+24*60*60*1000 >= now.getTime()) {
+                    i++;
                 } else Joblisttb.jobl.remove(i);
 
             }

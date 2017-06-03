@@ -103,13 +103,11 @@ public class MainActivity extends AppCompatActivity implements
             @Override
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
-                setWindowStatusBarColor(MainActivity.this, R.color.colorPrimaryDark);
             }
 
             @Override
             public void onDrawerClosed(View drawerView) {
                 super.onDrawerClosed(drawerView);
-                setWindowStatusBarColor(MainActivity.this, R.color.colorPrimary);
             }
         };
         mDrawerToggle.syncState();
