@@ -76,7 +76,7 @@ public class GonggaoActivity extends AppCompatActivity {
             public boolean onItemLongClick(AdapterView<?> arg0, View view,
                                            final int position, long id) {
 
-                alertdialog.showSimpleDialog(GonggaoActivity.this, "", "是否删除该公共?", "取消", "删除", null, new DialogInterface.OnClickListener (){
+                alertdialog.showSimpleDialog(GonggaoActivity.this, "", "是否删除该公告?", "取消", "删除", null, new DialogInterface.OnClickListener (){
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         del(position);

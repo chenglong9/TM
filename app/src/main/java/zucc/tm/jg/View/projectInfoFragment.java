@@ -209,7 +209,7 @@ public class projectInfoFragment extends Fragment {
                         MsgIntentService.sendMessage(json.toString());
                     } else {
                         alertdialog.showSimpleDialog(getActivity(), "", "该用户尚未注册本应用", "", "确认", null, null, true);
-                        sendSMS(phone.toString(), my.getName() + "邀请您使用TM，http://www.zcl1995.xin/TeamWork/download");
+                        sendSMS(phone.toString(), my.getName() + "邀请您使用TM，http://www.zcl1995.xin:8080/TeamWork/download");
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -341,7 +341,6 @@ public class projectInfoFragment extends Fragment {
                         rwBean.setFriends(friendlist);
                         if (Projectlistb.projectlistb.get(id).getPhone().equals(my.getPhone())) {
                             RWlisttb.RWlist.add(rwBean);
-
                         } else
                             for (HashMap f : friendlist) {
                                 if (f.get("mphone").equals(my.getPhone())) {

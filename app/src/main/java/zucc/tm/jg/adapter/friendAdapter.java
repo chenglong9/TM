@@ -83,7 +83,7 @@ public class friendAdapter extends BaseAdapter {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         if(which==2)
-                            sendSMS(phone.getText().toString(), my.my.getName() + "邀请您使用TM，http://www.zcl1995.xin/TeamWork/download");
+                            sendSMS(phone.getText().toString(), my.my.getName() + "邀请您使用TM，http://www.zcl1995.xin:8080/TeamWork/download");
                     }
 
                 }
