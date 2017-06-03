@@ -42,9 +42,9 @@ public class MsgIntentService extends IntentService {
     @Override
     public void onCreate() {
         super.onCreate();
-        if (mConnect==null||!mConnect.isConnected()) {
+
             connect();
-        }
+
     }
 
     @Override
