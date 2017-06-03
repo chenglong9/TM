@@ -159,8 +159,8 @@ public class MsgIntentService extends IntentService {
         Notification noti = new Notification.Builder(this)
                 .setContentTitle("TM")
                 .setContentText(x)
-                .setSmallIcon(R.mipmap.ic_launcher)
-                .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher))
+                .setSmallIcon(R.drawable.logo)
+                .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.logo))
                 .setContentIntent(contentIntent)
                 .build();
         //3.把notification显示出来

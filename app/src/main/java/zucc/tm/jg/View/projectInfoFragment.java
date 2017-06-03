@@ -325,8 +325,7 @@ public class projectInfoFragment extends Fragment {
 
                         rwBean.setTx_method(rw.getString("tx_method"));
 
-                        if (rw.getString("person_in_charge").equals("1"))
-                            zz++;
+
                         JSONArray friends = rw.getJSONArray("friend");
 
                         ArrayList<HashMap> friendlist = new ArrayList<>();
@@ -341,10 +340,14 @@ public class projectInfoFragment extends Fragment {
                         rwBean.setFriends(friendlist);
                         if (Projectlistb.projectlistb.get(id).getPhone().equals(my.getPhone())) {
                             RWlisttb.RWlist.add(rwBean);
+                            if (rw.getString("person_in_charge").equals("1"))
+                                zz++;
                         } else
                             for (HashMap f : friendlist) {
                                 if (f.get("mphone").equals(my.getPhone())) {
                                     RWlisttb.RWlist.add(rwBean);
+                                    if (rw.getString("person_in_charge").equals("1"))
+                                        zz++;
                                     break;
                                 }
                             }

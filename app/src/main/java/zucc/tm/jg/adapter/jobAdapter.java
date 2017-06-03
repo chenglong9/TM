@@ -68,7 +68,7 @@ public class jobAdapter extends BaseAdapter {
             if (i != 0)
                 dv.setVisibility(View.VISIBLE);
             title.setText(Joblisttb.jobl.get(i).getProject_name());
-            title.setTextSize(14);
+            title.setTextSize(16);
             title.setTextColor(Color.parseColor("#0288D1"));
             cbx.setVisibility(View.INVISIBLE);
             time.setVisibility(View.GONE);
@@ -76,7 +76,7 @@ public class jobAdapter extends BaseAdapter {
             title.setText(Joblisttb.jobl.get(i).getProject_name());
             dv.setVisibility(View.GONE);
             time.setText(Joblisttb.jobl.get(i).getTx_time());
-            title.setTextSize(14);
+            title.setTextSize(16);
             title.setTextColor(Color.parseColor("#212121"));
             cbx.setVisibility(View.VISIBLE);
             time.setVisibility(View.VISIBLE);

@@ -13,6 +13,7 @@ import android.graphics.Color;
 import android.media.Image;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.annotation.IdRes;
@@ -25,8 +26,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.widget.AdapterView;
 
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -42,6 +46,7 @@ import zucc.tm.jg.R;
 import zucc.tm.jg.Util.Joblisttb;
 import zucc.tm.jg.Util.Projectlistb;
 import zucc.tm.jg.Util.RWlisttb;
+import zucc.tm.jg.Util.alertdialog;
 import zucc.tm.jg.adapter.drawerAdapter;
 import pub.devrel.easypermissions.AfterPermissionGranted;
 import pub.devrel.easypermissions.AppSettingsDialog;
@@ -75,12 +80,32 @@ public class MainActivity extends AppCompatActivity implements
     private TextView name;
     private TextView phone;
     private Intent intent;
+    private ImageView guodu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        guodu = (ImageView) findViewById(R.id.guodu);
+        AlphaAnimation aa = new AlphaAnimation(0.0f, 1.0f);//创建一个AlphaAnimation 对象，渐变从1->0
+        aa.setDuration(2000);//设置持续时间
+        aa.setFillAfter(false);//设置最后的动画效果，这里是显示状态（最后能够看到这个View)
+        guodu.startAnimation(aa);//启动动画
+        aa.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                guodu.setVisibility(View.GONE);
+            }
+        });
 
         intent = new Intent(this, MsgIntentService.class);
         startService(intent);
@@ -129,14 +154,13 @@ public class MainActivity extends AppCompatActivity implements
                 if (arg2 == 0) {
                     Intent intent = new Intent(MainActivity.this, TongzhiActivity.class);
                     MainActivity.this.startActivity(intent);
-                }
-                else     if (arg2 == 4) {
-                    my.my=new mybean();
+                } else if (arg2 == 4) {
+                    my.my = new mybean();
                     Projectlistb.projectlistb.clear();
                     RWlisttb.RWlist.clear();
                     Joblisttb.jobl.clear();
-                    SharedPreferences sharedPre=getSharedPreferences("config", MODE_PRIVATE);
-                    SharedPreferences.Editor editor=sharedPre.edit();
+                    SharedPreferences sharedPre = getSharedPreferences("config", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPre.edit();
                     editor.clear();
                     editor.commit();
                     MsgIntentService.onclose();
@@ -146,7 +170,12 @@ public class MainActivity extends AppCompatActivity implements
                     Intent intents = new Intent(MainActivity.this, LoginActivity.class);
                     MainActivity.this.startActivity(intents);
 
-                }
+                } else if (arg2 == 2) {
+                    Uri uri = Uri.parse("http://www.zcl1995.xin:8080/TeamWork/download");
+                    Intent it = new Intent(Intent.ACTION_VIEW, uri);
+                    startActivity(it);
+                } else if (arg2 == 3)
+                    alertdialog.showSimpleDialog(MainActivity.this, "", "TM--团队管理app1.0", "", "确认", null, null, true);
 
             }
 
@@ -187,7 +216,7 @@ public class MainActivity extends AppCompatActivity implements
             }
         });
 
-        name= (TextView) findViewById(R.id.name);
+        name = (TextView) findViewById(R.id.name);
         phone = (TextView) findViewById(R.id.phone);
         name.setText(my.my.getName());
         phone.setText(my.my.getPhone());
@@ -196,7 +225,7 @@ public class MainActivity extends AppCompatActivity implements
 
     @AfterPermissionGranted(RC_LOCATION_CONTACTS_PERM)
     public void locationAndContactsTask() {
-        String[] perms = {android.Manifest.permission.READ_CONTACTS, Manifest.permission.CALL_PHONE,Manifest.permission.SEND_SMS};
+        String[] perms = {android.Manifest.permission.READ_CONTACTS, Manifest.permission.CALL_PHONE, Manifest.permission.SEND_SMS};
         if (EasyPermissions.hasPermissions(this, perms)) {
             // Have permissions, do the thing!
 

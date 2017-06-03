@@ -82,6 +82,7 @@ public class UIdesignActivity extends AppCompatActivity {
             Toast.makeText(UIdesignActivity.this, "删除成功", Toast.LENGTH_LONG).show();
         }
     };
+    private TextView add_t;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,8 +95,10 @@ public class UIdesignActivity extends AppCompatActivity {
         jianjie = (TextView) findViewById(R.id.jianjie);
         tv_time = (TextView) findViewById(R.id.tv_time);
         method = (TextView) findViewById(R.id.method);
+        add_t = (TextView) findViewById(R.id.add_t);
 
-
+        if (!Projectlistb.projectlistb.get((int) getIntent().getSerializableExtra("n")).getPhone().equals(my.my.getPhone()))
+            add_t.setVisibility(View.GONE);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
 
         toolbar.setTitle(RWlisttb.RWlist.get(i).getProject_name());//设置Toolbar标题
@@ -132,6 +135,7 @@ public class UIdesignActivity extends AppCompatActivity {
     }
 
     public void add(View v) {
+
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         Log.d("n", "" + (int) getIntent().getSerializableExtra("n"));
         final ArrayList<String> names = new ArrayList<String>();
