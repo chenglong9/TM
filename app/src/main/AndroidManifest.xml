@@ -55,16 +55,18 @@
         <activity android:name=".View.TongzhiActivity" />
         <activity android:name=".View.addrwActivity" />
         <activity android:name=".View.LoginActivity">
+
+        </activity>
+        <activity
+            android:name=".View.newActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
+        <activity android:name=".View.Loading">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".View.newActivity"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
-        <activity android:name=".View.Loading"></activity>
     </application>
 
 </manifest>
