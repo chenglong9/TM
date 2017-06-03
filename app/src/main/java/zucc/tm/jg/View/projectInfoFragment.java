@@ -241,7 +241,7 @@ public class projectInfoFragment extends Fragment {
         init(viewm);
         if(gg.GGlist.size()!=0)
         gonggao.setText(gg.GGlist.get(gg.GGlist.size() - 1).getCon());
-
+        connectxx();
     }
 
     public void connectx() {
