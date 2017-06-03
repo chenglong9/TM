@@ -128,7 +128,6 @@ public class projectFragment extends Fragment {
                 try {
                     mRefreshLayout.setRefreshing(false);
                     Projectlistb.projectlistb.clear();
-                    Joblisttb.jobl.clear();
                     JSONArray projectlist = new JSONArray((String) result.get(0));
                     for (int i = 0; i < projectlist.length(); i++) {
                         JSONObject project = projectlist.getJSONObject(i);
