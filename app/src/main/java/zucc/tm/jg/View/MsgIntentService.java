@@ -26,15 +26,17 @@ import zucc.tm.jg.bean.msgbean;
  * Created by dy on 2016/8/29.
  */
 public class MsgIntentService extends IntentService {
-    private static final String wsurl = "ws://"+ curUrl.url+"/socket";
+    private static final String wsurl = "ws://" + curUrl.url + "/socket";
     private static WebSocketConnection mConnect = new WebSocketConnection();
     private static final String TAG = "MainActivity";
     private static Handler handler = null;
     private NotificationManager nm;
+    private static boolean readyFlag = true;
 
     public static void sethand(Handler handlers) {
         handler = handlers;
     }
+
     public MsgIntentService() {
         super("worker thread");
     }
@@ -42,9 +44,27 @@ public class MsgIntentService extends IntentService {
     @Override
     public void onCreate() {
         super.onCreate();
+        readyFlag = true;
+        connect();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (readyFlag) {
+                    //发送心跳保持协议给服务器端
+                    try {
+                        JSONObject sendMsg = new JSONObject();
+                        sendMsg.put("phone", my.my.getPhone());
+                        sendMsg.put("type", "connect");
+                        String msg = sendMsg.toString();
+                        sendMessage(msg);
 
-            connect();
-
+                        Thread.sleep(45000);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }).start();
     }
 
     @Override
@@ -56,6 +76,7 @@ public class MsgIntentService extends IntentService {
     protected void onHandleIntent(Intent intent) {
 
     }
+
     private void connect() {
         Log.i(TAG, "ws connect....");
         try {
@@ -67,7 +88,7 @@ public class MsgIntentService extends IntentService {
                     JSONObject sendMsg = new JSONObject();
                     try {
                         sendMsg.put("phone", my.my.getPhone());
-                        sendMsg.put("type","connect");
+                        sendMsg.put("type", "connect");
                         String msg = sendMsg.toString();
                         sendMessage(msg);
                     } catch (JSONException e) {
@@ -83,7 +104,7 @@ public class MsgIntentService extends IntentService {
                     try {
                         if (payload.equals("你好"))
                             return;
-                        JSONObject receiveMsg =  new JSONObject(payload);
+                        JSONObject receiveMsg = new JSONObject(payload);
                         String type = receiveMsg.getString("type");
 
                         if (type.equals("msg")) {
@@ -91,25 +112,22 @@ public class MsgIntentService extends IntentService {
                             String name = receiveMsg.getString("name");
                             String msg = receiveMsg.getString("msg");
                             String time = receiveMsg.getString("time");
-                            msgbean msgb=new msgbean(id,name,msg,time);
+                            msgbean msgb = new msgbean(id, name, msg, time);
                             Msglist.map.get(id).add(msgb);
-                            Msglist.msg=true;
+                            Msglist.msg = true;
 
                             Message message = new Message();
                             message.what = 1;
                             handler.sendMessage(message);
 
-                        }else if (type.equals("gg"))
-                        {
+                        } else if (type.equals("gg")) {
                             titlex("有新的公告");
-                            Msglist.gg=true;
+                            Msglist.gg = true;
 
-                        }else if (type.equals("tz"))
-                        {
+                        } else if (type.equals("tz")) {
                             titlex("有新的通知");
-                            Msglist.tz=true;
+                            Msglist.tz = true;
                         }
-
 
 
                     } catch (JSONException e) {
@@ -120,32 +138,36 @@ public class MsgIntentService extends IntentService {
 
                 @Override
                 public void onClose(int code, String reason) {
-                    Log.i(TAG, "Connection lost..");
+                    connect();
+                    Log.i(TAG, "Connection lost.." + code + reason);
                 }
             });
         } catch (WebSocketException e) {
             e.printStackTrace();
         }
     }
+
     /**
      * 发送消息
      *
      * @param msg
      */
     public static void sendMessage(String msg) {
-        if (mConnect.isConnected()) {
+        if (mConnect!=null&&mConnect.isConnected()) {
             mConnect.sendTextMessage(msg);
 
         } else {
             Log.i(TAG, "no connection!!");
         }
     }
+
     @Override
     public void onDestroy() {
         super.onDestroy();
         mConnect.disconnect();
     }
-    public static  void onclose() {
+
+    public static void onclose() {
         mConnect.disconnect();
     }
 
