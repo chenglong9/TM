@@ -1,0 +1,32 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="zucc.tm.jg.View.stageListFragment">
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/srlayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <zucc.tm.jg.Util.NoScrollListview
+        android:id="@+id/list_rw"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"></zucc.tm.jg.Util.NoScrollListview>
+
+</android.support.v4.widget.SwipeRefreshLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="16dp"
+        android:layout_marginRight="16dp"
+        android:src="@drawable/add_fab"
+        android:transitionName="fab" />
+
+
+</RelativeLayout>

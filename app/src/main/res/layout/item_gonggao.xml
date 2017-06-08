@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="88dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+           android:id="@+id/neirou"
+            android:text="如果我们不想让屏幕无法旋转，但又想让屏幕旋转的时候不刷新页面，该怎么办呢？众所周知，屏幕旋转的时候会执行一个 onCreate() 方法."
+            android:textColor="@color/SecondaryText"
+            android:lines="2"
+            android:ellipsize="end"
+            android:textSize="16dp"
+           android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="16dp"
+            />
+        <TextView
+            android:id="@+id/time"
+            android:textSize="14dp"
+            android:layout_below="@id/neirou"
+            android:text="5月20日 17:56 "
+            android:textColor="@color/colorPrimary"
+            android:gravity="left"
+            android:paddingLeft="16dp"
+            android:layout_marginBottom="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+
+</LinearLayout>

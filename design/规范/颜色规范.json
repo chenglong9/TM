@@ -1,0 +1,11 @@
+{
+	"Primary":"#03A9F4",		//主题色
+	"Dark Primary":"#0288D1",	//深色主题色
+	"Light Primary":"#B3E5FC",	//浅色主题色
+	"Accent":"#FFC107",			//强调色
+	"Text/Icon":"#FFFFFF",		//图标中的文字色
+	"Primary Text":"#212121",	//标准文字色
+	"Secondary Text":"#757575",	//次级文字色
+	"Divider":"#BDBDBD",		//分割线，瓷砖间的分割线可以用这个
+	"Warn":"#E61E28"			//警告色，目前只出现在退出登录这一块
+}

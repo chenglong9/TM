@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tabs >
+    <tab
+        id="@+id/tab_peoject"
+        icon="@mipmap/project"
+         />
+    <tab
+        id="@+id/tab_job"
+        icon="@mipmap/schedule"
+       />
+    <tab
+        id="@+id/tab_friends"
+        icon="@mipmap/contact"
+       />
+</tabs>

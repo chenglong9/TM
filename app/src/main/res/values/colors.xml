@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#03A9F4</color>
+    <color name="colorPrimaryDark">#0288D1</color>
+    <color name="colorAccent">#FFC107</color>
+    <color name="LightPrimary">#B3E5FC</color><!--浅色主题色-->
+    <color name="PrimaryText">#212121</color><!--标准文字色-->
+    <color name="SecondaryText">#757575</color><!--次级文字色-->
+    <color name="Divider">#77bdbdbd</color><!--分割线，瓷砖间的分割线可以用这个-->
+    <color name="Warn">#E61E28</color><!--警告色，目前只出现在退出登录这一块-->
+    <color name="colorControlNormal">#03A9F4</color>
+    <color name="colorControlActivated">#03A9F4</color>
+    <color name="color_w">#ffffff</color>
+    <color name="tou">#03A9F4</color>
+    <color name="bei">#F9F9F9</color>
+    <color name="tou2">#28000000</color>
 </resources>
