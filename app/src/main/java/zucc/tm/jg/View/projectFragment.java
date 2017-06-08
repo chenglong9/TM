@@ -13,6 +13,8 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.ScaleAnimation;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -53,6 +55,7 @@ public class projectFragment extends Fragment {
     private FloatingActionButton fab;
     public projectAdapter adapter;
     private SwipeRefreshLayout mRefreshLayout;
+    private ScaleAnimation animation;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -60,6 +63,12 @@ public class projectFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_project, container, false);
         list = (ListView) view.findViewById(R.id.list);
         fab = (FloatingActionButton) view.findViewById(R.id.fab);
+
+        animation =new ScaleAnimation(0.0f, 1.0f, 0.0f, 1.0f,
+                Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+        animation.setDuration(500);//设置动画持续时间
+        fab.setAnimation(animation);
+        animation.startNow();
 
         mRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.srlayout);
         mRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -260,10 +269,10 @@ public class projectFragment extends Fragment {
                         rwBean.setFriends(friendlist);
                         for (HashMap f : friendlist) {
                             if (f.get("mphone").equals(my.my.getPhone())) {
-                                break;
+                                Joblisttb.jobl.add(rwBean);
                             }
                         }
-                        Joblisttb.jobl.add(rwBean);
+
                     }
                     getx();
                 } catch (JSONException e) {
@@ -343,6 +352,11 @@ public class projectFragment extends Fragment {
     public void onResume() {
         super.onResume();
         connect();
+        animation =new ScaleAnimation(0.0f, 1.0f, 0.0f, 1.0f,
+                Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+        animation.setDuration(500);//设置动画持续时间
+        fab.setAnimation(animation);
+        animation.startNow();
     }
 }
 

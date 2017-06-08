@@ -144,6 +144,7 @@ public class MainActivity extends AppCompatActivity implements
         lvs.add("检查更新");
         lvs.add("关于");
         lvs.add("退出登录");
+
         arrayAdapter = new drawerAdapter(lvs, this);
         lvLeftMenu.setAdapter(arrayAdapter);
         lvLeftMenu.setOnItemClickListener(new AdapterView.OnItemClickListener() {

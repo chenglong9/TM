@@ -13,6 +13,8 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.ScaleAnimation;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -50,6 +52,7 @@ public class stageListFragment extends Fragment {
     public rwAdapter adapter;
     private ArrayList<String> lvs = new ArrayList<String>();
     private SwipeRefreshLayout mRefreshLayout;
+    private ScaleAnimation animation;
 
     public static Fragment newInstance() {
         stageListFragment fragment = new stageListFragment();
@@ -74,6 +77,12 @@ public class stageListFragment extends Fragment {
         if (!my.my.getPhone().equals(Projectlistb.projectlistb.get(id).getPhone()))
             fab.setVisibility(View.GONE);
 
+        animation =new ScaleAnimation(0.0f, 1.0f, 0.0f, 1.0f,
+                Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+        animation.setDuration(500);//设置动画持续时间
+        fab.setAnimation(animation);
+        animation.startNow();
+
         mRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.srlayout);
         mRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -91,6 +100,7 @@ public class stageListFragment extends Fragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 Intent intent = new Intent(getActivity(), addrwActivity.class);
                 intent.putExtra("id", (int) getActivity().getIntent().getSerializableExtra("id"));
                 startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(getActivity(), view, "fab").toBundle());
@@ -187,5 +197,10 @@ public class stageListFragment extends Fragment {
     public void onResume() {
         super.onResume();
         connect();
+        animation =new ScaleAnimation(0.0f, 1.0f, 0.0f, 1.0f,
+                Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+        animation.setDuration(500);//设置动画持续时间
+        fab.setAnimation(animation);
+        animation.startNow();
     }
 }
