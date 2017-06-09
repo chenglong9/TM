@@ -120,11 +120,11 @@ public class MsgIntentService extends IntentService {
                             message.what = 1;
                             handler.sendMessage(message);
 
-                        } else if (type.equals("gg")) {
+                        } else if (type.equals("ggc")) {
                             titlex("有新的公告");
                             Msglist.gg = true;
 
-                        } else if (type.equals("tz")) {
+                        } else if (type.equals("tzc")) {
                             titlex("有新的通知");
                             Msglist.tz = true;
                         }

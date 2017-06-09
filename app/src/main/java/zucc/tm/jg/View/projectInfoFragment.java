@@ -204,7 +204,7 @@ public class projectInfoFragment extends Fragment {
                     if (msg.getString("result").equals("ok")) {
                         alertdialog.showSimpleDialog(getActivity(), "", "已向该用户发出邀请", "", "确认", null, null, true);
                         JSONObject json=new JSONObject();
-                        json.put("type","tz");
+                        json.put("type","tzs");
                         json.put("phone",phone);
                         MsgIntentService.sendMessage(json.toString());
                     } else {
