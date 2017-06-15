@@ -58,10 +58,10 @@ import zucc.tm.jg.bean.mybean;
 
 import static zucc.tm.jg.View.addprojectActivity.setWindowStatusBarColor;
 
-
 /**
  * Created by iiro on 7.6.2016.
  */
+
 public class MainActivity extends AppCompatActivity implements
         EasyPermissions.PermissionCallbacks {
 
