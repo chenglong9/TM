@@ -13,16 +13,6 @@
 ## 功能
 登陆注册
 ![](./design/_image/img_(23).png)
-创建、修改、删除 【项目】
-![](./design/_image/img_(21).png)
-![](./design/_image/img_(5).png)
-添加、删除 【成员】
-添加、完成、删除 【任务】
-团队通讯
-![](./design/_image/img_(17).png)
-发布公告
-任务提醒
-联系人管理
 
 ## 下一版本预览
 
